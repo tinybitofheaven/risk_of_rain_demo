@@ -1,31 +1,28 @@
 fileFormatVersion: 2
-guid: 8e81258c0449f7848bd96e3fac2d1f5e
+guid: bcb14bfffbeb1c142867a39d7720c678
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4847879436185800840
-    second: imp_death_0
+      213: -1392360832863218745
+    second: sBaseIdle_0-Sheet_0
   - first:
-      213: 1313785593171926679
-    second: imp_death_1
+      213: -8841294423440399126
+    second: sBaseIdle_0-Sheet_1
   - first:
-      213: 2470951555708060862
-    second: imp_death_2
+      213: -473139421056501945
+    second: sBaseIdle_0-Sheet_2
   - first:
-      213: -8085838646758014706
-    second: imp_death_3
+      213: 1739318728570154013
+    second: sBaseIdle_0-Sheet_3
   - first:
-      213: -1265626159173739595
-    second: imp_death_4
+      213: -2466117140554772012
+    second: sBaseIdle_0-Sheet_4
   - first:
-      213: 5737533941893180645
-    second: imp_death_5
+      213: 1664884796695356741
+    second: sBaseIdle_0-Sheet_5
   - first:
-      213: -8746128081950652526
-    second: imp_death_6
-  - first:
-      213: 8889012224062026323
-    second: imp_death_7
+      213: 165965896480862064
+    second: sBaseIdle_0-Sheet_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -55,7 +52,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -87,7 +84,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -99,7 +96,7 @@ TextureImporter:
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -111,7 +108,7 @@ TextureImporter:
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -123,13 +120,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: imp_death_0
+      name: sBaseIdle_0-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 26
-        height: 21
+        width: 111
+        height: 57
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +134,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87f6934865fd8bcb0800000000000000
-      internalID: -4847879436185800840
+      spriteID: 7c3550613375dace0800000000000000
+      internalID: -1392360832863218745
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: imp_death_1
+      name: sBaseIdle_0-Sheet_1
       rect:
         serializedVersion: 2
-        x: 27
+        x: 111
         y: 0
-        width: 26
-        height: 21
+        width: 111
+        height: 57
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +155,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79ed90849018b3210800000000000000
-      internalID: 1313785593171926679
+      spriteID: ae46138a0996d4580800000000000000
+      internalID: -8841294423440399126
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: imp_death_2
+      name: sBaseIdle_0-Sheet_2
       rect:
         serializedVersion: 2
-        x: 54
+        x: 222
         y: 0
-        width: 26
-        height: 21
+        width: 111
+        height: 57
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,20 +176,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb48d2729559a4220800000000000000
-      internalID: 2470951555708060862
+      spriteID: 74771be04321f69f0800000000000000
+      internalID: -473139421056501945
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: imp_death_3
+      name: sBaseIdle_0-Sheet_3
       rect:
         serializedVersion: 2
-        x: 81
+        x: 333
         y: 0
-        width: 26
-        height: 21
+        width: 111
+        height: 57
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,20 +197,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e010dd4679459cf80800000000000000
-      internalID: -8085838646758014706
+      spriteID: d1cab971b2d432810800000000000000
+      internalID: 1739318728570154013
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: imp_death_4
+      name: sBaseIdle_0-Sheet_4
       rect:
         serializedVersion: 2
-        x: 108
+        x: 444
         y: 0
-        width: 26
-        height: 21
+        width: 111
+        height: 57
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,20 +218,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5bbd10cb6b79f6ee0800000000000000
-      internalID: -1265626159173739595
+      spriteID: 4d11bb6d68796cdd0800000000000000
+      internalID: -2466117140554772012
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: imp_death_5
+      name: sBaseIdle_0-Sheet_5
       rect:
         serializedVersion: 2
-        x: 135
+        x: 555
         y: 0
-        width: 26
-        height: 21
+        width: 111
+        height: 57
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,20 +239,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ec2a4da8b0df9f40800000000000000
-      internalID: 5737533941893180645
+      spriteID: 545a9f2d6ebda1710800000000000000
+      internalID: 1664884796695356741
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: imp_death_6
+      name: sBaseIdle_0-Sheet_6
       rect:
         serializedVersion: 2
-        x: 162
+        x: 666
         y: 0
-        width: 26
-        height: 21
+        width: 111
+        height: 57
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -263,29 +260,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 297434339d28f9680800000000000000
-      internalID: -8746128081950652526
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: imp_death_7
-      rect:
-        serializedVersion: 2
-        x: 189
-        y: 0
-        width: 26
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3527253958d1c5b70800000000000000
-      internalID: 8889012224062026323
+      spriteID: 07f22908a11ad4200800000000000000
+      internalID: 165965896480862064
       vertices: []
       indices: 
       edges: []
