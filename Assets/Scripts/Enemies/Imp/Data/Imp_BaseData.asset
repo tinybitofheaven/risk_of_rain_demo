@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f53a1e51a7454bc49aac0582788084dc, type: 3}
   m_Name: Imp_BaseData
   m_EditorClassIdentifier: 
-  wallCheckDistance: 0
-  ledgeCheckDistance: 0
+  wallCheckDistance: 0.1
+  ledgeCheckDistance: 0.15
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256

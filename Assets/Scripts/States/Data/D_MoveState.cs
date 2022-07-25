@@ -6,4 +6,6 @@ using UnityEngine;
 public class D_MoveState : ScriptableObject //data container for saving data independent of class instances
 {
     public float movementSpeed = 3;
+    public float minMoveTime = 1f;
+    public float maxMoveTime = 4f;
 }

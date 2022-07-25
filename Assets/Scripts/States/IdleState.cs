@@ -7,7 +7,7 @@ public class IdleState : State
     protected D_IdleState stateData;
 
     protected bool flipAfterIdle; //continues facing the same way after idle
-    protected bool isTdleTimeOver;
+    protected bool isIdleTimeOver;
     protected float idleTime;
 
     public IdleState(Entity entity, FSM stateMachine, string animBoolName, D_IdleState stateData) : base(entity, stateMachine, animBoolName)
@@ -19,7 +19,7 @@ public class IdleState : State
     {
         base.Enter();
         entity.SetVelocity(0f);
-        isTdleTimeOver = false;
+        isIdleTimeOver = false;
         SetRandomIdleTime();
     }
 
@@ -37,7 +37,7 @@ public class IdleState : State
         base.LogicUpdate();
         if (Time.time >= startTime + idleTime)
         {
-            isTdleTimeOver = true;
+            isIdleTimeOver = true;
         }
     }
 

@@ -28,6 +28,12 @@ public class Imp_MoveState : MoveState
             imp.idleState.SetFlipAfterIdle(true);
             stateMachine.ChangeState(imp.idleState);
         }
+
+        if (isMoveTimeOver)
+        {
+            imp.idleState.SetFlipAfterIdle(Random.value > 0.5f); //randomly set flip if movetime is over
+            stateMachine.ChangeState(imp.idleState);
+        }
     }
 
     public override void PhysicsUpdate()

@@ -24,7 +24,7 @@ public class Imp_IdleState : IdleState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (isTdleTimeOver)
+        if (isIdleTimeOver)
         {
             stateMachine.ChangeState(imp.moveState);
         }
