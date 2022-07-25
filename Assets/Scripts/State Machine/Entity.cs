@@ -18,7 +18,8 @@ public class Entity : MonoBehaviour
     private Transform wallCheck;
     [SerializeField]
     private Transform ledgeCheck;
-
+    [SerializeField]
+    private Transform playerCheck;
 
     private Vector2 velocityWorkspace; //temp variable for any vector2
 
@@ -60,6 +61,16 @@ public class Entity : MonoBehaviour
     public virtual bool CheckLedge()
     {
         return Physics2D.Raycast(ledgeCheck.position, Vector2.down, entityData.ledgeCheckDistance, entityData.whatIsGround);
+    }
+
+    public virtual bool CheckMinAggroRange()
+    {
+        return Physics2D.Raycast(playerCheck.position, enity.transform.right, entityData.minAggrorange, entityData.whatIsPlayer);
+    }
+
+    public virtual bool CheckMaxAggroRange()
+    {
+        return Physics2D.Raycast(playerCheck.position, enity.transform.right, entityData.maxAggroRange, entityData.whatIsPlayer);
     }
 
     public virtual void Flip()

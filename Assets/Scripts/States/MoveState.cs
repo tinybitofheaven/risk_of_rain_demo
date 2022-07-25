@@ -7,8 +7,9 @@ public class MoveState : State
     protected D_MoveState stateData;
     protected bool isDetectingWall;
     protected bool isDetectingLedge;
-
     protected bool isMoveTimeOver;
+    protected bool isPlayerInMinAggroRange;
+
     protected float moveTime;
 
 
@@ -26,6 +27,7 @@ public class MoveState : State
 
         isDetectingLedge = entity.CheckLedge();
         isDetectingWall = entity.CheckWall();
+        isPlayerInMinAggroRange = entity.CheckMinAggroRange();
     }
 
     public override void Exit()
@@ -47,6 +49,7 @@ public class MoveState : State
         base.PhysicsUpdate();
         isDetectingLedge = entity.CheckLedge();
         isDetectingWall = entity.CheckWall();
+        isPlayerInMinAggroRange = entity.CheckMinAggroRange();
     }
 
     private void SetRandomMoveTime()
