@@ -9,15 +9,22 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public float jumpForce;
 
+    public float shoot2CD = 3f;
+    public float shoot2Counter;
+    public bool shoot2Launch;
+
     public Transform groundPoint;
     private bool Grounded;
     public LayerMask whatIsGround;
 
     public Animator anim;
+
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        shoot2Counter = shoot2CD;
+        shoot2Launch = false;
     }
 
     // Update is called once per frame
@@ -51,6 +58,31 @@ public class PlayerController : MonoBehaviour
             }
             
         }
+
+        //shoot2
+        if(Input.GetKeyDown(KeyCode.W) && shoot2Counter == 3)
+        {
+            shoot2Launch = true;
+            anim.SetTrigger("Shoot2");
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_shoot2"))
+            {
+                rb.velocity = new Vector2(0f, rb.velocity.y);
+            }
+
+
+        }
+        if(shoot2Launch)
+        {
+            shoot2Counter -= Time.deltaTime;
+            if (shoot2Counter < 0)
+            {
+                shoot2Counter = shoot2CD;
+                shoot2Launch = false;
+            }
+            
+        }
+        
+        
 
 
         //animation 
