@@ -12,10 +12,17 @@ public class MoveState : State
 
     protected float moveTime;
 
-
     public MoveState(Entity entity, FSM stateMachine, string animBoolName, D_MoveState stateData) : base(entity, stateMachine, animBoolName)
     {
         this.stateData = stateData;
+    }
+
+    public override void Checks()
+    {
+        base.Checks();
+        isDetectingLedge = entity.CheckLedge();
+        isDetectingWall = entity.CheckWall();
+        isPlayerInMinAggroRange = entity.CheckMinAggroRange();
     }
 
     public override void Enter()
@@ -24,10 +31,6 @@ public class MoveState : State
         entity.SetVelocity(stateData.movementSpeed);
         isMoveTimeOver = false;
         SetRandomMoveTime();
-
-        isDetectingLedge = entity.CheckLedge();
-        isDetectingWall = entity.CheckWall();
-        isPlayerInMinAggroRange = entity.CheckMinAggroRange();
     }
 
     public override void Exit()
@@ -47,9 +50,6 @@ public class MoveState : State
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        isDetectingLedge = entity.CheckLedge();
-        isDetectingWall = entity.CheckWall();
-        isPlayerInMinAggroRange = entity.CheckMinAggroRange();
     }
 
     private void SetRandomMoveTime()

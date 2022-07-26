@@ -8,7 +8,7 @@ public class Entity : MonoBehaviour
     public FSM stateMachine;
     public D_Entity entityData;
 
-    public int facingDirection { get; private set; }
+    public int facingDirection { get; set; }
 
     public Rigidbody2D rb { get; private set; }
     public Animator anim { get; private set; }
@@ -65,12 +65,14 @@ public class Entity : MonoBehaviour
 
     public virtual bool CheckMinAggroRange()
     {
-        return Physics2D.Raycast(playerCheck.position, enity.transform.right, entityData.minAggrorange, entityData.whatIsPlayer);
+        return Physics2D.OverlapCircle(playerCheck.position, entityData.minAggrorange, entityData.whatIsPlayer);
+        // return Physics2D.Raycast(playerCheck.position, enity.transform.right, entityData.minAggrorange, entityData.whatIsPlayer);
     }
 
     public virtual bool CheckMaxAggroRange()
     {
-        return Physics2D.Raycast(playerCheck.position, enity.transform.right, entityData.maxAggroRange, entityData.whatIsPlayer);
+        return Physics2D.OverlapCircle(playerCheck.position, entityData.maxAggroRange, entityData.whatIsPlayer);
+        // return Physics2D.Raycast(playerCheck.position, enity.transform.right, entityData.maxAggroRange, entityData.whatIsPlayer);
     }
 
     public virtual void Flip()

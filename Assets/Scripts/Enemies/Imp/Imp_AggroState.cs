@@ -22,10 +22,17 @@ public class Imp_AggroState : AggroState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        // Debug.Log("wall: " + isDetectingWall);
+        // Debug.Log("ledge: " + isDetectingLedge);
         if (!isPlayerInMaxAggroRange)
         {
-            imp.idleState.SetFlipAfterIdle(false);
-            stateMachine.ChangeState(imp.idleState);
+            // stateMachine.ChangeState(imp.idleState);
+        }
+        else if (isDetectingWall || !isDetectingLedge)
+        {
+            // // entity.Flip();
+            // imp.idleState.SetFlipAfterIdle(true);
+            // stateMachine.ChangeState(imp.idleState);
         }
     }
 

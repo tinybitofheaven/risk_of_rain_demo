@@ -20,7 +20,7 @@ public class Imp : Entity
         base.Start();
         moveState = new Imp_MoveState(this, stateMachine, "move", moveStateData, this); //TODO: add animation
         idleState = new Imp_IdleState(this, stateMachine, "idle", idleStateData, this);
-        aggroState = new Imp_AggroState(this, stateMachine, "aggro", aggroStateData, this);
+        aggroState = new Imp_AggroState(this, stateMachine, "move", aggroStateData, this);
 
         stateMachine.Initialize(moveState);
     }
