@@ -7,6 +7,8 @@ public class Imp : Entity
     public Imp_IdleState idleState { get; private set; }
     public Imp_MoveState moveState { get; private set; }
     public Imp_AggroState aggroState { get; private set; }
+    public Imp_MeleeAttackState meleeAttackState { get; private set; }
+
 
     [SerializeField]
     private D_IdleState idleStateData;
@@ -14,6 +16,11 @@ public class Imp : Entity
     private D_MoveState moveStateData;
     [SerializeField]
     private D_AggroState aggroStateData;
+    [SerializeField]
+    private D_MeleeAttackState meleeAttackStateData;
+
+    [SerializeField]
+    private Transform meleeAttackPosition;
 
     public override void Start()
     {
@@ -21,7 +28,14 @@ public class Imp : Entity
         moveState = new Imp_MoveState(this, stateMachine, "move", moveStateData, this); //TODO: add animation
         idleState = new Imp_IdleState(this, stateMachine, "idle", idleStateData, this);
         aggroState = new Imp_AggroState(this, stateMachine, "move", aggroStateData, this);
+        meleeAttackState = new Imp_MeleeAttackState(this, stateMachine, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
 
         stateMachine.Initialize(moveState);
+    }
+
+    public override void OnDrawGizmos()
+    {
+        base.OnDrawGizmos();
+        Gizmos.DrawWireSphere(meleeAttackPosition.position, meleeAttackStateData.attackRadius);
     }
 }
