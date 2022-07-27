@@ -9,13 +9,9 @@ public class AggroState : State
     protected bool isPlayerInMaxAggroRange;
     protected bool isDetectingLedge;
     protected bool isDetectingWall;
+    protected bool isInAttackRange;
 
-    protected bool isMoveTimeOver;
     protected float moveTime;
-
-    protected bool isAtPlayer;
-    protected float strafeStartTime;
-    protected float strafeEndTime;
 
     public AggroState(Entity entity, FSM stateMachine, string animBoolName, D_AggroState stateData) : base(entity, stateMachine, animBoolName)
     {
@@ -29,6 +25,7 @@ public class AggroState : State
         isPlayerInMaxAggroRange = entity.CheckMaxAggroRange();
         isDetectingLedge = entity.CheckLedge();
         isDetectingWall = entity.CheckWall();
+        isInAttackRange = entity.CheckPlayerInAttackRange();
     }
 
     public override void Enter()
@@ -49,7 +46,6 @@ public class AggroState : State
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        // Debug.Log(isAtPlayer);
         if (entity.playerGO.transform.position.x < entity.transform.position.x)
         { //player is on left
             if (entity.facingDirection == 1)

@@ -22,8 +22,6 @@ public class Imp_AggroState : AggroState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        // Debug.Log("wall: " + isDetectingWall);
-        // Debug.Log("ledge: " + isDetectingLedge);
         if (!isPlayerInMaxAggroRange)
         {
             stateMachine.ChangeState(imp.idleState);
@@ -32,6 +30,11 @@ public class Imp_AggroState : AggroState
         {
             entity.Flip(true);
             entity.SetVelocity(stateData.movementSpeed);
+        }
+        else if (isInAttackRange)
+        {
+            //transition to attack
+            stateMachine.ChangeState(imp.meleeAttackState);
         }
     }
 
