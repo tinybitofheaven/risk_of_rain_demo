@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b598e38692bf6245b8d1da68d706137, type: 3}
-  m_Name: newAggroStateData
+  m_Name: Imp_AggroState
   m_EditorClassIdentifier: 
   movementSpeed: 0.8
   minMoveTime: 1

@@ -18,10 +18,16 @@ public class Entity : MonoBehaviour
     private Transform wallCheck;
     [SerializeField]
     private Transform ledgeCheck;
+    // [SerializeField]
+    // private Transform backCheck;
     [SerializeField]
     private Transform playerCheck;
 
     private Vector2 velocityWorkspace; //temp variable for any vector2
+    public GameObject playerGO;
+
+    private float flipCooldown = 0.2f;
+    private float lastFlipTime = -0.2f;
 
     public virtual void Start()
     {
@@ -33,6 +39,7 @@ public class Entity : MonoBehaviour
         anim = enity.GetComponent<Animator>();
 
         stateMachine = new FSM();
+        playerGO = GameObject.FindGameObjectWithTag("Player");
     }
 
     public virtual void Update()
@@ -60,12 +67,15 @@ public class Entity : MonoBehaviour
 
     public virtual bool CheckLedge()
     {
+        //Vector2 originBack = new Vector2(ledgeCheck.position.x - gameObject.GetComponent<SpriteRenderer>().sprite.rect.width / 2, ledgeCheck.position.y);
+        // return Physics2D.Raycast(ledgeCheck.position, Vector2.down, entityData.ledgeCheckDistance, entityData.whatIsGround) ||
+        // Physics2D.Raycast(backCheck.position, Vector2.down, entityData.ledgeCheckDistance, entityData.whatIsGround);
         return Physics2D.Raycast(ledgeCheck.position, Vector2.down, entityData.ledgeCheckDistance, entityData.whatIsGround);
     }
 
     public virtual bool CheckMinAggroRange()
     {
-        return Physics2D.OverlapCircle(playerCheck.position, entityData.minAggrorange, entityData.whatIsPlayer);
+        return Physics2D.OverlapCircle(playerCheck.position, entityData.minAggroRange, entityData.whatIsPlayer);
         // return Physics2D.Raycast(playerCheck.position, enity.transform.right, entityData.minAggrorange, entityData.whatIsPlayer);
     }
 
@@ -77,13 +87,25 @@ public class Entity : MonoBehaviour
 
     public virtual void Flip()
     {
+        if (Time.time >= lastFlipTime + flipCooldown)
+        {
+            lastFlipTime = Time.time;
+            facingDirection *= -1;
+            enity.transform.Rotate(0f, 180f, 0f);
+        }
+    }
+    public virtual void Flip(bool ignoreCD)
+    {
+        lastFlipTime = Time.time;
         facingDirection *= -1;
         enity.transform.Rotate(0f, 180f, 0f);
     }
 
     public virtual void OnDrawGizmos()
     {
+        //Vector2 originBack = new Vector2(ledgeCheck.position.x - gameObject.GetComponent<SpriteRenderer>().sprite.rect.width / 2, ledgeCheck.position.y);
         Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * facingDirection * entityData.wallCheckDistance));
         Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * entityData.ledgeCheckDistance));
+        // Gizmos.DrawLine(backCheck.position, backCheck.position + (Vector3)(Vector2.down * entityData.ledgeCheckDistance));
     }
 }

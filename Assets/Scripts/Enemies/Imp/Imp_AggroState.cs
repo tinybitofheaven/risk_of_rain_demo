@@ -26,11 +26,12 @@ public class Imp_AggroState : AggroState
         // Debug.Log("ledge: " + isDetectingLedge);
         if (!isPlayerInMaxAggroRange)
         {
-            // stateMachine.ChangeState(imp.idleState);
+            stateMachine.ChangeState(imp.idleState);
         }
         else if (isDetectingWall || !isDetectingLedge)
         {
-            // // entity.Flip();
+            entity.Flip(true);
+            entity.SetVelocity(stateData.movementSpeed);
             // imp.idleState.SetFlipAfterIdle(true);
             // stateMachine.ChangeState(imp.idleState);
         }
