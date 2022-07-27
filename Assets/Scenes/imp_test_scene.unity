@@ -213,7 +213,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 83823692}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LedgeCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -403,7 +403,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 920054952}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PlayerCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -438,7 +438,7 @@ GameObject:
   - component: {fileID: 997468235}
   - component: {fileID: 997468234}
   - component: {fileID: 997468236}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Entity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -607,7 +607,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1219748487}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -875,7 +875,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1579788901}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Imp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1177,8 +1177,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2049504513}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.118, y: -0.073, z: 0}
-  m_LocalScale: {x: 3.085453, y: 0.092938, z: 1}
+  m_LocalPosition: {x: -0.187, y: -0.073, z: 0}
+  m_LocalScale: {x: 3.6955407, y: 0.092938, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2

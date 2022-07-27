@@ -32,8 +32,6 @@ public class Imp_AggroState : AggroState
         {
             entity.Flip(true);
             entity.SetVelocity(stateData.movementSpeed);
-            // imp.idleState.SetFlipAfterIdle(true);
-            // stateMachine.ChangeState(imp.idleState);
         }
     }
 
