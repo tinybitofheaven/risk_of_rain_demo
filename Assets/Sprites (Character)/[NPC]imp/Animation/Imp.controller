@@ -118,7 +118,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Entity
+  m_Name: Imp
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: idle
@@ -128,12 +128,6 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: move
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: aggro
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0

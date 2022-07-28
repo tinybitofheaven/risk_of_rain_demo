@@ -17,7 +17,7 @@ public class Imp_AggroState : AggroState
     {
         base.Enter();
         lastTeleportTime = Time.time;
-        Debug.Log("tp time: " + lastTeleportTime);
+        // Debug.Log("tp time: " + lastTeleportTime);
     }
     public override void Exit()
     {
