@@ -8,6 +8,7 @@ public class Imp : Entity
     public Imp_MoveState moveState { get; private set; }
     public Imp_AggroState aggroState { get; private set; }
     public Imp_MeleeAttackState meleeAttackState { get; private set; }
+    public Imp_TeleportState teleportState { get; private set; }
 
 
     [SerializeField]
@@ -18,6 +19,8 @@ public class Imp : Entity
     private D_AggroState aggroStateData;
     [SerializeField]
     private D_MeleeAttackState meleeAttackStateData;
+    [SerializeField]
+    private D_TeleportState teleportStateData;
 
     [SerializeField]
     private Transform meleeAttackPosition;
@@ -25,10 +28,11 @@ public class Imp : Entity
     public override void Start()
     {
         base.Start();
-        moveState = new Imp_MoveState(this, stateMachine, "move", moveStateData, this); //TODO: add animation
+        moveState = new Imp_MoveState(this, stateMachine, "move", moveStateData, this);
         idleState = new Imp_IdleState(this, stateMachine, "idle", idleStateData, this);
         aggroState = new Imp_AggroState(this, stateMachine, "move", aggroStateData, this);
         meleeAttackState = new Imp_MeleeAttackState(this, stateMachine, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
+        teleportState = new Imp_TeleportState(this, stateMachine, "teleport", teleportStateData, this);
 
         stateMachine.Initialize(moveState);
     }
