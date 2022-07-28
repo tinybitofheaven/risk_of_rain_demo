@@ -30,6 +30,9 @@ public class Entity : MonoBehaviour
     private float flipCooldown = 0.2f;
     private float lastFlipTime = -0.2f;
 
+    public float spriteHeight;
+    public float spriteWidth;
+
     public virtual void Start()
     {
         facingDirection = 1;
@@ -42,6 +45,8 @@ public class Entity : MonoBehaviour
 
         stateMachine = new FSM();
         playerGO = GameObject.FindGameObjectWithTag("Player");
+        spriteHeight = gameObject.GetComponent<SpriteRenderer>().sprite.bounds.size.y;
+        spriteWidth = gameObject.GetComponent<SpriteRenderer>().sprite.bounds.size.x;
     }
 
     public virtual void Update()
@@ -89,6 +94,11 @@ public class Entity : MonoBehaviour
         return Physics2D.Raycast(playerCheck.position, playerGO.transform.right, entityData.attackRange, entityData.whatIsPlayer);
     }
 
+    public virtual bool CheckPlayerIsGrounded()
+    {
+        return playerGO.transform.parent.GetComponent<PlayerController>().Grounded;
+    }
+
     public virtual void Flip()
     {
         if (Time.time >= lastFlipTime + flipCooldown)
@@ -105,6 +115,11 @@ public class Entity : MonoBehaviour
         entity.transform.Rotate(0f, 180f, 0f);
     }
 
+    public virtual void SetPosition(Vector2 position)
+    {
+        entity.transform.position = position;
+    }
+
     public virtual void OnDrawGizmos()
     {
         //Vector2 originBack = new Vector2(ledgeCheck.position.x - gameObject.GetComponent<SpriteRenderer>().sprite.rect.width / 2, ledgeCheck.position.y);
@@ -112,8 +127,8 @@ public class Entity : MonoBehaviour
         Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * entityData.ledgeCheckDistance));
         // Gizmos.DrawLine(backCheck.position, backCheck.position + (Vector3)(Vector2.down * entityData.ledgeCheckDistance));
 
-        Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(entity.transform.right * entityData.attackRange), 0.1f);
-        Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(entity.transform.right * entityData.minAggroRange), 0.1f);
-        Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(entity.transform.right * entityData.maxAggroRange), 0.1f);
+        // Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(entity.transform.right * entityData.attackRange), 0.1f);
+        // Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(entity.transform.right * entityData.minAggroRange), 0.1f);
+        // Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(entity.transform.right * entityData.maxAggroRange), 0.1f);
     }
 }

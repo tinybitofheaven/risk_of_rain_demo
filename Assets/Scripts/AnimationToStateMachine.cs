@@ -5,6 +5,7 @@ using UnityEngine;
 public class AnimationToStateMachine : MonoBehaviour
 {
     public AttackState attackState;
+    public TeleportState teleportState;
 
     private void TriggerAttack()
     {
@@ -14,5 +15,15 @@ public class AnimationToStateMachine : MonoBehaviour
     private void FinishAttack()
     {
         attackState.FinishAttack();
+    }
+
+    private void TriggerTeleport()
+    {
+        teleportState.TriggerTeleport();
+    }
+
+    private void FinishTeleport()
+    {
+        teleportState.FinishTeleport();
     }
 }

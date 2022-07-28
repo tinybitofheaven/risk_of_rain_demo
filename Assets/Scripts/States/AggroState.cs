@@ -10,6 +10,7 @@ public class AggroState : State
     protected bool isDetectingLedge;
     protected bool isDetectingWall;
     protected bool isInAttackRange;
+    // protected bool canTeleport;
 
     protected float moveTime;
 
@@ -26,6 +27,7 @@ public class AggroState : State
         isDetectingLedge = entity.CheckLedge();
         isDetectingWall = entity.CheckWall();
         isInAttackRange = entity.CheckPlayerInAttackRange();
+        // canTeleport = false;
     }
 
     public override void Enter()
