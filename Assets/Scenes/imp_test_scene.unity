@@ -478,7 +478,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851834881}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.12, y: -0.345, z: 0}
+  m_LocalPosition: {x: 0.06559997, y: -0.01699999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1747316118}
@@ -508,7 +508,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1125375085}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.04, y: -0.016, z: 0}
+  m_LocalPosition: {x: 0.052, y: 0.001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1231031491}
@@ -717,8 +717,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1231031491}
   - component: {fileID: 1231031490}
-  - component: {fileID: 1231031489}
   - component: {fileID: 1231031488}
+  - component: {fileID: 1231031489}
   - component: {fileID: 1231031487}
   - component: {fileID: 1231031486}
   - component: {fileID: 1231031485}
@@ -782,18 +782,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.000000029802322, y: -0.014063567}
+  m_Offset: {x: -0.0036747903, y: -0.005489111}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.29, y: 0.27}
+    oldSize: {x: 0.14, y: 0.2}
     newSize: {x: 0.17, y: 0.21}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.22325319, y: 0.23812714}
+  m_Size: {x: 0.083612114, y: 0.18178079}
   m_EdgeRadius: 0
 --- !u!114 &1231031488
 MonoBehaviour:
@@ -804,20 +804,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1231031484}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfa74739f0398804ab00ef6aaf71c52f, type: 3}
+  m_Script: {fileID: 11500000, guid: 613f943b7bd562f45bcc38456c62365a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityData: {fileID: 11400000, guid: 0d7d6c964f932a64f932a069acd8b30a, type: 2}
+  entityData: {fileID: 11400000, guid: 87ca824185021d74694816e090a84199, type: 2}
   wallCheck: {fileID: 2115172951}
   ledgeCheck: {fileID: 1351670363}
   playerCheck: {fileID: 1672031269}
   playerGO: {fileID: 0}
   spriteHeight: 0
   spriteWidth: 0
-  idleStateData: {fileID: 11400000, guid: 24dcbf5e739e2634887f95f0ab1e595d, type: 2}
-  moveStateData: {fileID: 11400000, guid: e82661bb9f3c189459069993b4ad4aa4, type: 2}
-  aggroStateData: {fileID: 11400000, guid: 727ef998f8ee3b04a96a149e704c3722, type: 2}
-  meleeAttackStateData: {fileID: 11400000, guid: b68f6b42a62ad344e85bd7778496283e,
+  idleStateData: {fileID: 11400000, guid: 612aff6ceef188d4f8d1f2ea145b0214, type: 2}
+  moveStateData: {fileID: 11400000, guid: e5f834c21eecd434481be410aef30464, type: 2}
+  aggroStateData: {fileID: 11400000, guid: 08046da30259ffa459fe07a14e4eae55, type: 2}
+  meleeAttackStateData: {fileID: 11400000, guid: fb33c82ed3276954a8081bac6ce48ae8,
     type: 2}
   meleeAttackPosition: {fileID: 1125375086}
 --- !u!114 &1231031489
@@ -871,7 +871,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: afde97a5791b5b841a0371ffbe0e07f7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 42523c2c1559cb44ba7fc2ea5077bacc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1286,7 +1286,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1351670362}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.128, y: 0, z: 0}
+  m_LocalPosition: {x: 0.054, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1231031491}
@@ -1474,7 +1474,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1672451146}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1664, y: -0.377, z: 0}
+  m_LocalPosition: {x: 0.112, y: -0.049, z: 0}
   m_LocalScale: {x: 0.3342818, y: 0.3342818, z: 0.3342818}
   m_Children: []
   m_Father: {fileID: 1747316118}
@@ -1548,7 +1548,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1747316115}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.682, y: 0.519, z: 0}
+  m_LocalPosition: {x: -0.238, y: 0.212, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1672451150}
