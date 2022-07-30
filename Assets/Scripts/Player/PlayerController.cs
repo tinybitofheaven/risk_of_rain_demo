@@ -8,24 +8,47 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;
     public float moveSpeed;
     public float jumpForce;
+    public float health = 100;
 
+    //shoot1
+    public float shoot1Damage;
+    public float shoot1CD = 0.2f;
+    public float shoot1Counter;
+    public bool shoot1Launch;
+
+
+    //shoot2
     public float shoot2CD = 3f;
     public float shoot2Counter;
     public bool shoot2Launch;
+    public float shoot2Damage;
+
+    //shoot3
+    public float rollSpeed, rollTime;
+    public float rollCounter;
+    public bool rolling = false;
+    public float shoot3CD = 4f;
+    public float shoot3Counter;
+    public bool shoot3Launch;
 
     public Transform groundPoint;
+    public Transform firePoint;
     public bool Grounded;
     public LayerMask whatIsGround;
 
     public Animator anim;
 
+
     
     // Start is called before the first frame update
     void Start()
     {
+        shoot1Counter = shoot1CD;
 
         shoot2Counter = shoot2CD;
         shoot2Launch = false;
+
+        shoot3Counter = shoot3CD;
 
 
 
@@ -34,16 +57,57 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //movement
-        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, rb.velocity.y);
-        if (rb.velocity.x < 0)
+        //rolling
+        if(Input.GetKeyDown(KeyCode.E)&&shoot3Counter == shoot3CD)
         {
-            transform.localScale = new Vector3(-1f, 1f, 1f);
+            rollCounter = rollTime;
+            shoot3Launch = true;
+            
+
         }
-        else if (rb.velocity.x > 0)
+        if (rollCounter > 0)
         {
-            transform.localScale = new Vector3(1f, 1f, 1f);
+            rolling = true;
+            anim.SetBool("Shoot3", rolling);
+            Physics2D.IgnoreLayerCollision(9, 11, true);
+            rollCounter -= Time.deltaTime;
+            rb.velocity = new Vector2(rollSpeed * transform.localScale.x, 0f);
         }
+        else
+        {
+            
+            rolling = false;
+            Physics2D.IgnoreLayerCollision(9, 11, false);
+            anim.SetBool("Shoot3", rolling);
+
+
+            //movement
+            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, rb.velocity.y);
+            if (rb.velocity.x < 0)
+            {
+                transform.localScale = new Vector3(-1f, 1f, 1f);
+
+
+            }
+            else if (rb.velocity.x > 0)
+            {
+                transform.localScale = new Vector3(1f, 1f, 1f);
+
+
+            }
+        }
+
+        if(shoot3Launch)
+        {
+            shoot3Counter -= Time.deltaTime;
+            if (shoot3Counter < 0)
+            {
+                shoot3Counter = shoot3CD;
+                shoot3Launch = false;
+            }
+        }
+
+        
 
         //jump
         Grounded = Physics2D.OverlapCircle(groundPoint.position, 0.2f, whatIsGround);
@@ -53,18 +117,33 @@ public class PlayerController : MonoBehaviour
         }
 
         //shoot1
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Q)&&shoot1Counter == shoot1CD)
         {
+            shoot1Launch = true;
             anim.SetTrigger("Shoot1");
-            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_shoot1"))
-            {
-                rb.velocity = new Vector2(0f, rb.velocity.y);
-            }
-
+           
+            Shoot1();
         }
 
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_shoot1"))
+        {
+            rb.velocity = new Vector2(0f, rb.velocity.y);
+        }
+
+        if (shoot1Launch)
+        {
+            shoot1Counter -= Time.deltaTime;
+            if (shoot1Counter <= 0)
+            {
+                shoot1Counter = shoot1CD;
+                shoot1Launch = false;
+            }
+        }
+
+        Debug.Log(shoot1Counter);
+
         //shoot2
-        if(Input.GetKeyDown(KeyCode.W) && shoot2Counter == 3)
+        if (Input.GetKeyDown(KeyCode.W) && shoot2Counter == shoot2CD)
         {
             shoot2Launch = true;
             anim.SetTrigger("Shoot2");
@@ -93,4 +172,63 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("Grounded", Grounded);
         anim.SetFloat("speed", Mathf.Abs(rb.velocity.x));
     }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if(health <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
+    public void Shoot1()
+    {
+        if (transform.localScale.x >0)
+        {
+            RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
+            if (hitInfo)
+            {
+                Debug.Log(hitInfo.transform.name);
+            }
+        }
+        else if(transform.localScale.x < 0)
+         {
+            RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right*-1);
+            if (hitInfo)
+            {
+                Debug.Log(hitInfo.transform.name);
+            }
+        }
+       
+    }
+
+    public void Shoot2()
+    {
+        if (transform.localScale.x > 0)
+        {
+            RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
+            if (hitInfo)
+            {
+                Debug.Log(hitInfo.transform.name);
+            }
+        }
+        else if (transform.localScale.x < 0)
+        {
+            RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right * -1);
+            if (hitInfo)
+            {
+                Debug.Log(hitInfo.transform.name);
+            }
+        }
+
+    }
+
+    
 }
+
+
