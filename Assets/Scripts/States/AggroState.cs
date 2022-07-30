@@ -9,13 +9,10 @@ public class AggroState : State
     protected bool isPlayerInMaxAggroRange;
     protected bool isDetectingLedge;
     protected bool isDetectingWall;
+    protected bool isInAttackRange;
+    // protected bool canTeleport;
 
-    protected bool isMoveTimeOver;
     protected float moveTime;
-
-    protected bool isPlayerOnRight;
-
-    protected GameObject playerGO;
 
     public AggroState(Entity entity, FSM stateMachine, string animBoolName, D_AggroState stateData) : base(entity, stateMachine, animBoolName)
     {
@@ -29,13 +26,14 @@ public class AggroState : State
         isPlayerInMaxAggroRange = entity.CheckMaxAggroRange();
         isDetectingLedge = entity.CheckLedge();
         isDetectingWall = entity.CheckWall();
+        isInAttackRange = entity.CheckPlayerInAttackRange();
+        // canTeleport = false;
     }
 
     public override void Enter()
     {
         base.Enter();
-        playerGO = GameObject.FindGameObjectWithTag("Player");
-        isPlayerOnRight = false;
+        entity.SetVelocity(stateData.movementSpeed);
     }
 
     public override void Exit()
@@ -50,25 +48,21 @@ public class AggroState : State
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        if (playerGO.transform.position.x < entity.transform.position.x)
+        if (entity.playerGO.transform.position.x < entity.transform.position.x)
         { //player is on left
             if (entity.facingDirection == 1)
             {
                 entity.Flip();
-                entity.SetVelocity(0.8f);
+                entity.SetVelocity(stateData.movementSpeed);
             }
-            // entity.SetVelocity(stateData.movementSpeed);
-            isPlayerOnRight = false;
         }
         else
         { //player is on right
             if (entity.facingDirection == -1)
             {
                 entity.Flip();
-                entity.SetVelocity(0.8f);
+                entity.SetVelocity(stateData.movementSpeed);
             }
-            // entity.SetVelocity(stateData.movementSpeed);
-            isPlayerOnRight = true;
         }
     }
 

@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallCheckDistance: 0.1
   ledgeCheckDistance: 0.15
-  minAggrorange: 0.5
+  minAggroRange: 1
   maxAggroRange: 1
+  attackRange: 0.1
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256

@@ -9,4 +9,6 @@ public class D_AggroState : ScriptableObject
 
     public float minMoveTime = 1f;
     public float maxMoveTime = 4f;
+    public float strafeTime = 1f;
+
 }
