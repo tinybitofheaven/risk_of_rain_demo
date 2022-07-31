@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public float health = 100;
 
     //shoot1
-    public float shoot1Damage;
+    public int shoot1Damage;
     public float shoot1CD = 0.2f;
     public float shoot1Counter;
     public bool shoot1Launch;
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public float shoot2CD = 3f;
     public float shoot2Counter;
     public bool shoot2Launch;
-    public float shoot2Damage;
+    public int shoot2Damage;
 
     //shoot3
     public float rollSpeed, rollTime;
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
         {
             rolling = true;
             anim.SetBool("Shoot3", rolling);
-            Physics2D.IgnoreLayerCollision(9, 11, true);
+            Physics2D.IgnoreLayerCollision(10, 11, true);
             rollCounter -= Time.deltaTime;
             rb.velocity = new Vector2(rollSpeed * transform.localScale.x, 0f);
         }
@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
         {
 
             rolling = false;
-            Physics2D.IgnoreLayerCollision(9, 11, false);
+            Physics2D.IgnoreLayerCollision(10, 11, false);
             anim.SetBool("Shoot3", rolling);
 
 
@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour
             {
                 rb.velocity = new Vector2(0f, rb.velocity.y);
             }
-
+            Shoot2();
 
         }
         if (shoot2Launch)
@@ -191,17 +191,17 @@ public class PlayerController : MonoBehaviour
         if (transform.localScale.x > 0)
         {
             RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
-            if (hitInfo)
+            if (hitInfo.transform.tag == "Enemy")
             {
-                Debug.Log(hitInfo.transform.name);
+                hitInfo.transform.GetComponent<Entity>().TakeDamage(shoot1Damage);
             }
         }
         else if (transform.localScale.x < 0)
         {
             RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right * -1);
-            if (hitInfo)
+            if (hitInfo.transform.tag == "Enemy")
             {
-                Debug.Log(hitInfo.transform.name);
+                hitInfo.transform.GetComponent<Entity>().TakeDamage(shoot1Damage);
             }
         }
 
@@ -212,21 +212,23 @@ public class PlayerController : MonoBehaviour
         if (transform.localScale.x > 0)
         {
             RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
-            if (hitInfo)
+            if(hitInfo.transform.tag == "Enemy") 
             {
-                Debug.Log(hitInfo.transform.name);
+                hitInfo.transform.GetComponent<Entity>().TakeDamage(shoot2Damage);
             }
         }
         else if (transform.localScale.x < 0)
         {
             RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right * -1);
-            if (hitInfo)
+            if (hitInfo.transform.tag == "Enemy")
             {
-                Debug.Log(hitInfo.transform.name);
+                hitInfo.transform.GetComponent<Entity>().TakeDamage(shoot2Damage);
             }
         }
 
     }
+
+    
 
 
 }
