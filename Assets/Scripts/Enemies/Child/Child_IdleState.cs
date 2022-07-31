@@ -10,20 +10,6 @@ public class Child_IdleState : IdleState
         this.child = child;
     }
 
-    public override void Checks()
-    {
-        base.Checks();
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
-    }
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
     public override void LogicUpdate()
     {
         base.LogicUpdate();
@@ -35,10 +21,5 @@ public class Child_IdleState : IdleState
         {
             stateMachine.ChangeState(child.moveState);
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
     }
 }

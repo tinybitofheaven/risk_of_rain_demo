@@ -6,6 +6,8 @@ public class AnimationToStateMachine : MonoBehaviour
 {
     public AttackState attackState;
     public TeleportState teleportState;
+    public SpawnState spawnState;
+    public DeathState deathState;
 
     private void TriggerAttack()
     {
@@ -26,4 +28,25 @@ public class AnimationToStateMachine : MonoBehaviour
     {
         teleportState.FinishTeleport();
     }
+
+    private void StartSpawn()
+    {
+        spawnState.StartSpawn();
+    }
+
+    private void FinishSpawn()
+    {
+        spawnState.FinishSpawn();
+    }
+
+    private void TriggerDeath()
+    {
+        deathState.TriggerDeath();
+    }
+
+    private void FinishDeath()
+    {
+        deathState.FinishDeath();
+    }
+
 }

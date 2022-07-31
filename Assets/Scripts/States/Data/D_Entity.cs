@@ -11,6 +11,8 @@ public class D_Entity : ScriptableObject
     public float maxAggroRange = 4f;
     public float attackRange = 0.1f;
 
+    public int startingHealth = 70;
+
     public LayerMask whatIsGround;
     public LayerMask whatIsPlayer;
 }

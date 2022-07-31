@@ -11,18 +11,6 @@ public class Imp_TeleportState : TeleportState
         this.imp = imp;
     }
 
-    public override void Checks()
-    {
-        base.Checks();
-    }
-    public override void Enter()
-    {
-        base.Enter();
-    }
-    public override void Exit()
-    {
-        base.Exit();
-    }
     public override void LogicUpdate()
     {
         base.LogicUpdate();
@@ -32,15 +20,10 @@ public class Imp_TeleportState : TeleportState
         }
     }
 
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-    }
-
     public override void TriggerTeleport()
     {
         base.TriggerTeleport();
-        Vector2 playerPos = entity.playerGO.transform.parent.Find("Ground Check Point").transform.position; //TODO: broken
+        Vector2 playerPos = entity.playerGO.transform.Find("Ground Check Point").transform.position; //TODO: broken
         Vector2 newPosition = new Vector2(playerPos.x - (0.1f * entity.facingDirection), playerPos.y + entity.spriteHeight / 2);
         entity.SetPosition(newPosition);
     }

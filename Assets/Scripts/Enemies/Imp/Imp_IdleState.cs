@@ -11,16 +11,6 @@ public class Imp_IdleState : IdleState
         this.imp = imp;
     }
 
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
     public override void LogicUpdate()
     {
         base.LogicUpdate();
@@ -32,10 +22,5 @@ public class Imp_IdleState : IdleState
         {
             stateMachine.ChangeState(imp.moveState);
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
     }
 }

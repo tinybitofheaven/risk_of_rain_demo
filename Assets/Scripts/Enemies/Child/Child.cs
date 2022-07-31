@@ -8,6 +8,8 @@ public class Child : Entity
     public Child_MoveState moveState { get; private set; }
     public Child_AggroState aggroState { get; private set; }
     public Child_MeleeAttackState meleeAttackState { get; private set; }
+    public Child_DeathState deathState { get; private set; }
+    public Child_SpawnState spawnState { get; private set; }
 
 
     [SerializeField]
@@ -18,6 +20,10 @@ public class Child : Entity
     private D_AggroState aggroStateData;
     [SerializeField]
     private D_MeleeAttackState meleeAttackStateData;
+    [SerializeField]
+    private D_DeathState deathStateData;
+    [SerializeField]
+    private D_SpawnState spawnStateData;
 
     [SerializeField]
     private Transform meleeAttackPosition;
@@ -28,9 +34,18 @@ public class Child : Entity
         moveState = new Child_MoveState(this, stateMachine, "move", moveStateData, this);
         idleState = new Child_IdleState(this, stateMachine, "idle", idleStateData, this);
         aggroState = new Child_AggroState(this, stateMachine, "move", aggroStateData, this);
+        spawnState = new Child_SpawnState(this, stateMachine, "spawn", spawnStateData, this);
+        deathState = new Child_DeathState(this, stateMachine, "death", deathStateData, this);
+
         meleeAttackState = new Child_MeleeAttackState(this, stateMachine, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
 
-        stateMachine.Initialize(moveState);
+        stateMachine.Initialize(spawnState);
+    }
+
+    public override void Die()
+    {
+        base.Die();
+        stateMachine.ChangeState(deathState);
     }
 
     public override void OnDrawGizmos()

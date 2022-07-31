@@ -6,7 +6,6 @@ using UnityEngine;
 public class D_AggroState : ScriptableObject
 {
     public float movementSpeed = 0.8f;
-
     public float minMoveTime = 1f;
     public float maxMoveTime = 4f;
     public float strafeTime = 1f;

@@ -9,6 +9,8 @@ public class Imp : Entity
     public Imp_AggroState aggroState { get; private set; }
     public Imp_MeleeAttackState meleeAttackState { get; private set; }
     public Imp_TeleportState teleportState { get; private set; }
+    public Imp_DeathState deathState { get; private set; }
+    public Imp_SpawnState spawnState { get; private set; }
 
 
     [SerializeField]
@@ -21,6 +23,10 @@ public class Imp : Entity
     private D_MeleeAttackState meleeAttackStateData;
     [SerializeField]
     private D_TeleportState teleportStateData;
+    [SerializeField]
+    private D_DeathState deathStateData;
+    [SerializeField]
+    private D_SpawnState spawnStateData;
 
     [SerializeField]
     private Transform meleeAttackPosition;
@@ -31,15 +37,18 @@ public class Imp : Entity
         moveState = new Imp_MoveState(this, stateMachine, "move", moveStateData, this);
         idleState = new Imp_IdleState(this, stateMachine, "idle", idleStateData, this);
         aggroState = new Imp_AggroState(this, stateMachine, "move", aggroStateData, this);
+        spawnState = new Imp_SpawnState(this, stateMachine, "spawn", spawnStateData, this);
+        deathState = new Imp_DeathState(this, stateMachine, "death", deathStateData, this);
+
         meleeAttackState = new Imp_MeleeAttackState(this, stateMachine, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
         teleportState = new Imp_TeleportState(this, stateMachine, "teleport", teleportStateData, this);
 
-        stateMachine.Initialize(moveState);
+        stateMachine.Initialize(spawnState);
     }
 
-    public override void OnDrawGizmos()
+    public override void Die()
     {
-        base.OnDrawGizmos();
-        Gizmos.DrawWireSphere(meleeAttackPosition.position, meleeAttackStateData.attackRadius);
+        base.Die();
+        stateMachine.ChangeState(deathState);
     }
 }

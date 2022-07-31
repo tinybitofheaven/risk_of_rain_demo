@@ -5,24 +5,10 @@ using UnityEngine;
 public class Crab_AggroState : AggroState
 {
     private Crab crab;
+
     public Crab_AggroState(Entity entity, FSM stateMachine, string animBoolName, D_AggroState stateData, Crab crab) : base(entity, stateMachine, animBoolName, stateData)
     {
         this.crab = crab;
-    }
-
-    public override void Checks()
-    {
-        base.Checks();
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
     }
 
     public override void LogicUpdate()
@@ -41,10 +27,5 @@ public class Crab_AggroState : AggroState
         {
             stateMachine.ChangeState(crab.meleeAttackState);
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
     }
 }

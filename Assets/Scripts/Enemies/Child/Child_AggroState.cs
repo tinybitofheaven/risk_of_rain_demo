@@ -5,24 +5,10 @@ using UnityEngine;
 public class Child_AggroState : AggroState
 {
     private Child child;
+
     public Child_AggroState(Entity entity, FSM stateMachine, string animBoolName, D_AggroState stateData, Child child) : base(entity, stateMachine, animBoolName, stateData)
     {
         this.child = child;
-    }
-
-    public override void Checks()
-    {
-        base.Checks();
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
     }
 
     public override void LogicUpdate()
@@ -41,10 +27,5 @@ public class Child_AggroState : AggroState
         {
             stateMachine.ChangeState(child.meleeAttackState);
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
     }
 }

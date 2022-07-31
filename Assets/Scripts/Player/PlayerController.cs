@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     public Animator anim;
 
 
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,11 +58,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //rolling
-        if(Input.GetKeyDown(KeyCode.E)&&shoot3Counter == shoot3CD)
+        if (Input.GetKeyDown(KeyCode.E) && shoot3Counter == shoot3CD)
         {
             rollCounter = rollTime;
             shoot3Launch = true;
-            
+
 
         }
         if (rollCounter > 0)
@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            
+
             rolling = false;
             Physics2D.IgnoreLayerCollision(9, 11, false);
             anim.SetBool("Shoot3", rolling);
@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if(shoot3Launch)
+        if (shoot3Launch)
         {
             shoot3Counter -= Time.deltaTime;
             if (shoot3Counter < 0)
@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        
+
 
         //jump
         Grounded = Physics2D.OverlapCircle(groundPoint.position, 0.2f, whatIsGround);
@@ -117,11 +117,11 @@ public class PlayerController : MonoBehaviour
         }
 
         //shoot1
-        if (Input.GetKey(KeyCode.Q)&&shoot1Counter == shoot1CD)
+        if (Input.GetKey(KeyCode.Q) && shoot1Counter == shoot1CD)
         {
             shoot1Launch = true;
             anim.SetTrigger("Shoot1");
-           
+
             Shoot1();
         }
 
@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        Debug.Log(shoot1Counter);
+        // Debug.Log(shoot1Counter);
 
         //shoot2
         if (Input.GetKeyDown(KeyCode.W) && shoot2Counter == shoot2CD)
@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
 
 
         }
-        if(shoot2Launch)
+        if (shoot2Launch)
         {
             shoot2Counter -= Time.deltaTime;
             if (shoot2Counter < 0)
@@ -162,10 +162,10 @@ public class PlayerController : MonoBehaviour
                 shoot2Counter = shoot2CD;
                 shoot2Launch = false;
             }
-            
+
         }
-        
-        
+
+
 
 
         //animation 
@@ -176,7 +176,7 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-        if(health <= 0)
+        if (health <= 0)
         {
             Die();
         }
@@ -188,7 +188,7 @@ public class PlayerController : MonoBehaviour
     }
     public void Shoot1()
     {
-        if (transform.localScale.x >0)
+        if (transform.localScale.x > 0)
         {
             RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
             if (hitInfo)
@@ -196,15 +196,15 @@ public class PlayerController : MonoBehaviour
                 Debug.Log(hitInfo.transform.name);
             }
         }
-        else if(transform.localScale.x < 0)
-         {
-            RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right*-1);
+        else if (transform.localScale.x < 0)
+        {
+            RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right * -1);
             if (hitInfo)
             {
                 Debug.Log(hitInfo.transform.name);
             }
         }
-       
+
     }
 
     public void Shoot2()
@@ -228,7 +228,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    
+
 }
 
 
