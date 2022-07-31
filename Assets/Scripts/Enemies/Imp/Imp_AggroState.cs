@@ -17,11 +17,6 @@ public class Imp_AggroState : AggroState
     {
         base.Enter();
         lastTeleportTime = Time.time;
-        // Debug.Log("tp time: " + lastTeleportTime);
-    }
-    public override void Exit()
-    {
-        base.Exit();
     }
 
     public override void LogicUpdate()
@@ -44,15 +39,8 @@ public class Imp_AggroState : AggroState
         }
         else if (Time.time >= lastTeleportTime + teleportCooldown && entity.CheckPlayerIsGrounded())
         {
-            // Debug.Log("tp check: " + lastTeleportTime);
-            // Debug.Log("time check: " + Time.time);
             stateMachine.ChangeState(imp.teleportState);
             entity.SetVelocity(0f);
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
     }
 }

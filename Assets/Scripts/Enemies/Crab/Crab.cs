@@ -8,7 +8,8 @@ public class Crab : Entity
     public Crab_MoveState moveState { get; private set; }
     public Crab_AggroState aggroState { get; private set; }
     public Crab_MeleeAttackState meleeAttackState { get; private set; }
-
+    public Crab_DeathState deathState { get; private set; }
+    public Crab_SpawnState spawnState { get; private set; }
 
     [SerializeField]
     private D_IdleState idleStateData;
@@ -18,6 +19,10 @@ public class Crab : Entity
     private D_AggroState aggroStateData;
     [SerializeField]
     private D_MeleeAttackState meleeAttackStateData;
+    [SerializeField]
+    private D_DeathState deathStateData;
+    [SerializeField]
+    private D_SpawnState spawnStateData;
 
     [SerializeField]
     private Transform meleeAttackPosition;
@@ -28,9 +33,18 @@ public class Crab : Entity
         moveState = new Crab_MoveState(this, stateMachine, "move", moveStateData, this);
         idleState = new Crab_IdleState(this, stateMachine, "idle", idleStateData, this);
         aggroState = new Crab_AggroState(this, stateMachine, "move", aggroStateData, this);
+        spawnState = new Crab_SpawnState(this, stateMachine, "spawn", spawnStateData, this);
+        deathState = new Crab_DeathState(this, stateMachine, "death", deathStateData, this);
+
         meleeAttackState = new Crab_MeleeAttackState(this, stateMachine, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
 
-        stateMachine.Initialize(moveState);
+        stateMachine.Initialize(spawnState);
+    }
+
+    public override void Die()
+    {
+        base.Die();
+        stateMachine.ChangeState(deathState);
     }
 
     public override void OnDrawGizmos()

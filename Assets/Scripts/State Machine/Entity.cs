@@ -33,11 +33,12 @@ public class Entity : MonoBehaviour
     public float spriteHeight;
     public float spriteWidth;
 
+    public int currHealth;
+
     public virtual void Start()
     {
         facingDirection = 1;
 
-        // enity = GameObject.Find("Entity").gameObject;
         entity = this.gameObject;
         rb = entity.GetComponent<Rigidbody2D>();
         anim = entity.GetComponent<Animator>();
@@ -47,11 +48,19 @@ public class Entity : MonoBehaviour
         playerGO = GameObject.FindGameObjectWithTag("Player");
         spriteHeight = gameObject.GetComponent<SpriteRenderer>().sprite.bounds.size.y;
         spriteWidth = gameObject.GetComponent<SpriteRenderer>().sprite.bounds.size.x;
+
+        currHealth = entityData.startingHealth;
     }
 
     public virtual void Update()
     {
         stateMachine.currentState.LogicUpdate();
+
+        //TODO:REMOVE
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            TakeDamage(10);
+        }
     }
 
     public virtual void FixedUpdate()
@@ -96,7 +105,7 @@ public class Entity : MonoBehaviour
 
     public virtual bool CheckPlayerIsGrounded()
     {
-        return playerGO.transform.parent.GetComponent<PlayerController>().Grounded;
+        return playerGO.GetComponent<PlayerController>().Grounded;
     }
 
     public virtual void Flip()
@@ -118,6 +127,23 @@ public class Entity : MonoBehaviour
     public virtual void SetPosition(Vector2 position)
     {
         entity.transform.position = position;
+    }
+
+    public virtual void TakeDamage(int damage)
+    {
+        currHealth -= damage;
+        if (currHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    public virtual void Die()
+    { }
+
+    public virtual void Destroy()
+    {
+        Destroy(this.gameObject);
     }
 
     public virtual void OnDrawGizmos()
