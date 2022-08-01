@@ -1,6 +1,9 @@
 fileFormatVersion: 2
 guid: 3a142f9a11e2ec241bf20a67603f5482
 TextureImporter:
+<<<<<<< HEAD:Assets/Sprites (Character)/[NPC]Child/Walk/sChildWalk_0-sheet.png.meta
+  internalIDToNameTable: []
+=======
   internalIDToNameTable:
   - first:
       213: -8597095625978584559
@@ -14,6 +17,7 @@ TextureImporter:
   - first:
       213: 1474587787398507065
     second: sChildWalk_0-sheet_3
+>>>>>>> 'main':Assets/Sprites (Character)/[NPC]Child/sChildWalk_0-sheet.png.meta
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -43,7 +47,11 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
+<<<<<<< HEAD:Assets/Sprites (Character)/[NPC]Child/Walk/sChildWalk_0-sheet.png.meta
+    filterMode: 1
+=======
     filterMode: 0
+>>>>>>> 'main':Assets/Sprites (Character)/[NPC]Child/sChildWalk_0-sheet.png.meta
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -52,7 +60,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
+<<<<<<< HEAD:Assets/Sprites (Character)/[NPC]Child/Walk/sChildWalk_0-sheet.png.meta
+  spriteMode: 1
+=======
   spriteMode: 2
+>>>>>>> 'main':Assets/Sprites (Character)/[NPC]Child/sChildWalk_0-sheet.png.meta
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -75,6 +87,9 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
+<<<<<<< HEAD:Assets/Sprites (Character)/[NPC]Child/Walk/sChildWalk_0-sheet.png.meta
+    textureFormat: -1
+=======
     textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
@@ -100,6 +115,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 4
+>>>>>>> 'main':Assets/Sprites (Character)/[NPC]Child/sChildWalk_0-sheet.png.meta
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -109,6 +125,9 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
+<<<<<<< HEAD:Assets/Sprites (Character)/[NPC]Child/Walk/sChildWalk_0-sheet.png.meta
+    sprites: []
+=======
     sprites:
     - serializedVersion: 2
       name: sChildWalk_0-sheet_0
@@ -194,6 +213,7 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+>>>>>>> 'main':Assets/Sprites (Character)/[NPC]Child/sChildWalk_0-sheet.png.meta
     outline: []
     physicsShape: []
     bones: []

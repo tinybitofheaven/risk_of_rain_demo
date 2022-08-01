@@ -1,6 +1,9 @@
 fileFormatVersion: 2
 guid: e72240d96d435984abd0da01190f981b
 TextureImporter:
+<<<<<<< HEAD:Assets/Sprites (Character)/[NPC]Child/Shoot/sChildShoot1_0-sheet.png.meta
+  internalIDToNameTable: []
+=======
   internalIDToNameTable:
   - first:
       213: -4886807666673512746
@@ -38,6 +41,7 @@ TextureImporter:
   - first:
       213: 8758145652737173722
     second: sChildShoot1_0-sheet_11
+>>>>>>> 'main':Assets/Sprites (Character)/[NPC]Child/sChildShoot1_0-sheet.png.meta
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -67,7 +71,11 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
+<<<<<<< HEAD:Assets/Sprites (Character)/[NPC]Child/Shoot/sChildShoot1_0-sheet.png.meta
+    filterMode: 1
+=======
     filterMode: 0
+>>>>>>> 'main':Assets/Sprites (Character)/[NPC]Child/sChildShoot1_0-sheet.png.meta
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -76,7 +84,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
+<<<<<<< HEAD:Assets/Sprites (Character)/[NPC]Child/Shoot/sChildShoot1_0-sheet.png.meta
+  spriteMode: 1
+=======
   spriteMode: 2
+>>>>>>> 'main':Assets/Sprites (Character)/[NPC]Child/sChildShoot1_0-sheet.png.meta
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -99,6 +111,9 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
+<<<<<<< HEAD:Assets/Sprites (Character)/[NPC]Child/Shoot/sChildShoot1_0-sheet.png.meta
+    textureFormat: -1
+=======
     textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
@@ -124,6 +139,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 4
+>>>>>>> 'main':Assets/Sprites (Character)/[NPC]Child/sChildShoot1_0-sheet.png.meta
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -133,6 +149,9 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
+<<<<<<< HEAD:Assets/Sprites (Character)/[NPC]Child/Shoot/sChildShoot1_0-sheet.png.meta
+    sprites: []
+=======
     sprites:
     - serializedVersion: 2
       name: sChildShoot1_0-sheet_0
@@ -386,6 +405,7 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+>>>>>>> 'main':Assets/Sprites (Character)/[NPC]Child/sChildShoot1_0-sheet.png.meta
     outline: []
     physicsShape: []
     bones: []
