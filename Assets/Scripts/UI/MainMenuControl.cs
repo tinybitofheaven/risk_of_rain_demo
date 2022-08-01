@@ -14,7 +14,7 @@ public class MainMenuControl : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("map_dried+lake");
+        SceneManager.LoadScene("CharacterSelect");
         Debug.Log("PRESSED");
     }
     
