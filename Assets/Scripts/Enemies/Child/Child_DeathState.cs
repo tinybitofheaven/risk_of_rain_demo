@@ -1,0 +1,13 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Child_DeathState : DeathState
+{
+    private Child child;
+
+    public Child_DeathState(Entity entity, FSM stateMachine, string animBoolName, D_DeathState stateData, Child child) : base(entity, stateMachine, animBoolName, stateData)
+    {
+        this.child = child;
+    }
+}
