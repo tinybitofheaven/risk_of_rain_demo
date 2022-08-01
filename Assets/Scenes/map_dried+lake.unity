@@ -10520,6 +10520,7 @@ GameObject:
   - component: {fileID: 298196385}
   - component: {fileID: 298196387}
   - component: {fileID: 298196386}
+  - component: {fileID: 298196388}
   m_Layer: 0
   m_Name: Ground Structures
   m_TagString: Untagged
@@ -12925,6 +12926,22 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &298196388
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298196384}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
 --- !u!1 &627303793
 GameObject:
   m_ObjectHideFlags: 0
@@ -13181,6 +13198,7 @@ GameObject:
   - component: {fileID: 864546655}
   - component: {fileID: 864546657}
   - component: {fileID: 864546656}
+  - component: {fileID: 864546658}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -49133,6 +49151,22 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &864546658
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864546654}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
 --- !u!1 &1037169037
 GameObject:
   m_ObjectHideFlags: 0
@@ -131779,6 +131813,7 @@ GameObject:
   - component: {fileID: 1647776726}
   - component: {fileID: 1647776728}
   - component: {fileID: 1647776727}
+  - component: {fileID: 1647776729}
   m_Layer: 0
   m_Name: Rope/Ladder
   m_TagString: Untagged
@@ -133841,6 +133876,22 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &1647776729
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647776725}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
 --- !u!1 &1686900121
 GameObject:
   m_ObjectHideFlags: 0
