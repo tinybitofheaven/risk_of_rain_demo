@@ -190,8 +190,10 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
-        Destroy(gameObject);
+        // Destroy(gameObject);
+        gameObject.SetActive(false);
     }
+
     public void Shoot1()
     {
         if (transform.localScale.x > 0)
@@ -200,6 +202,11 @@ public class PlayerController : MonoBehaviour
             if (hitInfo)
             {
                 Debug.Log(hitInfo.transform.name);
+                //TODO
+                //add explosion
+                //update healthbar
+                //add damage number
+                hitInfo.transform.gameObject.GetComponent<Entity>().TakeDamage(Random.Range(5, 10));
             }
         }
         else if (transform.localScale.x < 0)
@@ -208,6 +215,11 @@ public class PlayerController : MonoBehaviour
             if (hitInfo)
             {
                 Debug.Log(hitInfo.transform.name);
+                //TODO
+                //add explosion
+                //update healthbar
+                //add damage number
+                hitInfo.transform.gameObject.GetComponent<Entity>().TakeDamage(Random.Range(5, 10));
             }
         }
 
