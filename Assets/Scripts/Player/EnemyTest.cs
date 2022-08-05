@@ -20,6 +20,7 @@ public class EnemyTest : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("PlayerTrigger"))
         {
+            //hurting the player with damage amount of 10
             collision.GetComponentInParent<PlayerController>().TakeDamage(10);
 
 
