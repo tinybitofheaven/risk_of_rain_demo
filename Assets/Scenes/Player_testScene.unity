@@ -326,19 +326,18 @@ MonoBehaviour:
   health: 100
   shoot1Damage: 3
   shoot1CD: 0.2
-  shoot1Counter: 0
   shoot1Launch: 0
   shoot2CD: 3
-  shoot2Counter: 0
   shoot2Launch: 0
   shoot2Damage: 10
   rollSpeed: 8
   rollTime: 0.5
-  rollCounter: 0
   rolling: 0
   shoot3CD: 4
-  shoot3Counter: 0
   shoot3Launch: 0
+  shoot4CD: 5
+  shoot4Launch: 0
+  shoot4Damage: 7
   groundPoint: {fileID: 2130511302}
   firePoint: {fileID: 745853116}
   Grounded: 0
@@ -822,7 +821,7 @@ GameObject:
   - component: {fileID: 1738008594}
   m_Layer: 10
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
