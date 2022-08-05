@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eba3fdc89792f6241899fb2133ebcaee, type: 3}
   m_Name: Crab_MeleeStateData
   m_EditorClassIdentifier: 
-  attackRadius: 0.1
-  attackDamage: 10
+  attackRadius: 0.2
+  attackDamage: 30
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512
