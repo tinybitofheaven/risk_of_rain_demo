@@ -240,6 +240,7 @@ public class PlayerController : MonoBehaviour
                     if (hitInfo.transform.GetComponent<Entity>() != null)
                     {
                         hitInfo.transform.GetComponent<Entity>().TakeDamage(shoot1Damage);
+                        Debug.Log(hitInfo.transform.name);
                     }
                 }
             }
