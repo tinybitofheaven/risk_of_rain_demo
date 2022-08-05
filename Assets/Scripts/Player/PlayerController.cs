@@ -83,6 +83,7 @@ public class PlayerController : MonoBehaviour
 
             //movement
             rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, rb.velocity.y);
+
             if (rb.velocity.x < 0)
             {
                 transform.localScale = new Vector3(-1f, 1f, 1f);
@@ -110,7 +111,7 @@ public class PlayerController : MonoBehaviour
 
 
         //jump
-        Grounded = Physics2D.OverlapCircle(groundPoint.position, 0.2f, whatIsGround);
+        Grounded = Physics2D.OverlapCircle(groundPoint.position, 0.02f, whatIsGround);
         if (Input.GetButtonDown("Jump") && Grounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
@@ -171,6 +172,11 @@ public class PlayerController : MonoBehaviour
         //animation 
         anim.SetBool("Grounded", Grounded);
         anim.SetFloat("speed", Mathf.Abs(rb.velocity.x));
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(groundPoint.position, 0.02f);
     }
 
     public void TakeDamage(int damage)
