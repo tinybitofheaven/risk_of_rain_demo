@@ -58,4 +58,20 @@ public class GameManager : MonoBehaviour
             count--;
         }
     }
+
+    public void SpawnDamageNumber(int damage, Collider2D collider)
+    {
+        int count = 0;
+        while (damage > 0)
+        {
+            GameObject num = Instantiate(damageNumberPrefab,
+                new Vector2(
+                collider.gameObject.transform.position.x + 0.1f * count,
+                collider.gameObject.transform.position.y + 0.1f + collider.gameObject.GetComponent<BoxCollider2D>().size.y / 2),
+                Quaternion.identity);
+            num.GetComponent<DamageNumber>().damage = damage % 10;
+            damage = damage / 10;
+            count--;
+        }
+    }
 }
