@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
     public Transform firePoint;
     public bool Grounded;
     public LayerMask whatIsGround;
+    public LayerMask whatIsEnemy;
+    public GameObject damageNumberPrefab;
 
     public Animator anim;
 
@@ -198,28 +200,54 @@ public class PlayerController : MonoBehaviour
     {
         if (transform.localScale.x > 0)
         {
-            RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
+            RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right, Mathf.Infinity, whatIsEnemy);
             if (hitInfo)
             {
-                Debug.Log(hitInfo.transform.name);
+                // Debug.Log(hitInfo.transform.name);
                 //TODO
                 //add explosion
                 //update healthbar
                 //add damage number
-                hitInfo.transform.gameObject.GetComponent<Entity>().TakeDamage(Random.Range(5, 10));
+
+                int damage = Random.Range(6, 10);
+                // int damage = 10;
+                int count = 0;
+                while (damage > 0)
+                {
+                    // Instantiate(damageNumberPrefab, new Vector2(hitInfo.point.x + 1f * count, hitInfo.point.y), Quaternion.identity);
+                    // Instantiate(damageNumberPrefab, hitInfo.transform);
+                    GameObject num = Instantiate(damageNumberPrefab, new Vector2(hitInfo.point.x + 0.1f * count, hitInfo.point.y), Quaternion.identity);
+                    num.GetComponent<DamageNumber>().damage = damage % 10;
+                    damage = damage / 10;
+                    count--;
+                }
+
+                hitInfo.transform.gameObject.GetComponent<Entity>().TakeDamage(damage);
             }
         }
         else if (transform.localScale.x < 0)
         {
-            RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right * -1);
+            RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right, Mathf.Infinity, LayerMask.GetMask("Enemy"));
             if (hitInfo)
             {
-                Debug.Log(hitInfo.transform.name);
+                // Debug.Log(hitInfo.transform.name);
                 //TODO
                 //add explosion
                 //update healthbar
-                //add damage number
-                hitInfo.transform.gameObject.GetComponent<Entity>().TakeDamage(Random.Range(5, 10));
+
+                int damage = Random.Range(6, 10);
+                // int damage = 10;
+                int count = 0;
+                while (damage > 0)
+                {
+                    // Instantiate(damageNumberPrefab, hitInfo.transform);
+                    GameObject num = Instantiate(damageNumberPrefab, new Vector2(hitInfo.point.x + 0.1f * count, hitInfo.point.y), Quaternion.identity);
+                    num.GetComponent<DamageNumber>().damage = damage % 10;
+                    damage = damage / 10;
+                    count--;
+                }
+
+                hitInfo.transform.gameObject.GetComponent<Entity>().TakeDamage(damage);
             }
         }
 

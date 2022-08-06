@@ -143,7 +143,15 @@ public class Entity : MonoBehaviour
 
     public virtual void Destroy()
     {
-        Destroy(this.gameObject);
+        // Destroy(this.gameObject);
+
+        Destroy(gameObject.GetComponent<AnimationToStateMachine>());
+        // gameObject.GetComponent<SpriteRenderer>().sprite = 
+        Destroy(gameObject.GetComponent<Animator>());
+        // Destroy(gameObject.GetComponent<BoxCollider2D>());
+        gameObject.layer = LayerMask.NameToLayer("DeadEnemy");
+        gameObject.tag = "DeadEnemy";
+        Destroy(this);
     }
 
     public virtual void OnDrawGizmos()
