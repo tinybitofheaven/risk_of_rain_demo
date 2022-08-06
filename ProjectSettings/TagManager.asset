@@ -22,6 +22,9 @@ TagManager:
   - EnemyAttack
   - DeadEnemy
   - Coin
+  - PlayerTrigger
+  - 
+  - 
   - 
   - 
   - 
