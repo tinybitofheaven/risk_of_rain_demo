@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
     public int coins = 0;
+    public GameObject damageNumberPrefab;
 
     public static GameManager FindInstance()
     {
@@ -43,6 +44,18 @@ public class GameManager : MonoBehaviour
                 // Debug.Log("dead: " + enemy.name);
                 Destroy(enemy);
             }
+        }
+    }
+
+    public void SpawnDamageNumber(int damage, RaycastHit2D hitInfo)
+    {
+        int count = 0;
+        while (damage > 0)
+        {
+            GameObject num = Instantiate(damageNumberPrefab, new Vector2(hitInfo.point.x + 0.1f * count, hitInfo.point.y), Quaternion.identity);
+            num.GetComponent<DamageNumber>().damage = damage % 10;
+            damage = damage / 10;
+            count--;
         }
     }
 }

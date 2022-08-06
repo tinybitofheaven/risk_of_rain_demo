@@ -42,7 +42,6 @@ public class PlayerController : MonoBehaviour
     public bool Grounded;
     public LayerMask whatIsGround;
     public LayerMask whatIsEnemy;
-    public GameObject damageNumberPrefab;
 
     public Animator anim;
 
@@ -238,21 +237,12 @@ public class PlayerController : MonoBehaviour
             RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right, Mathf.Infinity, whatIsEnemy);
             if (hitInfo)
             {
-                // Debug.Log(hitInfo.transform.name);
                 //TODO
                 //add explosion
                 //update healthbar
 
-                // int damage = Random.Range(6, 10);
-                int count = 0;
                 hitInfo.transform.gameObject.GetComponent<Entity>().TakeDamage(shoot1Damage);
-                while (shoot1Damage > 0)
-                {
-                    GameObject num = Instantiate(damageNumberPrefab, new Vector2(hitInfo.point.x + 0.1f * count, hitInfo.point.y), Quaternion.identity);
-                    num.GetComponent<DamageNumber>().damage = shoot1Damage % 10;
-                    shoot1Damage = shoot1Damage / 10;
-                    count--;
-                }
+                GameManager.FindInstance().SpawnDamageNumber(shoot1Damage, hitInfo);
             }
 
         }
@@ -261,21 +251,12 @@ public class PlayerController : MonoBehaviour
             RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right * -1, Mathf.Infinity, LayerMask.GetMask("Enemy"));
             if (hitInfo)
             {
-                // Debug.Log(hitInfo.transform.name);
                 //TODO
                 //add explosion
                 //update healthbar
 
-                // int damage = Random.Range(6, 10);
-                int count = 0;
                 hitInfo.transform.gameObject.GetComponent<Entity>().TakeDamage(shoot1Damage);
-                while (shoot1Damage > 0)
-                {
-                    GameObject num = Instantiate(damageNumberPrefab, new Vector2(hitInfo.point.x + 0.1f * count, hitInfo.point.y), Quaternion.identity);
-                    num.GetComponent<DamageNumber>().damage = shoot1Damage % 10;
-                    shoot1Damage = shoot1Damage / 10;
-                    count--;
-                }
+                GameManager.FindInstance().SpawnDamageNumber(shoot1Damage, hitInfo);
             }
         }
 
@@ -285,31 +266,28 @@ public class PlayerController : MonoBehaviour
     {
         if (transform.localScale.x > 0)
         {
-            RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
-
-            if (hitInfo.transform != null)
+            RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right, Mathf.Infinity, LayerMask.GetMask("Enemy"));
+            if (hitInfo)
             {
-                if (hitInfo.transform.tag == "Enemy")
-                {
-                    if (hitInfo.transform.GetComponent<Entity>() != null)
-                    {
-                        hitInfo.transform.GetComponent<Entity>().TakeDamage(shoot2Damage);
-                    }
-                }
+                //TODO
+                //add explosion
+                //update healthbar
+
+                hitInfo.transform.gameObject.GetComponent<Entity>().TakeDamage(shoot2Damage);
+                GameManager.FindInstance().SpawnDamageNumber(shoot2Damage, hitInfo);
             }
         }
         else if (transform.localScale.x < 0)
         {
-            RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right * -1);
-            if (hitInfo.transform != null)
+            RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right * -1, Mathf.Infinity, LayerMask.GetMask("Enemy"));
+            if (hitInfo)
             {
-                if (hitInfo.transform.tag == "Enemy")
-                {
-                    if (hitInfo.transform.GetComponent<Entity>() != null)
-                    {
-                        hitInfo.transform.GetComponent<Entity>().TakeDamage(shoot2Damage);
-                    }
-                }
+                //TODO
+                //add explosion
+                //update healthbar
+
+                hitInfo.transform.gameObject.GetComponent<Entity>().TakeDamage(shoot2Damage);
+                GameManager.FindInstance().SpawnDamageNumber(shoot2Damage, hitInfo);
             }
 
         }
@@ -320,31 +298,28 @@ public class PlayerController : MonoBehaviour
     {
         if (transform.localScale.x > 0)
         {
-            RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
-
-            if (hitInfo.transform != null)
+            RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right, Mathf.Infinity, LayerMask.GetMask("Enemy"));
+            if (hitInfo)
             {
-                if (hitInfo.transform.tag == "Enemy")
-                {
-                    if (hitInfo.transform.GetComponent<Entity>() != null)
-                    {
-                        hitInfo.transform.GetComponent<Entity>().TakeDamage(shoot4Damage);
-                    }
-                }
+                //TODO
+                //add explosion
+                //update healthbar
+
+                hitInfo.transform.gameObject.GetComponent<Entity>().TakeDamage(shoot4Damage);
+                GameManager.FindInstance().SpawnDamageNumber(shoot4Damage, hitInfo);
             }
         }
         else if (transform.localScale.x < 0)
         {
-            RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right * -1);
-            if (hitInfo.transform != null)
+            RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right * -1, Mathf.Infinity, LayerMask.GetMask("Enemy"));
+            if (hitInfo)
             {
-                if (hitInfo.transform.tag == "Enemy")
-                {
-                    if (hitInfo.transform.GetComponent<Entity>() != null)
-                    {
-                        hitInfo.transform.GetComponent<Entity>().TakeDamage(shoot4Damage);
-                    }
-                }
+                //TODO
+                //add explosion
+                //update healthbar
+
+                hitInfo.transform.gameObject.GetComponent<Entity>().TakeDamage(shoot4Damage);
+                GameManager.FindInstance().SpawnDamageNumber(shoot4Damage, hitInfo);
             }
 
         }
