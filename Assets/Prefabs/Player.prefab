@@ -81,7 +81,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7234378996584879080}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.48, z: 0}
+  m_LocalPosition: {x: -0.08, y: -0.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7234378996979400390}
@@ -114,7 +114,7 @@ Transform:
   m_GameObject: {fileID: 7234378996979400391}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.92, y: -0.83, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 7234378997391204281}
   - {fileID: 7234378996584879083}
@@ -166,7 +166,7 @@ MonoBehaviour:
   shoot2CD: 3
   shoot2Launch: 0
   shoot2Damage: 10
-  rollSpeed: 8
+  rollSpeed: 12
   rollTime: 0.5
   rolling: 0
   shoot3CD: 4
