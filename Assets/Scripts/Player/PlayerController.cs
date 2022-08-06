@@ -207,22 +207,17 @@ public class PlayerController : MonoBehaviour
                 //TODO
                 //add explosion
                 //update healthbar
-                //add damage number
 
                 int damage = Random.Range(6, 10);
-                // int damage = 10;
                 int count = 0;
+                hitInfo.transform.gameObject.GetComponent<Entity>().TakeDamage(damage);
                 while (damage > 0)
                 {
-                    // Instantiate(damageNumberPrefab, new Vector2(hitInfo.point.x + 1f * count, hitInfo.point.y), Quaternion.identity);
-                    // Instantiate(damageNumberPrefab, hitInfo.transform);
                     GameObject num = Instantiate(damageNumberPrefab, new Vector2(hitInfo.point.x + 0.1f * count, hitInfo.point.y), Quaternion.identity);
                     num.GetComponent<DamageNumber>().damage = damage % 10;
                     damage = damage / 10;
                     count--;
                 }
-
-                hitInfo.transform.gameObject.GetComponent<Entity>().TakeDamage(damage);
             }
         }
         else if (transform.localScale.x < 0)
@@ -236,18 +231,15 @@ public class PlayerController : MonoBehaviour
                 //update healthbar
 
                 int damage = Random.Range(6, 10);
-                // int damage = 10;
                 int count = 0;
+                hitInfo.transform.gameObject.GetComponent<Entity>().TakeDamage(damage);
                 while (damage > 0)
                 {
-                    // Instantiate(damageNumberPrefab, hitInfo.transform);
                     GameObject num = Instantiate(damageNumberPrefab, new Vector2(hitInfo.point.x + 0.1f * count, hitInfo.point.y), Quaternion.identity);
                     num.GetComponent<DamageNumber>().damage = damage % 10;
                     damage = damage / 10;
                     count--;
                 }
-
-                hitInfo.transform.gameObject.GetComponent<Entity>().TakeDamage(damage);
             }
         }
 

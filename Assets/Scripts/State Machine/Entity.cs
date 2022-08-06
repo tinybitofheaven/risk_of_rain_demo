@@ -26,6 +26,7 @@ public class Entity : MonoBehaviour
 
     private Vector2 velocityWorkspace; //temp variable for any vector2
     public GameObject playerGO;
+    public GameObject coinPrefab;
 
     private float flipCooldown = 0.2f;
     private float lastFlipTime = -0.2f;
@@ -143,14 +144,15 @@ public class Entity : MonoBehaviour
 
     public virtual void Destroy()
     {
-        // Destroy(this.gameObject);
-
         Destroy(gameObject.GetComponent<AnimationToStateMachine>());
-        // gameObject.GetComponent<SpriteRenderer>().sprite = 
         Destroy(gameObject.GetComponent<Animator>());
-        // Destroy(gameObject.GetComponent<BoxCollider2D>());
         gameObject.layer = LayerMask.NameToLayer("DeadEnemy");
         gameObject.tag = "DeadEnemy";
+
+        Debug.Log("start spawn");
+        SpawnCoins();
+        Debug.Log("end spawn");
+
         Destroy(this);
     }
 
@@ -164,5 +166,14 @@ public class Entity : MonoBehaviour
         // Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(entity.transform.right * entityData.attackRange), 0.1f);
         // Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(entity.transform.right * entityData.minAggroRange), 0.1f);
         // Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(entity.transform.right * entityData.maxAggroRange), 0.1f);
+    }
+
+    public void SpawnCoins()
+    {
+        for (int i = 0; i < entityData.coins; i++)
+        {
+            // Debug.Log("coin x: " + gameObject.transform.position.x + ", coins y: " + gameObject.transform.position.y);
+            Instantiate(coinPrefab, gameObject.transform.position, Quaternion.identity);
+        }
     }
 }

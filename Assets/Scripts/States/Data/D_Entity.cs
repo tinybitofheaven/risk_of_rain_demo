@@ -12,6 +12,8 @@ public class D_Entity : ScriptableObject
     public float attackRange = 0.1f;
 
     public int startingHealth = 70;
+    public int coins = 4;
+    public int exp = 40;
 
     public LayerMask whatIsGround;
     public LayerMask whatIsPlayer;

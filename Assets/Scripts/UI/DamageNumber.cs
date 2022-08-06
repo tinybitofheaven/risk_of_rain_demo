@@ -20,6 +20,7 @@ public class DamageNumber : MonoBehaviour
         _renderer.sprite = nums[damage];
     }
 
+
     private IEnumerator Fade()
     {
         Color c = _renderer.material.color;
