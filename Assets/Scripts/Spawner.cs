@@ -19,6 +19,7 @@ public class Spawner : MonoBehaviour
 
     public GameObject[] enemyPrefabs;
     public LayerMask whatIsGround;
+    public BoxCollider2D worldBounds;
 
     public static Spawner FindInstance()
     {
@@ -55,28 +56,39 @@ public class Spawner : MonoBehaviour
     private void SpawnEnemy()
     {
         float randomTime = Random.Range(minSpawnFrequency, maxSpawnFrequency);
+        bool functionCall = false;
 
         if (enemyCount < maxEnemies)
         {
             //spawn enemy
-            RaycastHit2D hit = Physics2D.Raycast(FindSpawn(), Vector2.down, 50f, whatIsGround);
-            if (hit)
+            Vector2 _v = FindSpawn();
+            RaycastHit2D ground = Physics2D.Raycast(_v, Vector2.down, 5f, whatIsGround);
+            RaycastHit2D air = Physics2D.Raycast(new Vector2(ground.point.x, ground.point.y), Vector2.up, 2f, whatIsGround);
+            if (ground && !air)
             {
                 int amount = Random.Range(minSpawnAmount, maxSpawnAmount);
-                // int enemyIndex = Random.Range(0, enemyPrefabs.Length);
                 for (int i = 0; i < amount; i++)
                 {
                     int enemyIndex = Random.Range(0, enemyPrefabs.Length);
                     Instantiate(enemyPrefabs[enemyIndex],
-                        new Vector2(hit.point.x + 0.5f * i,
-                                    hit.point.y + enemyPrefabs[enemyIndex].GetComponent<BoxCollider2D>().size.y / 2),
+                        new Vector2(ground.point.x + 0.5f * i,
+                                    ground.point.y + enemyPrefabs[enemyIndex].GetComponent<BoxCollider2D>().size.y / 2),
                                     Quaternion.identity);
                     enemyCount++;
                 }
             }
+            else
+            {
+                functionCall = true;
+                Invoke("SpawnEnemy", 0.5f);
+            }
+
         }
 
-        Invoke("SpawnEnemy", randomTime);
+        if (functionCall == false)
+        {
+            Invoke("SpawnEnemy", randomTime);
+        }
     }
 
     private void OnDrawGizmos()
