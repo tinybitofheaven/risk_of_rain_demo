@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/map_dried+lake.unity
     guid: fd9a787f6aa3d094e8217603cfa0d366
+  - enabled: 1
+    path: Assets/Scenes/map_desolate+forest.unity
+    guid: 7f3ba960e08e2e34488c38bfd6cae0e8
   m_configObjects: {}
