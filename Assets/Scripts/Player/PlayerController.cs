@@ -99,12 +99,7 @@ public class PlayerController : MonoBehaviour
 
                 }
 
-                if (Input.GetButtonDown("Jump"))
-                {
-
-                    climb = !climb;
-
-                }
+                
             }
            else
             {
@@ -128,12 +123,7 @@ public class PlayerController : MonoBehaviour
 
                 }
 
-                if (Input.GetButtonDown("Jump"))
-                {
-
-                    climb = true;
-
-                }
+                
             }
 
            
@@ -209,10 +199,23 @@ public class PlayerController : MonoBehaviour
 
             //jump
             Grounded = Physics2D.OverlapCircle(groundPoint.position, 0.02f, whatIsGround);
-            if (Input.GetButtonDown("Jump") && Grounded)
+            if (Input.GetButtonDown("Jump") && (Grounded||climb))
             {
+                
+            
+                if(canClimb)
+                {
+                    if(climb)
+                    {
+                        climb = !climb;
+                    }
+                    else
+                    {
+                        climb = true;
+                    }
+                }    
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            }
+             }
 
             //shoot1
             if ((Input.GetKey(KeyCode.Q) && shoot1Counter == shoot1CD) && !(Input.GetKeyDown(KeyCode.E) && shoot3Counter == shoot3CD))
