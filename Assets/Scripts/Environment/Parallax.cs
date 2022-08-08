@@ -26,7 +26,7 @@ public class Parallax : MonoBehaviour
         float tempY = (cam.transform.position.y * (1 - parallexEffectY));
         float distY = (cam.transform.position.y * parallexEffectY);
         transform.position = new Vector3(startpos + dist, startposY +yOffset + distY, transform.position.z);
-            Debug.Log(Mathf.Lerp(transform.position.y, player.transform.position.y+yOffset, yLerp));
+            //Debug.Log(Mathf.Lerp(transform.position.y, player.transform.position.y+yOffset, yLerp));
         if (temp > startpos + length) startpos += length;
         else if (temp < startpos - length) startpos -= length;
         //if (tempY > startposY + height) startposY += height;
