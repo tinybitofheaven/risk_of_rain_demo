@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7234378995748402805}
   m_Layer: 11
   m_Name: DamageLayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 7234378996584879083}
   m_Layer: 9
   m_Name: Ground Check Point
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -157,6 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 7234378996979400385}
+  collider: {fileID: 7234378997391204283}
   moveSpeed: 3
   jumpForce: 15
   health: 100
@@ -180,6 +181,9 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 1024
   anim: {fileID: 7234378997391204282}
 --- !u!1 &7234378997391204286
 GameObject:
@@ -195,7 +199,7 @@ GameObject:
   - component: {fileID: 7234378997391204282}
   m_Layer: 9
   m_Name: Sprite
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -320,7 +324,7 @@ GameObject:
   - component: {fileID: 7234378997414807185}
   m_Layer: 9
   m_Name: firePoint
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
