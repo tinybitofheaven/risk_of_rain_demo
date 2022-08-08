@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 7234378996979400385}
-  collider: {fileID: 0}
+  collider: {fileID: 7234378997391204283}
   moveSpeed: 3
   jumpForce: 15
   health: 100
