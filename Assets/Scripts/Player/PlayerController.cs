@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public float jumpForce;
     public float health = 100;
+    public float maxhp = 100;
 
 
     //shoot1
@@ -93,12 +94,7 @@ public class PlayerController : MonoBehaviour
 
                 }
 
-                if (Input.GetButtonDown("Jump"))
-                {
 
-                    climb = !climb;
-
-                }
             }
             else
             {
@@ -122,12 +118,7 @@ public class PlayerController : MonoBehaviour
 
                 }
 
-                if (Input.GetButtonDown("Jump"))
-                {
 
-                    climb = true;
-
-                }
             }
 
         }
@@ -177,8 +168,6 @@ public class PlayerController : MonoBehaviour
             else if (rb.velocity.x > 0)
             {
                 transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-
-
             }
         }
 
