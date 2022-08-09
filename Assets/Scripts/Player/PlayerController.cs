@@ -9,7 +9,8 @@ public class PlayerController : MonoBehaviour
     public Collider2D collider;
     public float moveSpeed;
     public float jumpForce;
-    public float health = 100;
+    public float maxHealth = 100;
+    public float health;
 
 
     //shoot1
@@ -65,7 +66,7 @@ public class PlayerController : MonoBehaviour
 
         shoot4Counter = shoot4CD;
 
-        
+        health = maxHealth;
     }
 
     // Update is called once per frame
