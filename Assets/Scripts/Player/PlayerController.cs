@@ -9,16 +9,13 @@ public class PlayerController : MonoBehaviour
     public Collider2D _collider;
     public float moveSpeed;
     public float jumpForce;
-    
-    public float health = 100;
-    public float maxhp = 100;
-
 
     //shoot1
     public int shoot1Damage;
     public float shoot1CD = 0.2f;
     private float shoot1Counter;
     public bool shoot1Launch;
+    public float Shoot1Counter { get => shoot1Counter; }
 
 
     //shoot2
@@ -26,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private float shoot2Counter;
     public bool shoot2Launch;
     public int shoot2Damage;
+    public float Shoot2Counter { get => shoot2Counter; }
 
     //shoot3
     public float rollSpeed, rollTime;
@@ -34,12 +32,14 @@ public class PlayerController : MonoBehaviour
     public float shoot3CD = 4f;
     private float shoot3Counter;
     public bool shoot3Launch;
+    public float Shoot3Counter { get => shoot3Counter; }
 
     //shoot4
     public float shoot4CD = 5f;
     private float shoot4Counter;
     public bool shoot4Launch;
     public int shoot4Damage;
+    public float Shoot4Counter { get => shoot4Counter; }
 
     public Transform groundPoint;
     public Transform firePoint;
@@ -290,8 +290,8 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
-        if (health <= 0)
+        GameManager.FindInstance().health -= damage;
+        if (GameManager.FindInstance().health <= 0)
         {
             Die();
         }
