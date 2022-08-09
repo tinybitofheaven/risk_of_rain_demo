@@ -59,12 +59,6 @@ public class Entity : MonoBehaviour
     public virtual void Update()
     {
         stateMachine.currentState.LogicUpdate();
-
-        //TODO:REMOVE
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            TakeDamage(10);
-        }
     }
 
     public virtual void FixedUpdate()
@@ -147,12 +141,19 @@ public class Entity : MonoBehaviour
         previousVelocity = rb.velocity.x;
         rb.AddForce(direction * 2, ForceMode2D.Impulse);
 
-        Invoke("StopKnockback", 0.1f);
+        Invoke("StopKnockback", 0.25f);
     }
 
     private void StopKnockback()
     {
-        SetVelocity(previousVelocity);
+        if (facingDirection == 1)
+        {
+            SetVelocity(previousVelocity);
+        }
+        else
+        {
+            SetVelocity(-previousVelocity);
+        }
     }
 
     public virtual void Die()
