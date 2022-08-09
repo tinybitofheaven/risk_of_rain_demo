@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
     public int coins = 0;
+    public int exp = 0;
     public GameObject damageNumberPrefab;
 
     public static GameManager FindInstance()
