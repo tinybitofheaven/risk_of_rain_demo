@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public float jumpForce;
     public float health = 100;
+    public float maxhp = 100;
 
 
     //shoot1
