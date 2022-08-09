@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
 
 
         //rolling
-        if (Input.GetKeyDown(KeyCode.E) && shoot3Counter == shoot3CD)
+        if (Input.GetKeyDown(KeyCode.C) && shoot3Counter == shoot3CD)
         {
             rollCounter = rollTime;
             shoot3Launch = true;
@@ -206,7 +206,7 @@ public class PlayerController : MonoBehaviour
     
 
         //shoot1
-        if ((Input.GetKey(KeyCode.Q) && shoot1Counter == shoot1CD) && !(Input.GetKeyDown(KeyCode.E) && shoot3Counter == shoot3CD))
+        if ((Input.GetKey(KeyCode.Z) && shoot1Counter == shoot1CD) && !(Input.GetKeyDown(KeyCode.E) && shoot3Counter == shoot3CD))
         {
             shoot1Launch = true;
             anim.SetTrigger("Shoot1");
@@ -215,7 +215,7 @@ public class PlayerController : MonoBehaviour
             // Shoot1();
         }
         //shoot2
-        else if (Input.GetKeyDown(KeyCode.W) && shoot2Counter == shoot2CD)
+        else if (Input.GetKeyDown(KeyCode.X) && shoot2Counter == shoot2CD)
         {
             shoot2Launch = true;
             anim.SetTrigger("Shoot2");
@@ -223,7 +223,7 @@ public class PlayerController : MonoBehaviour
             Shoot2();
         }
         //shoot4
-        else if (Input.GetKeyDown(KeyCode.R) && shoot4Counter == shoot4CD)
+        else if (Input.GetKeyDown(KeyCode.V) && shoot4Counter == shoot4CD)
         {
             shoot4Launch = true;
             anim.SetTrigger("Shoot4");
