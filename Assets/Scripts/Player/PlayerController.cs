@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public Collider2D _collider;
     public float moveSpeed;
     public float jumpForce;
+    
     public float health = 100;
     public float maxhp = 100;
 
