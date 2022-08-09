@@ -19,7 +19,7 @@ public class Spawner : MonoBehaviour
 
     public GameObject[] enemyPrefabs;
     public LayerMask whatIsGround;
-    public BoxCollider2D worldBounds;
+
 
     public static Spawner FindInstance()
     {
@@ -42,18 +42,48 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        Invoke("SpawnEnemy", 3f);
+        Invoke("Spawn", minSpawnFrequency);
     }
 
     //helper functions
-    private Vector2 FindSpawn()
+    private Vector2 FindSpawn(float range, Vector3 position)
     {
-        Bounds bounds = new Bounds(playerGO.transform.position, new Vector2(spawnRange * 2, spawnRange * 2));
+        Bounds bounds = new Bounds(position, new Vector2(range * 2, range * 2));
         Vector2 _v = new Vector2(Random.Range(bounds.min.x, bounds.max.x), Random.Range(bounds.min.y, bounds.max.y));
         return _v;
     }
 
-    private void SpawnEnemy()
+    private void SpawnEnemy(bool inHorde, int index, Vector2 vector)
+    {
+        if (inHorde)
+        {
+            int enemyIndex = Random.Range(0, enemyPrefabs.Length);
+            Vector2 _v = FindSpawn(1f, vector);
+            RaycastHit2D ground = Physics2D.Raycast(_v, Vector2.down, 5f, whatIsGround);
+            RaycastHit2D air = Physics2D.Raycast(new Vector2(ground.point.x, ground.point.y), Vector2.up, enemyPrefabs[enemyIndex].GetComponent<BoxCollider2D>().size.y, whatIsGround);
+            int tries = 0;
+            while (!ground && air && tries <= 15)
+            {
+                ground = Physics2D.Raycast(_v, Vector2.down, 5f, whatIsGround);
+                air = Physics2D.Raycast(new Vector2(ground.point.x, ground.point.y), Vector2.up, enemyPrefabs[enemyIndex].GetComponent<BoxCollider2D>().size.y, whatIsGround);
+                tries++;
+            }
+
+            if (ground && !air)
+            {
+                //make enemy
+                Vector2 spawnLocation = new Vector2(ground.point.x, ground.point.y + enemyPrefabs[enemyIndex].GetComponent<BoxCollider2D>().size.y / 2);
+                SpawnEnemy(false, enemyIndex, spawnLocation);
+            }
+        }
+        else
+        {
+            Instantiate(enemyPrefabs[index], vector, Quaternion.identity);
+            enemyCount++;
+        }
+    }
+
+    private void Spawn()
     {
         float randomTime = Random.Range(minSpawnFrequency, maxSpawnFrequency);
         bool functionCall = false;
@@ -61,33 +91,34 @@ public class Spawner : MonoBehaviour
         if (enemyCount < maxEnemies)
         {
             //spawn enemy
-            Vector2 _v = FindSpawn();
+            int enemyIndex = Random.Range(0, enemyPrefabs.Length);
+            Vector2 _v = FindSpawn(spawnRange, playerGO.transform.position);
             RaycastHit2D ground = Physics2D.Raycast(_v, Vector2.down, 5f, whatIsGround);
-            RaycastHit2D air = Physics2D.Raycast(new Vector2(ground.point.x, ground.point.y), Vector2.up, 2f, whatIsGround);
+            RaycastHit2D air = Physics2D.Raycast(new Vector2(ground.point.x, ground.point.y), Vector2.up, enemyPrefabs[enemyIndex].GetComponent<BoxCollider2D>().size.y, whatIsGround);
+
             if (ground && !air)
             {
+                //make enemy
+                Vector2 spawnLocation = new Vector2(ground.point.x, ground.point.y + enemyPrefabs[enemyIndex].GetComponent<BoxCollider2D>().size.y / 2);
+                SpawnEnemy(false, enemyIndex, spawnLocation);
+
+                //create horde
                 int amount = Random.Range(minSpawnAmount, maxSpawnAmount);
                 for (int i = 0; i < amount; i++)
                 {
-                    int enemyIndex = Random.Range(0, enemyPrefabs.Length);
-                    Instantiate(enemyPrefabs[enemyIndex],
-                        new Vector2(ground.point.x + 0.5f * i,
-                                    ground.point.y + enemyPrefabs[enemyIndex].GetComponent<BoxCollider2D>().size.y / 2),
-                                    Quaternion.identity);
-                    enemyCount++;
+                    SpawnEnemy(true, enemyIndex, spawnLocation);
                 }
             }
             else
             {
                 functionCall = true;
-                Invoke("SpawnEnemy", 0.5f);
+                Invoke("Spawn", 0.5f);
             }
-
         }
 
         if (functionCall == false)
         {
-            Invoke("SpawnEnemy", randomTime);
+            Invoke("Spawn", randomTime);
         }
     }
 

@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public int coins = 0;
     public float health = 100;
     public float maxhp = 100;
+    public int exp = 0;
     public GameObject damageNumberPrefab;
 
     public static GameManager FindInstance()

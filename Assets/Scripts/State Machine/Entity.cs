@@ -27,6 +27,7 @@ public class Entity : MonoBehaviour
     private Vector2 velocityWorkspace; //temp variable for any vector2
     public GameObject playerGO;
     public GameObject coinPrefab;
+    public GameObject expPrefab;
 
     private float flipCooldown = 0.2f;
     private float lastFlipTime = -0.2f;
@@ -35,6 +36,8 @@ public class Entity : MonoBehaviour
     public float spriteWidth;
 
     public int currHealth;
+
+    public float previousVelocity;
 
     public virtual void Start()
     {
@@ -139,6 +142,19 @@ public class Entity : MonoBehaviour
         }
     }
 
+    public virtual void Knockback(Vector2 direction)
+    {
+        previousVelocity = rb.velocity.x;
+        rb.AddForce(direction * 2, ForceMode2D.Impulse);
+
+        Invoke("StopKnockback", 0.1f);
+    }
+
+    private void StopKnockback()
+    {
+        SetVelocity(previousVelocity);
+    }
+
     public virtual void Die()
     { }
 
@@ -149,9 +165,8 @@ public class Entity : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("DeadEnemy");
         gameObject.tag = "DeadEnemy";
 
-        Debug.Log("start spawn");
+        SpawnExp();
         SpawnCoins();
-        Debug.Log("end spawn");
 
         Destroy(this);
     }
@@ -172,8 +187,15 @@ public class Entity : MonoBehaviour
     {
         for (int i = 0; i < entityData.coins; i++)
         {
-            // Debug.Log("coin x: " + gameObject.transform.position.x + ", coins y: " + gameObject.transform.position.y);
             Instantiate(coinPrefab, gameObject.transform.position, Quaternion.identity);
+        }
+    }
+
+    public void SpawnExp()
+    {
+        for (int i = 0; i < entityData.exp; i += 10)
+        {
+            Instantiate(expPrefab, gameObject.transform.position, Quaternion.identity);
         }
     }
 }
