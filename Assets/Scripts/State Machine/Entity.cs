@@ -28,6 +28,7 @@ public class Entity : MonoBehaviour
     public GameObject playerGO;
     public GameObject coinPrefab;
     public GameObject expPrefab;
+    public bool stunned = false;
 
     private float flipCooldown = 0.2f;
     private float lastFlipTime = -0.2f;
@@ -147,12 +148,34 @@ public class Entity : MonoBehaviour
         previousVelocity = rb.velocity.x;
         rb.AddForce(direction * 2, ForceMode2D.Impulse);
 
-        Invoke("StopKnockback", 0.1f);
+        Invoke("ResetVelocity", 0.25f);
     }
 
-    private void StopKnockback()
+    public virtual void Stun()
     {
-        SetVelocity(previousVelocity);
+        if (!stunned)
+        {
+            previousVelocity = rb.velocity.x;
+            SetVelocity(0f);
+            gameObject.transform.Find("Stun").gameObject.SetActive(true);
+            stunned = true;
+
+            Invoke("ResetVelocity", 0.5f);
+        }
+    }
+
+    private void ResetVelocity()
+    {
+        stunned = false;
+        gameObject.transform.Find("Stun").gameObject.SetActive(false);
+        if (facingDirection == 1)
+        {
+            SetVelocity(previousVelocity);
+        }
+        else
+        {
+            SetVelocity(-previousVelocity);
+        }
     }
 
     public virtual void Die()
