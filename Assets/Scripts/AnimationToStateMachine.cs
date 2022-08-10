@@ -29,10 +29,10 @@ public class AnimationToStateMachine : MonoBehaviour
         teleportState.FinishTeleport();
     }
 
-    private void StartSpawn()
-    {
-        spawnState.StartSpawn();
-    }
+    // private void StartSpawn()
+    // {
+    //     spawnState.StartSpawn();
+    // }
 
     private void FinishSpawn()
     {
