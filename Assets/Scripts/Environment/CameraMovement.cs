@@ -26,6 +26,21 @@ public class CameraMovement : MonoBehaviour
 
     public float smoothRate;
 
+
+    //screenshake
+    // Transform of the GameObject you want to shake
+    private Transform transform;
+
+    // Desired duration of the shake effect
+    private float shakeDuration = 0f;
+
+    // A measure of magnitude for the shake. Tweak based on your preference
+    private float shakeMagnitude = 0.1f;
+
+    // A measure of how quickly the shake effect should evaporate
+    private float dampingSpeed = 2f;
+
+    
     void Start()
     {
         xMin = worldBounds.bounds.min.x;
@@ -41,7 +56,17 @@ public class CameraMovement : MonoBehaviour
 
     void Update()
     {
+        if (shakeDuration > 0)
+        {
+            transform.localPosition = transform.position + Random.insideUnitSphere * shakeMagnitude;
 
+            shakeDuration -= Time.deltaTime * dampingSpeed;
+        }
+        else
+        {
+            shakeDuration = 0f;
+            transform.localPosition = transform.position;
+        }
     }
 
     private void FixedUpdate()
@@ -61,5 +86,18 @@ public class CameraMovement : MonoBehaviour
 
             gameObject.transform.position = smoothPos;
         }
+    }
+
+    void Awake()
+    {
+        if (transform == null)
+        {
+            transform = GetComponent(typeof(Transform)) as Transform;
+        }
+    }
+
+    public void TriggerShake()
+    {
+        shakeDuration = 0.1f;
     }
 }

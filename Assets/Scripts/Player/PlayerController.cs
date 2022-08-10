@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public Collider2D _collider;
     public float moveSpeed;
     public float jumpForce;
+    private bool die;
+    
 
     //shoot1
     public int shoot1Damage;
@@ -20,7 +22,7 @@ public class PlayerController : MonoBehaviour
 
     //shoot2
     public float shoot2CD = 3f;
-    private float shoot2Counter;
+    [HideInInspector] public float shoot2Counter;
     public bool shoot2Launch;
     public int shoot2Damage;
     public float Shoot2Counter { get => shoot2Counter; }
@@ -48,27 +50,33 @@ public class PlayerController : MonoBehaviour
     public LayerMask whatIsEnemy;
 
     public Animator anim;
+    private bool isShooting;
 
     //climbing 
     bool climb = false;
     bool canClimb = false;
 
+    //screenshake
+    private CameraMovement shake;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        die = false;
         shoot1Counter = shoot1CD;
         shoot2Counter = shoot2CD;
         shoot3Counter = shoot3CD;
         shoot4Counter = shoot4CD;
+        shake = FindObjectOfType<CameraMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        //climbing
+        
+            //climbing
 
         if (canClimb)
         {
@@ -134,7 +142,7 @@ public class PlayerController : MonoBehaviour
 
 
         //rolling
-        if (Input.GetKeyDown(KeyCode.C) && shoot3Counter == shoot3CD)
+        if (Input.GetKeyDown(KeyCode.C) && shoot3Counter == shoot3CD && !climb)
         {
             rollCounter = rollTime;
             shoot3Launch = true;
@@ -160,13 +168,13 @@ public class PlayerController : MonoBehaviour
             //movement
             rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, rb.velocity.y);
 
-            if (rb.velocity.x < 0)
+            if (rb.velocity.x < 0 && !isShooting )
             {
                 transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
 
 
             }
-            else if (rb.velocity.x > 0)
+            else if (rb.velocity.x > 0 && !isShooting)
             {
                 transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             }
@@ -194,19 +202,16 @@ public class PlayerController : MonoBehaviour
             {
                 if (climb)
                 {
-                    climb = !climb;
+                    climb = false;
                 }
-                else
-                {
-                    climb = true;
-                }
+                
             }
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
 
 
         //shoot1
-        if ((Input.GetKey(KeyCode.Z) && shoot1Counter == shoot1CD) && !(Input.GetKeyDown(KeyCode.E) && shoot3Counter == shoot3CD))
+        if ((Input.GetKey(KeyCode.Z) && shoot1Counter == shoot1CD) && !(Input.GetKeyDown(KeyCode.E) && shoot3Counter == shoot3CD &&!climb))
         {
             shoot1Launch = true;
             anim.SetTrigger("Shoot1");
@@ -215,15 +220,16 @@ public class PlayerController : MonoBehaviour
             // Shoot1();
         }
         //shoot2
-        else if (Input.GetKeyDown(KeyCode.X) && shoot2Counter == shoot2CD)
+        else if (Input.GetKeyDown(KeyCode.X) && shoot2Counter == shoot2CD && !climb)
         {
+            //shake.TriggerShake();
             shoot2Launch = true;
             anim.SetTrigger("Shoot2");
 
             Shoot2();
         }
         //shoot4
-        else if (Input.GetKeyDown(KeyCode.V) && shoot4Counter == shoot4CD)
+        else if (Input.GetKeyDown(KeyCode.V) && shoot4Counter == shoot4CD && !climb)
         {
             shoot4Launch = true;
             anim.SetTrigger("Shoot4");
@@ -237,8 +243,12 @@ public class PlayerController : MonoBehaviour
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_shoot1"))
         {
-
+            isShooting = true;
             rb.velocity = new Vector2(0f, rb.velocity.y);
+        }
+        else
+        {
+            isShooting = false;
         }
 
         if (shoot1Launch)
@@ -257,8 +267,12 @@ public class PlayerController : MonoBehaviour
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_shoot2"))
         {
-
+            isShooting = true;
             rb.velocity = new Vector2(0f, rb.velocity.y);
+        }
+        else
+        {
+            isShooting = false;
         }
         if (shoot2Launch)
         {
@@ -274,8 +288,12 @@ public class PlayerController : MonoBehaviour
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_shoot4"))
         {
-
+            isShooting = true;
             rb.velocity = new Vector2(0f, rb.velocity.y);
+        }
+        else
+        {
+            isShooting = false;
         }
         if (shoot4Launch)
         {
@@ -307,13 +325,16 @@ public class PlayerController : MonoBehaviour
         GameManager.FindInstance().health -= damage;
         if (GameManager.FindInstance().health <= 0)
         {
+            
             Die();
         }
     }
 
     public void Die()
     {
-        gameObject.SetActive(false);
+        die = true;
+        anim.SetBool("Die", die);
+        
     }
 
     public void Shoot1()
@@ -361,6 +382,7 @@ public class PlayerController : MonoBehaviour
                 hit.transform.gameObject.GetComponent<Entity>().TakeDamage(shoot2Damage);
                 hit.transform.gameObject.GetComponent<Entity>().Knockback(Vector2.right);
                 GameManager.FindInstance().SpawnDamageNumber(shoot2Damage, hit);
+                shake.TriggerShake();
             }
         }
         else if (transform.localScale.x < 0)
@@ -374,6 +396,7 @@ public class PlayerController : MonoBehaviour
                 hit.transform.gameObject.GetComponent<Entity>().TakeDamage(shoot2Damage);
                 hit.transform.gameObject.GetComponent<Entity>().Knockback(Vector2.left);
                 GameManager.FindInstance().SpawnDamageNumber(shoot2Damage, hit);
+                shake.TriggerShake();
             }
         }
 
@@ -416,16 +439,10 @@ public class PlayerController : MonoBehaviour
         if (other.tag == "Rope")
         {
             canClimb = true;
-            if (canClimb && !Grounded)
-            {
-                climb = true;
-            }
+          
 
         }
-        if (climb)
-        {
-            //transform.position = new Vector2(other.transform.position.x, transform.position.y);
-        }
+       
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -435,6 +452,8 @@ public class PlayerController : MonoBehaviour
             canClimb = false;
         }
     }
+
+   
 }
 
 
