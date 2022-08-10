@@ -75,244 +75,247 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-        
-            //climbing
-
-        if (canClimb)
+        if (!die)
         {
 
-            if (climb)
+
+            //climbing
+
+            if (canClimb)
             {
-                rb.constraints = RigidbodyConstraints2D.FreezePositionX;
-                rb.velocity = new Vector2(0f, 0f);
-                _collider.isTrigger = true;
-                rb.gravityScale = 0;
 
-                if (Input.GetKey(KeyCode.UpArrow))
+                if (climb)
                 {
+                    rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+                    rb.velocity = new Vector2(0f, 0f);
+                    _collider.isTrigger = true;
+                    rb.gravityScale = 0;
 
-                    rb.velocity = new Vector2(rb.velocity.x, Input.GetAxisRaw("Vertical") * moveSpeed);
+                    if (Input.GetKey(KeyCode.UpArrow))
+                    {
+
+                        rb.velocity = new Vector2(rb.velocity.x, Input.GetAxisRaw("Vertical") * moveSpeed);
+
+
+                    }
+                    if (Input.GetKey(KeyCode.DownArrow))
+                    {
+
+                        rb.velocity = new Vector2(rb.velocity.x, Input.GetAxisRaw("Vertical") * moveSpeed);
+
+
+                    }
 
 
                 }
-                if (Input.GetKey(KeyCode.DownArrow))
+                else
                 {
+                    rb.constraints = RigidbodyConstraints2D.None;
+                    rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+                    rb.gravityScale = 5;
+                    _collider.isTrigger = false;
 
-                    rb.velocity = new Vector2(rb.velocity.x, Input.GetAxisRaw("Vertical") * moveSpeed);
+                    if (Input.GetKey(KeyCode.UpArrow))
+                    {
+
+                        climb = true;
+
+
+                    }
+                    if (Input.GetKey(KeyCode.DownArrow))
+                    {
+
+                        climb = true;
+
+
+                    }
 
 
                 }
-
 
             }
             else
             {
+                climb = false;
                 rb.constraints = RigidbodyConstraints2D.None;
                 rb.constraints = RigidbodyConstraints2D.FreezeRotation;
                 rb.gravityScale = 5;
                 _collider.isTrigger = false;
+            }
 
-                if (Input.GetKey(KeyCode.UpArrow))
+
+            //rolling
+            if (Input.GetKeyDown(KeyCode.C) && shoot3Counter == shoot3CD && !climb)
+            {
+                rollCounter = rollTime;
+                shoot3Launch = true;
+
+
+            }
+            if (rollCounter > 0)
+            {
+                rolling = true;
+                anim.SetBool("Shoot3", rolling);
+                Physics2D.IgnoreLayerCollision(10, 11, true);
+                rollCounter -= Time.deltaTime;
+                rb.velocity = new Vector2(rollSpeed * transform.localScale.x, 0f);
+            }
+            else
+            {
+
+                rolling = false;
+                Physics2D.IgnoreLayerCollision(10, 11, false);
+                anim.SetBool("Shoot3", rolling);
+
+
+                //movement
+                rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, rb.velocity.y);
+
+                if (rb.velocity.x < 0 && !isShooting)
                 {
-
-                    climb = true;
+                    transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
 
 
                 }
-                if (Input.GetKey(KeyCode.DownArrow))
+                else if (rb.velocity.x > 0 && !isShooting)
                 {
+                    transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                }
+            }
 
-                    climb = true;
+            if (shoot3Launch)
+            {
+                shoot3Counter -= Time.deltaTime;
+                if (shoot3Counter < 0)
+                {
+                    shoot3Counter = shoot3CD;
+                    shoot3Launch = false;
+                }
+            }
 
+
+
+            //jump
+            Grounded = Physics2D.OverlapCircle(groundPoint.position, 0.02f, whatIsGround);
+            if (Input.GetButtonDown("Jump") && (Grounded || climb))
+            {
+
+
+                if (canClimb)
+                {
+                    if (climb)
+                    {
+                        climb = false;
+                    }
 
                 }
-
-
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             }
 
-        }
-        else
-        {
-            climb = false;
-            rb.constraints = RigidbodyConstraints2D.None;
-            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            rb.gravityScale = 5;
-            _collider.isTrigger = false;
-        }
 
-
-        //rolling
-        if (Input.GetKeyDown(KeyCode.C) && shoot3Counter == shoot3CD && !climb)
-        {
-            rollCounter = rollTime;
-            shoot3Launch = true;
-
-
-        }
-        if (rollCounter > 0)
-        {
-            rolling = true;
-            anim.SetBool("Shoot3", rolling);
-            Physics2D.IgnoreLayerCollision(10, 11, true);
-            rollCounter -= Time.deltaTime;
-            rb.velocity = new Vector2(rollSpeed * transform.localScale.x, 0f);
-        }
-        else
-        {
-
-            rolling = false;
-            Physics2D.IgnoreLayerCollision(10, 11, false);
-            anim.SetBool("Shoot3", rolling);
-
-
-            //movement
-            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, rb.velocity.y);
-
-            if (rb.velocity.x < 0 && !isShooting )
+            //shoot1
+            if ((Input.GetKey(KeyCode.Z) && shoot1Counter == shoot1CD) && !(Input.GetKeyDown(KeyCode.E) && shoot3Counter == shoot3CD && !climb))
             {
-                transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
-
-
+                shoot1Launch = true;
+                anim.SetTrigger("Shoot1");
+                Invoke("Shoot1", 0.05f);
+                Invoke("Shoot1", 0.15f);
+                // Shoot1();
             }
-            else if (rb.velocity.x > 0 && !isShooting)
+            //shoot2
+            else if (Input.GetKeyDown(KeyCode.X) && shoot2Counter == shoot2CD && !climb)
             {
-                transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                //shake.TriggerShake();
+                shoot2Launch = true;
+                anim.SetTrigger("Shoot2");
+
+                Shoot2();
             }
-        }
-
-        if (shoot3Launch)
-        {
-            shoot3Counter -= Time.deltaTime;
-            if (shoot3Counter < 0)
+            //shoot4
+            else if (Input.GetKeyDown(KeyCode.V) && shoot4Counter == shoot4CD && !climb)
             {
-                shoot3Counter = shoot3CD;
-                shoot3Launch = false;
-            }
-        }
+                shoot4Launch = true;
+                anim.SetTrigger("Shoot4");
 
-
-
-        //jump
-        Grounded = Physics2D.OverlapCircle(groundPoint.position, 0.02f, whatIsGround);
-        if (Input.GetButtonDown("Jump") && (Grounded || climb))
-        {
-
-
-            if (canClimb)
-            {
-                if (climb)
+                // Shoot4();
+                for (int i = 0; i < 6; i++)
                 {
-                    climb = false;
+                    Invoke("Shoot4", 0.05f + 0.1f * i);
                 }
-                
             }
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        }
 
-
-        //shoot1
-        if ((Input.GetKey(KeyCode.Z) && shoot1Counter == shoot1CD) && !(Input.GetKeyDown(KeyCode.E) && shoot3Counter == shoot3CD &&!climb))
-        {
-            shoot1Launch = true;
-            anim.SetTrigger("Shoot1");
-            Invoke("Shoot1", 0.05f);
-            Invoke("Shoot1", 0.15f);
-            // Shoot1();
-        }
-        //shoot2
-        else if (Input.GetKeyDown(KeyCode.X) && shoot2Counter == shoot2CD && !climb)
-        {
-            //shake.TriggerShake();
-            shoot2Launch = true;
-            anim.SetTrigger("Shoot2");
-
-            Shoot2();
-        }
-        //shoot4
-        else if (Input.GetKeyDown(KeyCode.V) && shoot4Counter == shoot4CD && !climb)
-        {
-            shoot4Launch = true;
-            anim.SetTrigger("Shoot4");
-
-            // Shoot4();
-            for (int i = 0; i < 6; i++)
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_shoot1"))
             {
-                Invoke("Shoot4", 0.05f + 0.1f * i);
+                isShooting = true;
+                rb.velocity = new Vector2(0f, rb.velocity.y);
             }
-        }
-
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_shoot1"))
-        {
-            isShooting = true;
-            rb.velocity = new Vector2(0f, rb.velocity.y);
-        }
-        else
-        {
-            isShooting = false;
-        }
-
-        if (shoot1Launch)
-        {
-            shoot1Counter -= Time.deltaTime;
-
-            if (shoot1Counter <= 0)
+            else
             {
-                shoot1Counter = shoot1CD;
-                shoot1Launch = false;
+                isShooting = false;
             }
-        }
 
-
-
-
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_shoot2"))
-        {
-            isShooting = true;
-            rb.velocity = new Vector2(0f, rb.velocity.y);
-        }
-        else
-        {
-            isShooting = false;
-        }
-        if (shoot2Launch)
-        {
-            shoot2Counter -= Time.deltaTime;
-            if (shoot2Counter < 0)
+            if (shoot1Launch)
             {
-                shoot2Counter = shoot2CD;
-                shoot2Launch = false;
+                shoot1Counter -= Time.deltaTime;
+
+                if (shoot1Counter <= 0)
+                {
+                    shoot1Counter = shoot1CD;
+                    shoot1Launch = false;
+                }
             }
 
-        }
 
 
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_shoot4"))
-        {
-            isShooting = true;
-            rb.velocity = new Vector2(0f, rb.velocity.y);
-        }
-        else
-        {
-            isShooting = false;
-        }
-        if (shoot4Launch)
-        {
-            shoot4Counter -= Time.deltaTime;
-            if (shoot4Counter < 0)
+
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_shoot2"))
             {
-                shoot4Counter = shoot4CD;
-                shoot4Launch = false;
+                isShooting = true;
+                rb.velocity = new Vector2(0f, rb.velocity.y);
+            }
+            else
+            {
+                isShooting = false;
+            }
+            if (shoot2Launch)
+            {
+                shoot2Counter -= Time.deltaTime;
+                if (shoot2Counter < 0)
+                {
+                    shoot2Counter = shoot2CD;
+                    shoot2Launch = false;
+                }
+
             }
 
+
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_shoot4"))
+            {
+                isShooting = true;
+                rb.velocity = new Vector2(0f, rb.velocity.y);
+            }
+            else
+            {
+                isShooting = false;
+            }
+            if (shoot4Launch)
+            {
+                shoot4Counter -= Time.deltaTime;
+                if (shoot4Counter < 0)
+                {
+                    shoot4Counter = shoot4CD;
+                    shoot4Launch = false;
+                }
+
+            }
+
+
+
+            //animation 
+            anim.SetBool("Grounded", Grounded);
+            anim.SetFloat("speed", Mathf.Abs(rb.velocity.x));
+            anim.SetBool("Climb", climb);
         }
-
-
-
-        //animation 
-        anim.SetBool("Grounded", Grounded);
-        anim.SetFloat("speed", Mathf.Abs(rb.velocity.x));
-        anim.SetBool("Climb", climb);
-
     }
 
     private void OnDrawGizmos()
