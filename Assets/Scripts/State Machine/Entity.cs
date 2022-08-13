@@ -28,6 +28,9 @@ public class Entity : MonoBehaviour
     public GameObject playerGO;
     public GameObject coinPrefab;
     public GameObject expPrefab;
+
+    private GameObject healthBar;
+
     public bool stunned = false;
 
     private float flipCooldown = 0.2f;
@@ -51,6 +54,7 @@ public class Entity : MonoBehaviour
 
         stateMachine = new FSM();
         playerGO = GameObject.FindGameObjectWithTag("Player");
+        healthBar = gameObject.transform.Find("HealthBar").gameObject;
         spriteHeight = gameObject.GetComponent<SpriteRenderer>().sprite.bounds.size.y;
         spriteWidth = gameObject.GetComponent<SpriteRenderer>().sprite.bounds.size.x;
 
@@ -60,12 +64,6 @@ public class Entity : MonoBehaviour
     public virtual void Update()
     {
         stateMachine.currentState.LogicUpdate();
-
-        //TODO:REMOVE
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            TakeDamage(10);
-        }
     }
 
     public virtual void FixedUpdate()
@@ -94,13 +92,11 @@ public class Entity : MonoBehaviour
     public virtual bool CheckMinAggroRange()
     {
         return Physics2D.OverlapCircle(playerCheck.position, entityData.minAggroRange, entityData.whatIsPlayer);
-        // return Physics2D.Raycast(playerCheck.position, enity.transform.right, entityData.minAggrorange, entityData.whatIsPlayer);
     }
 
     public virtual bool CheckMaxAggroRange()
     {
         return Physics2D.OverlapCircle(playerCheck.position, entityData.maxAggroRange, entityData.whatIsPlayer);
-        // return Physics2D.Raycast(playerCheck.position, enity.transform.right, entityData.maxAggroRange, entityData.whatIsPlayer);
     }
 
     public virtual bool CheckPlayerInAttackRange()
@@ -136,7 +132,10 @@ public class Entity : MonoBehaviour
 
     public virtual void TakeDamage(int damage)
     {
+        //take damage
         currHealth -= damage;
+        healthBar.GetComponent<HealthBar>().LowerHealth(currHealth, entityData.startingHealth);
+
         if (currHealth <= 0)
         {
             Die();
@@ -145,10 +144,13 @@ public class Entity : MonoBehaviour
 
     public virtual void Knockback(Vector2 direction)
     {
-        previousVelocity = rb.velocity.x;
-        rb.AddForce(direction * 2, ForceMode2D.Impulse);
+        if (!stunned)
+        {
+            previousVelocity = rb.velocity.x;
+            rb.AddForce(direction * 2, ForceMode2D.Impulse);
 
-        Invoke("ResetVelocity", 0.25f);
+            Invoke("ResetVelocity", 0.25f);
+        }
     }
 
     public virtual void Stun()
@@ -168,6 +170,7 @@ public class Entity : MonoBehaviour
     {
         stunned = false;
         gameObject.transform.Find("Stun").gameObject.SetActive(false);
+
         if (facingDirection == 1)
         {
             SetVelocity(previousVelocity);
@@ -181,16 +184,19 @@ public class Entity : MonoBehaviour
     public virtual void Die()
     { }
 
+    public virtual void StartDeath()
+    {
+        gameObject.layer = LayerMask.NameToLayer("DeadEnemy");
+        gameObject.tag = "DeadEnemy";
+    }
+
     public virtual void Destroy()
     {
         Destroy(gameObject.GetComponent<AnimationToStateMachine>());
         Destroy(gameObject.GetComponent<Animator>());
-        gameObject.layer = LayerMask.NameToLayer("DeadEnemy");
-        gameObject.tag = "DeadEnemy";
 
         SpawnExp();
         SpawnCoins();
-
         Destroy(this);
     }
 
