@@ -116,6 +116,7 @@ public class Entity : MonoBehaviour
             lastFlipTime = Time.time;
             facingDirection *= -1;
             entity.transform.Rotate(0f, 180f, 0f);
+            healthBar.transform.Rotate(0f, 180f, 0f);
         }
     }
     public virtual void Flip(bool ignoreCD)
@@ -123,6 +124,7 @@ public class Entity : MonoBehaviour
         lastFlipTime = Time.time;
         facingDirection *= -1;
         entity.transform.Rotate(0f, 180f, 0f);
+        healthBar.transform.Rotate(0f, 180f, 0f);
     }
 
     public virtual void SetPosition(Vector2 position)
