@@ -264,6 +264,8 @@ MonoBehaviour:
   playerGO: {fileID: 0}
   coinPrefab: {fileID: 2558687439626718683, guid: b4e15d267bcd6894ba10e197186a121b,
     type: 3}
+  sCoinPrefab: {fileID: 4098023551297471321, guid: 6a40845f6ecfb754983260fb40cbd659,
+    type: 3}
   expPrefab: {fileID: 942817334001894035, guid: ccc2f1b988546f4419e857796021a1aa,
     type: 3}
   stunned: 0

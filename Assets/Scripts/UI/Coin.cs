@@ -8,6 +8,7 @@ public class Coin : MonoBehaviour
     private Vector2 _direction;
     public GameObject playerGO;
     public Rigidbody2D _rb;
+    public int value;
     private float timeStamp;
 
     private void Start()
@@ -22,7 +23,7 @@ public class Coin : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            GameManager.FindInstance().coins++;
+            GameManager.FindInstance().coins += value;
             Destroy(gameObject);
         }
     }

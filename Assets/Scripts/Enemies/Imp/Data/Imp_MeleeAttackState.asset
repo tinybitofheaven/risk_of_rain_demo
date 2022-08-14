@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Imp_MeleeAttackState
   m_EditorClassIdentifier: 
   attackRadius: 0.2
-  attackDamage: 10
+  attackDamage: 13
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512
