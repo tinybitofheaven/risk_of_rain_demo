@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Crab_MeleeStateData
   m_EditorClassIdentifier: 
   attackRadius: 0.2
-  attackDamage: 30
+  attackDamage: 27
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512

@@ -149,6 +149,7 @@ MonoBehaviour:
   playerGO: {fileID: 7234378996979400391, guid: 9adcd364029d8154aa647dfe119df011,
     type: 3}
   _rb: {fileID: 2558687439626718684}
+  value: 5
 --- !u!95 &2558687439626718657
 Animator:
   serializedVersion: 3

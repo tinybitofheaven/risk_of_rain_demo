@@ -27,6 +27,7 @@ public class Entity : MonoBehaviour
     private Vector2 velocityWorkspace; //temp variable for any vector2
     public GameObject playerGO;
     public GameObject coinPrefab;
+    public GameObject sCoinPrefab;
     public GameObject expPrefab;
 
     private GameObject healthBar;
@@ -216,9 +217,20 @@ public class Entity : MonoBehaviour
 
     public void SpawnCoins()
     {
-        for (int i = 0; i < entityData.coins; i++)
+        int coins = entityData.coins / 5;
+        Debug.Log("coins: " + coins);
+        //big coins
+        for (int i = 0; i < coins; i++)
         {
             Instantiate(coinPrefab, gameObject.transform.position, Quaternion.identity);
+        }
+
+        int sCoins = entityData.coins % 5;
+        Debug.Log("sCoins: " + sCoins);
+        //small coins
+        for (int i = 0; i < sCoins; i++)
+        {
+            Instantiate(sCoinPrefab, gameObject.transform.position, Quaternion.identity);
         }
     }
 
