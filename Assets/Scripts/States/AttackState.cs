@@ -24,6 +24,7 @@ public class AttackState : State
         isAnimationFinished = false;
         entity.atsm.attackState = this;
         entity.SetVelocity(0f);
+        entity.previousVelocity = entity.rb.velocity.x;
     }
 
     public override void Exit()
