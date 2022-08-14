@@ -12,14 +12,17 @@ public class Spawner : MonoBehaviour
     public float minSpawnFrequency;
     public float maxSpawnFrequency;
 
+    public int minChests = 7;
+    public int maxChests = 12;
+
     public int minSpawnAmount;
     public int maxSpawnAmount;
     public int enemyCount = 0;
     public int maxEnemies = 50;
 
     public GameObject[] enemyPrefabs;
+    public GameObject chestPrefab;
     public LayerMask whatIsGround;
-
 
     public static Spawner FindInstance()
     {
@@ -40,6 +43,7 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
+        SpawnChests();
         Invoke("Spawn", minSpawnFrequency);
     }
 
@@ -59,12 +63,12 @@ public class Spawner : MonoBehaviour
             Vector2 _v = FindSpawn(1f, vector);
             RaycastHit2D ground = Physics2D.Raycast(_v, Vector2.down, 5f, whatIsGround);
             RaycastHit2D air = Physics2D.Raycast(new Vector2(ground.point.x, ground.point.y), Vector2.up, enemyPrefabs[enemyIndex].GetComponent<BoxCollider2D>().size.y, whatIsGround);
-            int tries = 0;
-            while (!ground && air && tries <= 15)
+
+            while (!ground || air)
             {
+                _v = FindSpawn(1f, vector);
                 ground = Physics2D.Raycast(_v, Vector2.down, 5f, whatIsGround);
                 air = Physics2D.Raycast(new Vector2(ground.point.x, ground.point.y), Vector2.up, enemyPrefabs[enemyIndex].GetComponent<BoxCollider2D>().size.y, whatIsGround);
-                tries++;
             }
 
             if (ground && !air)
@@ -117,6 +121,32 @@ public class Spawner : MonoBehaviour
         if (functionCall == false)
         {
             Invoke("Spawn", randomTime);
+        }
+    }
+
+    private void SpawnChests()
+    {
+        int chestNum = Random.Range(minChests, maxChests);
+        Debug.Log(chestNum);
+        Bounds bounds = gameObject.transform.Find("SpawnBound").GetComponent<BoxCollider2D>().bounds;
+        for (int i = 0; i < chestNum; i++)
+        {
+            Vector2 _v = new Vector2(Random.Range(bounds.min.x, bounds.max.x), Random.Range(bounds.min.y, bounds.max.y));
+            RaycastHit2D ground = Physics2D.Raycast(_v, Vector2.down, Mathf.Infinity, whatIsGround);
+            RaycastHit2D air = Physics2D.Raycast(new Vector2(ground.point.x, ground.point.y), Vector2.up, chestPrefab.GetComponent<BoxCollider2D>().size.y, whatIsGround);
+
+            while (!ground || air)
+            {
+                _v = new Vector2(Random.Range(bounds.min.x, bounds.max.x), Random.Range(bounds.min.y, bounds.max.y));
+                ground = Physics2D.Raycast(_v, Vector2.down, Mathf.Infinity, whatIsGround);
+                air = Physics2D.Raycast(new Vector2(ground.point.x, ground.point.y), Vector2.up, chestPrefab.GetComponent<BoxCollider2D>().size.y, whatIsGround);
+            }
+
+            if (ground && !air)
+            {
+                Vector2 spawnLocation = new Vector2(ground.point.x, ground.point.y + chestPrefab.GetComponent<BoxCollider2D>().size.y);
+                Instantiate(chestPrefab, spawnLocation, Quaternion.identity);
+            }
         }
     }
 
