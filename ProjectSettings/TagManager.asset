@@ -9,6 +9,7 @@ TagManager:
   - Coin
   - Rope
   - Wall
+  - Item
   layers:
   - Default
   - TransparentFX
