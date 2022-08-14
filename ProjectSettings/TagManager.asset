@@ -8,6 +8,7 @@ TagManager:
   - DeadEnemy
   - Coin
   - Rope
+  - Wall
   layers:
   - Default
   - TransparentFX
