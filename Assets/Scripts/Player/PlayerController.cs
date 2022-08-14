@@ -60,6 +60,11 @@ public class PlayerController : MonoBehaviour
     //screenshake
     private CameraMovement shake;
 
+    //items
+    private ItemController item;
+    private bool canMultiJump;
+    public GameObject featherEffects;
+
 
     // Start is called before the first frame update
     void Start()
@@ -70,6 +75,7 @@ public class PlayerController : MonoBehaviour
         shoot3Counter = shoot3CD;
         shoot4Counter = shoot4CD;
         shake = FindObjectOfType<CameraMovement>();
+        item = FindObjectOfType<ItemController>();
     }
 
     // Update is called once per frame
@@ -198,10 +204,16 @@ public class PlayerController : MonoBehaviour
 
             //jump
             Grounded = Physics2D.OverlapCircle(groundPoint.position, 0.02f, whatIsGround);
-            if (Input.GetButtonDown("Jump") && (Grounded || climb))
+            if (Input.GetButtonDown("Jump") && ((Grounded || climb)||(canMultiJump&&item.feather)))
             {
-
-
+                if(Grounded)
+                {
+                    canMultiJump = true;
+                }
+                else
+                {
+                    canMultiJump = false;
+                }
                 if (canClimb)
                 {
                     if (climb && !wall)
@@ -212,10 +224,13 @@ public class PlayerController : MonoBehaviour
                 }
                 if (!climb)
                 {
-
-
                     rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 }
+            }
+            if(!Grounded && item.feather && Input.GetButtonDown("Jump"))
+            {
+                Instantiate(featherEffects, groundPoint.position, transform.rotation);
+                
             }
 
 
