@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
     //climbing 
     bool climb = false;
     bool canClimb = false;
+    private bool wall = false;
 
     //screenshake
     private CameraMovement shake;
@@ -203,13 +204,18 @@ public class PlayerController : MonoBehaviour
 
                 if (canClimb)
                 {
-                    if (climb)
+                    if (climb && !wall)
                     {
                         climb = false;
                     }
 
                 }
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                if (!climb)
+                {
+
+
+                    rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                }
             }
 
 
@@ -445,6 +451,10 @@ public class PlayerController : MonoBehaviour
           
 
         }
+        if(other.tag == "Wall")
+        {
+            wall = true;
+        }
        
     }
 
@@ -453,6 +463,10 @@ public class PlayerController : MonoBehaviour
         if (other.tag == "Rope")
         {
             canClimb = false;
+        }
+        if (other.tag == "Wall")
+        {
+            wall = false;
         }
     }
 
