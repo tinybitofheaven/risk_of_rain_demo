@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public float jumpForce;
     private bool die;
-    
+
 
     //shoot1
     public int shoot1Damage;
@@ -61,9 +61,9 @@ public class PlayerController : MonoBehaviour
     private CameraMovement shake;
 
     //items
-    private ItemController item;
-    private bool canMultiJump;
-    public GameObject featherEffects;
+    private ItemManager item;
+    // public bool canMultiJump;
+    // public GameObject featherEffects;
 
 
     // Start is called before the first frame update
@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
         shoot3Counter = shoot3CD;
         shoot4Counter = shoot4CD;
         shake = FindObjectOfType<CameraMovement>();
-        item = FindObjectOfType<ItemController>();
+        item = FindObjectOfType<ItemManager>();
     }
 
     // Update is called once per frame
@@ -200,39 +200,33 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-
-
             //jump
             Grounded = Physics2D.OverlapCircle(groundPoint.position, 0.02f, whatIsGround);
-            if (Input.GetButtonDown("Jump") && ((Grounded || climb)||(canMultiJump&&item.feather)))
+            if (Input.GetButtonDown("Jump") && ((Grounded || climb)))
             {
-                if(Grounded)
-                {
-                    canMultiJump = true;
-                }
-                else
-                {
-                    canMultiJump = false;
-                }
                 if (canClimb)
                 {
                     if (climb && !wall)
                     {
                         climb = false;
                     }
-
                 }
+
                 if (!climb)
                 {
                     rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                    ItemManager.FindInstance().GetFeather().ResetExtraJumps();
                 }
             }
-            if(!Grounded && item.feather && Input.GetButtonDown("Jump"))
-            {
-                Instantiate(featherEffects, groundPoint.position, transform.rotation);
-                
-            }
 
+            if (!Grounded && ItemManager.FindInstance().HasItem("feather") && Input.GetButtonDown("Jump"))
+            {
+                if (ItemManager.FindInstance().GetFeather().CanExtraJump())
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                    Instantiate(ItemManager.FindInstance().efx_feather, groundPoint.position, transform.rotation);
+                }
+            }
 
             //shoot1
             if ((Input.GetKey(KeyCode.Z) && shoot1Counter == shoot1CD) && !(Input.GetKeyDown(KeyCode.E) && shoot3Counter == shoot3CD && !climb))
@@ -349,7 +343,7 @@ public class PlayerController : MonoBehaviour
         GameManager.FindInstance().health -= damage;
         if (GameManager.FindInstance().health <= 0)
         {
-            
+
             Die();
         }
     }
@@ -358,7 +352,7 @@ public class PlayerController : MonoBehaviour
     {
         die = true;
         anim.SetBool("Die", die);
-        
+
     }
 
     public void Shoot1()
@@ -368,9 +362,6 @@ public class PlayerController : MonoBehaviour
             RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right, Mathf.Infinity, whatIsEnemy);
             if (hitInfo)
             {
-                //TODO
-                //add explosion
-                //update healthbar
 
                 hitInfo.transform.gameObject.GetComponent<Entity>().TakeDamage(shoot1Damage);
                 GameManager.FindInstance().SpawnDamageNumber(shoot1Damage, hitInfo);
@@ -382,10 +373,6 @@ public class PlayerController : MonoBehaviour
             RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right * -1, Mathf.Infinity, LayerMask.GetMask("Enemy"));
             if (hitInfo)
             {
-                //TODO
-                //add explosion
-                //update healthbar
-
                 hitInfo.transform.gameObject.GetComponent<Entity>().TakeDamage(shoot1Damage);
                 GameManager.FindInstance().SpawnDamageNumber(shoot1Damage, hitInfo);
             }
@@ -463,14 +450,14 @@ public class PlayerController : MonoBehaviour
         if (other.tag == "Rope")
         {
             canClimb = true;
-          
+
 
         }
-        if(other.tag == "Wall")
+        if (other.tag == "Wall")
         {
             wall = true;
         }
-       
+
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -485,7 +472,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-   
+
 }
 
 

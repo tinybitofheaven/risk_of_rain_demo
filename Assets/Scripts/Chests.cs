@@ -4,25 +4,37 @@ using UnityEngine;
 
 public class Chests : MonoBehaviour
 {
-    public int minCost = 20;
-    public int maxCost = 55;
+    public int smallCost = 25;
+    public int largeCost = 50;
     public int cost;
     public GameObject item;
 
     private bool canOpen;
     private Animator anim;
+    public bool large;
+
+    private GameObject itemPrefab;
 
     private void Start()
     {
-        cost = Random.Range(minCost, maxCost);
+        if (large)
+        {
+            cost = largeCost;
+        }
+        else
+        {
+            cost = smallCost;
+        }
+
         anim = gameObject.GetComponent<Animator>();
-        //TODO: set random item
+        itemPrefab = ItemManager.FindInstance().RandomItem();
     }
 
     private void Update()
     {
-        if (canOpen && Input.GetKeyDown(KeyCode.E))
+        if (canOpen && Input.GetKeyDown(KeyCode.E) && GameManager.FindInstance().coins >= cost)
         {
+            GameManager.FindInstance().coins -= cost;
             anim.SetBool("open", true);
         }
     }
@@ -40,5 +52,10 @@ public class Chests : MonoBehaviour
         {
             canOpen = false;
         }
+    }
+
+    public void SpawnItem()
+    {
+        Instantiate(itemPrefab, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + 0.3f), Quaternion.identity);
     }
 }

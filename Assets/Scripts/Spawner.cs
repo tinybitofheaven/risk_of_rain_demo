@@ -127,7 +127,7 @@ public class Spawner : MonoBehaviour
     private void SpawnChests()
     {
         int chestNum = Random.Range(minChests, maxChests);
-        Debug.Log(chestNum);
+        // Debug.Log(chestNum);
         Bounds bounds = gameObject.transform.Find("SpawnBound").GetComponent<BoxCollider2D>().bounds;
         for (int i = 0; i < chestNum; i++)
         {

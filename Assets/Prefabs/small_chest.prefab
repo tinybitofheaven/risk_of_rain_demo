@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8426016222732549919}
   - component: {fileID: 8426016222732549918}
   - component: {fileID: 8426016222732549986}
-  - component: {fileID: 8426016222732549917}
+  - component: {fileID: -2827932771694112173}
   m_Layer: 0
   m_Name: small_chest
   m_TagString: Untagged
@@ -116,11 +116,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a75f0bb7d3fb40046b9a15e684a74c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minCost: 20
-  maxCost: 55
+  smallCost: 25
+  largeCost: 50
   cost: 0
   item: {fileID: 0}
---- !u!61 &8426016222732549917
+  large: 0
+--- !u!61 &-2827932771694112173
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,7 +134,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0048289895, y: -0.00012604892}
+  m_Offset: {x: 0.003586296, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -144,5 +145,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.15113318, y: 0.1297479}
+  m_Size: {x: 0.15020442, y: 0.13}
   m_EdgeRadius: 0

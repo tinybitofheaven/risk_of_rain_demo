@@ -2,30 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Feather : MonoBehaviour
+public class Feather : Item
 {
-    private ItemController item;
-    // Start is called before the first frame update
-    void Start()
+    private int totalJumps;
+    private int jumpsLeft;
+
+    public Feather()
     {
-        item = FindObjectOfType<ItemController>();
+        _name = "feather";
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ResetExtraJumps()
     {
-        
+        totalJumps = ItemManager.FindInstance().ItemCount(_name);
+        jumpsLeft = totalJumps;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public bool CanExtraJump()
     {
-        if (other.tag == "Player")
+        if (jumpsLeft > 0)
         {
-            if (!item.feather)
-            {
-                item.feather = true;
-            }
-            Destroy(gameObject);
+            jumpsLeft--;
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

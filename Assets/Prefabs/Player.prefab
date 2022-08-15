@@ -158,13 +158,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7234378996979400385}
   _collider: {fileID: 7234378997391204283}
-  moveSpeed: 3
-  jumpForce: 15
-  health: 100
+  moveSpeed: 2
+  jumpForce: 10
   shoot1Damage: 8
   shoot1CD: 0.2
   shoot1Launch: 0
   shoot2CD: 3
+  shoot2Counter: 0
   shoot2Launch: 0
   shoot2Damage: 19
   rollSpeed: 12
