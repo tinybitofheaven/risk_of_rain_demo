@@ -12,8 +12,8 @@ public class Spawner : MonoBehaviour
     public float minSpawnFrequency;
     public float maxSpawnFrequency;
 
-    public int minChests = 7;
-    public int maxChests = 12;
+    public int minChests = 4;
+    public int maxChests = 9;
 
     public int minSpawnAmount;
     public int maxSpawnAmount;
@@ -21,7 +21,8 @@ public class Spawner : MonoBehaviour
     public int maxEnemies = 50;
 
     public GameObject[] enemyPrefabs;
-    public GameObject chestPrefab;
+    public GameObject sChestPrefab;
+    public GameObject lChestPrefab;
     public LayerMask whatIsGround;
 
     public static Spawner FindInstance()
@@ -43,7 +44,8 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        SpawnChests();
+        SpawnSmallChests();
+        SpawnLargeChests();
         Invoke("Spawn", minSpawnFrequency);
     }
 
@@ -124,7 +126,7 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    private void SpawnChests()
+    private void SpawnSmallChests()
     {
         int chestNum = Random.Range(minChests, maxChests);
         // Debug.Log(chestNum);
@@ -133,19 +135,45 @@ public class Spawner : MonoBehaviour
         {
             Vector2 _v = new Vector2(Random.Range(bounds.min.x, bounds.max.x), Random.Range(bounds.min.y, bounds.max.y));
             RaycastHit2D ground = Physics2D.Raycast(_v, Vector2.down, Mathf.Infinity, whatIsGround);
-            RaycastHit2D air = Physics2D.Raycast(new Vector2(ground.point.x, ground.point.y), Vector2.up, chestPrefab.GetComponent<BoxCollider2D>().size.y, whatIsGround);
+            RaycastHit2D air = Physics2D.Raycast(new Vector2(ground.point.x, ground.point.y), Vector2.up, sChestPrefab.transform.Find("small_chest").GetComponent<BoxCollider2D>().size.y, whatIsGround);
 
             while (!ground || air)
             {
                 _v = new Vector2(Random.Range(bounds.min.x, bounds.max.x), Random.Range(bounds.min.y, bounds.max.y));
                 ground = Physics2D.Raycast(_v, Vector2.down, Mathf.Infinity, whatIsGround);
-                air = Physics2D.Raycast(new Vector2(ground.point.x, ground.point.y), Vector2.up, chestPrefab.GetComponent<BoxCollider2D>().size.y, whatIsGround);
+                air = Physics2D.Raycast(new Vector2(ground.point.x, ground.point.y), Vector2.up, sChestPrefab.transform.Find("small_chest").GetComponent<BoxCollider2D>().size.y, whatIsGround);
             }
 
             if (ground && !air)
             {
-                Vector2 spawnLocation = new Vector2(ground.point.x, ground.point.y + chestPrefab.GetComponent<BoxCollider2D>().size.y);
-                Instantiate(chestPrefab, spawnLocation, Quaternion.identity);
+                Vector2 spawnLocation = new Vector2(ground.point.x, ground.point.y);
+                Instantiate(sChestPrefab, spawnLocation, Quaternion.identity);
+            }
+        }
+    }
+
+    private void SpawnLargeChests()
+    {
+        int chestNum = Random.Range(minChests, maxChests);
+        // Debug.Log(chestNum);
+        Bounds bounds = gameObject.transform.Find("SpawnBound").GetComponent<BoxCollider2D>().bounds;
+        for (int i = 0; i < chestNum; i++)
+        {
+            Vector2 _v = new Vector2(Random.Range(bounds.min.x, bounds.max.x), Random.Range(bounds.min.y, bounds.max.y));
+            RaycastHit2D ground = Physics2D.Raycast(_v, Vector2.down, Mathf.Infinity, whatIsGround);
+            RaycastHit2D air = Physics2D.Raycast(new Vector2(ground.point.x, ground.point.y), Vector2.up, lChestPrefab.transform.Find("large_chest").GetComponent<BoxCollider2D>().size.y, whatIsGround);
+
+            while (!ground || air)
+            {
+                _v = new Vector2(Random.Range(bounds.min.x, bounds.max.x), Random.Range(bounds.min.y, bounds.max.y));
+                ground = Physics2D.Raycast(_v, Vector2.down, Mathf.Infinity, whatIsGround);
+                air = Physics2D.Raycast(new Vector2(ground.point.x, ground.point.y), Vector2.up, lChestPrefab.transform.Find("large_chest").GetComponent<BoxCollider2D>().size.y, whatIsGround);
+            }
+
+            if (ground && !air)
+            {
+                Vector2 spawnLocation = new Vector2(ground.point.x, ground.point.y);
+                Instantiate(lChestPrefab, spawnLocation, Quaternion.identity);
             }
         }
     }

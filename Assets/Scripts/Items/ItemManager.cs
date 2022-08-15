@@ -57,7 +57,9 @@ public class ItemManager : MonoBehaviour
     //for chests
     public GameObject RandomItem()
     {
-        return itemPrefabs[Random.Range(0, itemPrefabs.Length)];
+        int i = Random.Range(0, itemPrefabs.Length);
+        Debug.Log("item: " + i);
+        return itemPrefabs[i];
     }
 
     public Item GetItem(string item)
