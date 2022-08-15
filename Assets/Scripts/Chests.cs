@@ -7,13 +7,14 @@ public class Chests : MonoBehaviour
     public int smallCost = 25;
     public int largeCost = 50;
     public int cost;
-    public GameObject item;
+    // public GameObject item;
 
     private bool canOpen;
     private Animator anim;
     public bool large;
 
-    private GameObject itemPrefab;
+    public GameObject itemPrefab;
+    private bool opened = false;
 
     private void Start()
     {
@@ -32,8 +33,9 @@ public class Chests : MonoBehaviour
 
     private void Update()
     {
-        if (canOpen && Input.GetKeyDown(KeyCode.E) && GameManager.FindInstance().coins >= cost)
+        if (!opened && canOpen && Input.GetKeyDown(KeyCode.E) && GameManager.FindInstance().coins >= cost)
         {
+            opened = true;
             GameManager.FindInstance().coins -= cost;
             anim.SetBool("open", true);
         }
@@ -54,8 +56,9 @@ public class Chests : MonoBehaviour
         }
     }
 
+    //animation event funciton
     public void SpawnItem()
     {
-        Instantiate(itemPrefab, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + 0.3f), Quaternion.identity);
+        Instantiate(itemPrefab, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + 0.25f), Quaternion.identity);
     }
 }
