@@ -444,7 +444,7 @@ MonoBehaviour:
   shoot2Counter: 0
   shoot2Launch: 0
   shoot2Damage: 19
-  rollSpeed: 12
+  rollSpeed: 6
   rollTime: 0.5
   rolling: 0
   shoot3CD: 4

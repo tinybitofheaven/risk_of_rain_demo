@@ -10,6 +10,7 @@ public class DamageNumber : MonoBehaviour
 
     public Rigidbody2D _rb;
     public SpriteRenderer _renderer;
+    public bool crit = false;
 
     public int damage = 0;
 
@@ -17,9 +18,21 @@ public class DamageNumber : MonoBehaviour
     {
         _rb.velocity = Vector2.up;
         StartCoroutine(Fade());
-        _renderer.sprite = nums[damage];
+        if (crit == false)
+        {
+            _renderer.sprite = nums[damage];
+        }
+        else
+        {
+            _renderer.sprite = nums_crit[damage];
+        }
     }
 
+    // public void Crit()
+    // {
+    //     _renderer.sprite = nums_large[damage];
+    //     Debug.Log("img crit");
+    // }
 
     private IEnumerator Fade()
     {

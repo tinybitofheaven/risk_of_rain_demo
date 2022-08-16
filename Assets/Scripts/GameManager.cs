@@ -48,15 +48,31 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SpawnDamageNumber(int damage, RaycastHit2D hitInfo)
+    public void SpawnDamageNumber(int damage, RaycastHit2D hitInfo, bool crit)
     {
-        int count = 0;
-        while (damage > 0)
+        if (crit)
         {
-            GameObject num = Instantiate(damageNumberPrefab, new Vector2(hitInfo.point.x + 0.1f * count, hitInfo.point.y), Quaternion.identity);
-            num.GetComponent<DamageNumber>().damage = damage % 10;
-            damage = damage / 10;
-            count--;
+            int count = 0;
+            while (damage > 0)
+            {
+                GameObject num = Instantiate(damageNumberPrefab, new Vector2(hitInfo.point.x + 0.1f * count, hitInfo.point.y), Quaternion.identity);
+                num.GetComponent<DamageNumber>().damage = damage % 10;
+                num.GetComponent<DamageNumber>().crit = true;
+                damage = damage / 10;
+                count--;
+            }
+        }
+        else
+        {
+            int count = 0;
+            while (damage > 0)
+            {
+                GameObject num = Instantiate(damageNumberPrefab, new Vector2(hitInfo.point.x + 0.1f * count, hitInfo.point.y), Quaternion.identity);
+                num.GetComponent<DamageNumber>().damage = damage % 10;
+                num.GetComponent<DamageNumber>().crit = false;
+                damage = damage / 10;
+                count--;
+            }
         }
     }
 
