@@ -10,4 +10,12 @@ public class Child_DeathState : DeathState
     {
         this.child = child;
     }
+
+    public override void Enter()
+    {
+        base.Enter();
+        entity.audioSource.clip = child.snd_die;
+        entity.audioSource.Play();
+    }
+
 }

@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
 
     public Animator anim;
     private bool isShooting;
+    private bool UIFlip = false;
 
     //climbing 
     bool climb = false;
@@ -186,12 +187,21 @@ public class PlayerController : MonoBehaviour
                 if (rb.velocity.x < 0 && !isShooting)
                 {
                     transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
-
+                    if (!UIFlip)
+                    {
+                        gameObject.transform.Find("PlayerUI").gameObject.transform.Rotate(0f, 180f, 0f);
+                        UIFlip = true;
+                    }
 
                 }
                 else if (rb.velocity.x > 0 && !isShooting)
                 {
                     transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                    if (UIFlip)
+                    {
+                        gameObject.transform.Find("PlayerUI").gameObject.transform.Rotate(0f, 180f, 0f);
+                        UIFlip = false;
+                    }
                 }
             }
 

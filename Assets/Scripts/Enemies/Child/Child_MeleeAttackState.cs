@@ -19,4 +19,11 @@ public class Child_MeleeAttackState : MeleeAttackState
             stateMachine.ChangeState(child.aggroState);
         }
     }
+
+    public override void TriggerAttack()
+    {
+        base.TriggerAttack();
+        entity.audioSource.clip = child.snd_shoot;
+        entity.audioSource.Play();
+    }
 }

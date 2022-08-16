@@ -11,6 +11,13 @@ public class Imp_TeleportState : TeleportState
         this.imp = imp;
     }
 
+    public override void Enter()
+    {
+        base.Enter();
+        entity.audioSource.clip = imp.snd_tele;
+        entity.audioSource.Play();
+    }
+
     public override void LogicUpdate()
     {
         base.LogicUpdate();

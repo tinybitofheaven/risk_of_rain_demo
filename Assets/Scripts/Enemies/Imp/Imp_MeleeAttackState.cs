@@ -19,4 +19,11 @@ public class Imp_MeleeAttackState : MeleeAttackState
             stateMachine.ChangeState(imp.aggroState);
         }
     }
+
+    public override void TriggerAttack()
+    {
+        base.TriggerAttack();
+        entity.audioSource.clip = imp.snd_shoot;
+        entity.audioSource.Play();
+    }
 }

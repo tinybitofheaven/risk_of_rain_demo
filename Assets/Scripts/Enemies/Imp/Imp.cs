@@ -31,6 +31,12 @@ public class Imp : Entity
     [SerializeField]
     private Transform meleeAttackPosition;
 
+    public AudioClip snd_shoot;
+    public AudioClip snd_tele;
+    public AudioClip snd_hit;
+    public AudioClip snd_die;
+
+
     public override void Start()
     {
         base.Start();
@@ -50,5 +56,12 @@ public class Imp : Entity
     {
         base.Die();
         stateMachine.ChangeState(deathState);
+    }
+
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        audioSource.clip = snd_hit;
+        audioSource.Play();
     }
 }

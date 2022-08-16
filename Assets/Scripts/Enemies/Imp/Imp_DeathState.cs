@@ -10,4 +10,11 @@ public class Imp_DeathState : DeathState
     {
         this.imp = imp;
     }
+
+    public override void Enter()
+    {
+        base.Enter();
+        entity.audioSource.clip = imp.snd_die;
+        entity.audioSource.Play();
+    }
 }

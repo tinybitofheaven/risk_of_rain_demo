@@ -32,6 +32,8 @@ public class Entity : MonoBehaviour
 
     private GameObject healthBar;
 
+    public AudioSource audioSource;
+
     public bool stunned = false;
 
     private float flipCooldown = 0.2f;
