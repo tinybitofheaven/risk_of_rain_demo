@@ -434,6 +434,7 @@ public class PlayerController : MonoBehaviour
 
     public void Shoot2()
     {
+        AudioManager.instance.PlaySFX(1);
         if (transform.localScale.x > 0)
         {
             RaycastHit2D[] hits = Physics2D.RaycastAll(firePoint.position, firePoint.right, Mathf.Infinity, LayerMask.GetMask("Enemy"));
@@ -479,6 +480,7 @@ public class PlayerController : MonoBehaviour
 
     public void Shoot4()
     {
+        AudioManager.instance.PlaySFX(2);
         if (transform.localScale.x > 0)
         {
             RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right, Mathf.Infinity, LayerMask.GetMask("Enemy"));
