@@ -14,8 +14,9 @@ public class Child_DeathState : DeathState
     public override void Enter()
     {
         base.Enter();
-        entity.audioSource.clip = child.snd_die;
-        entity.audioSource.Play();
+        //entity.audioSource.clip = child.snd_die;
+        //entity.audioSource.Play();
+        AudioManager.instance.PlaySFX(4);
     }
 
 }

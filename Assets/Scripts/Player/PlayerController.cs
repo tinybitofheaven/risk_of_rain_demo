@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 
     //shoot1
     public int shoot1Damage;
-    public float shoot1CD = 0.2f;
+    public float shoot1CD = 1f;
     private float shoot1Counter;
     public bool shoot1Launch;
     public float Shoot1Counter { get => shoot1Counter; }
@@ -246,11 +246,12 @@ public class PlayerController : MonoBehaviour
             //shoot1
             if ((Input.GetKey(KeyCode.Z) && shoot1Counter == shoot1CD) && !(Input.GetKeyDown(KeyCode.E) && shoot3Counter == shoot3CD && !climb))
             {
+               
                 shoot1Launch = true;
                 anim.SetTrigger("Shoot1");
                 Invoke("Shoot1", 0.05f);
                 Invoke("Shoot1", 0.15f);
-                // Shoot1();
+                
             }
             //shoot2
             else if (Input.GetKeyDown(KeyCode.X) && shoot2Counter == shoot2CD && !climb)
@@ -372,6 +373,7 @@ public class PlayerController : MonoBehaviour
 
     public void Shoot1()
     {
+        
         if (transform.localScale.x > 0)
         {
             RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right, Mathf.Infinity, whatIsEnemy);
@@ -414,6 +416,8 @@ public class PlayerController : MonoBehaviour
 
     public void Shoot2()
     {
+        //audio
+        AudioManager.instance.PlaySFX(1);
         if (transform.localScale.x > 0)
         {
             RaycastHit2D[] hits = Physics2D.RaycastAll(firePoint.position, firePoint.right, Mathf.Infinity, LayerMask.GetMask("Enemy"));
@@ -459,6 +463,8 @@ public class PlayerController : MonoBehaviour
 
     public void Shoot4()
     {
+        //audio
+        AudioManager.instance.PlaySFX(2);
         if (transform.localScale.x > 0)
         {
             RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right, Mathf.Infinity, LayerMask.GetMask("Enemy"));

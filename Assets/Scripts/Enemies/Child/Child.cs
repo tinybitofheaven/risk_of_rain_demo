@@ -61,7 +61,8 @@ public class Child : Entity
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-        audioSource.clip = snd_hit;
-        audioSource.Play();
+        //audioSource.clip = snd_hit;
+        //audioSource.Play();
+        AudioManager.instance.PlaySFX(5);
     }
 }
