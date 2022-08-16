@@ -10,11 +10,15 @@ public class MainMenuControl : MonoBehaviour
     [SerializeField] private GameObject sCtrl;
     [SerializeField] private GameObject sAV;
     [SerializeField] private GameObject sQuit;
-    
 
+    private void Start()
+    {
+        AudioManager.instance.PlayTitleScreenMusic();
+    }
     public void StartGame()
     {
         SceneManager.LoadScene("CharacterSelect");
+        AudioManager.instance.titleScreenMusic.Stop();
         Debug.Log("PRESSED");
     }
     

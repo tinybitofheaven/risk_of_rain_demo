@@ -23,7 +23,8 @@ public class Imp_MeleeAttackState : MeleeAttackState
     public override void TriggerAttack()
     {
         base.TriggerAttack();
-        entity.audioSource.clip = imp.snd_shoot;
-        entity.audioSource.Play();
+        //entity.audioSource.clip = imp.snd_shoot;
+        //entity.audioSource.Play();
+        AudioManager.instance.PlaySFX(6);
     }
 }

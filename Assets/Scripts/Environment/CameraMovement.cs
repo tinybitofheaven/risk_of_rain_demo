@@ -43,6 +43,9 @@ public class CameraMovement : MonoBehaviour
     
     void Start()
     {
+        //audio
+        AudioManager.instance.PlayLevelMusic();
+
         xMin = worldBounds.bounds.min.x;
         xMax = worldBounds.bounds.max.x;
         yMin = worldBounds.bounds.min.y;
