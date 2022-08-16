@@ -36,6 +36,8 @@ public class ItemManager : MonoBehaviour
         itemsData = new Dictionary<string, Item>();
         itemsData.Add("feather", new Feather());
         itemsData.Add("lens", new Lens());
+        itemsData.Add("syringe", new Syringe());
+
 
         //TODO: add all created items to itemsData
     }
