@@ -89,6 +89,7 @@ public class HUDcontroller : MonoBehaviour
         if (GameManager.FindInstance().health <= 0) {
             FindObjectOfType<Timer>().timerIsRunning = false;
             resultScreen.SetActive(true);
+            resultScreen.GetComponent<ResultScreen>().showLossScreen();
         }
     }
 }

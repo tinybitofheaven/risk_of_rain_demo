@@ -234,7 +234,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (!Grounded && ItemManager.FindInstance().HasItem("feather") && Input.GetButtonDown("Jump"))
+             if (!Grounded && ItemManager.FindInstance().HasItem("feather") && Input.GetButtonDown("Jump"))
             {
                 if (ItemManager.FindInstance().GetFeather().CanExtraJump())
                 {
