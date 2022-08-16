@@ -422,6 +422,9 @@ MonoBehaviour:
   cost: 0
   large: 0
   itemPrefab: {fileID: 0}
+  texts:
+  - {fileID: 1094651719027119999}
+  - {fileID: 4683338050756274665}
 --- !u!61 &4732226190392083492
 BoxCollider2D:
   m_ObjectHideFlags: 0

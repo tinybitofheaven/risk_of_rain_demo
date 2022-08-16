@@ -16,6 +16,8 @@ public class Chests : MonoBehaviour
     public GameObject itemPrefab;
     private bool opened = false;
 
+    public GameObject[] texts;
+
     private void Start()
     {
         if (large)
@@ -38,6 +40,8 @@ public class Chests : MonoBehaviour
             opened = true;
             GameManager.FindInstance().coins -= cost;
             anim.SetBool("open", true);
+            foreach (GameObject text in texts)
+                text.SetActive(false);
         }
     }
 
