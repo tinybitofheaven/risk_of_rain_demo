@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
 
     //shoot1
     public int shoot1Damage;
+    public float b_shoot1CD = 0.2f;
     public float shoot1CD = 0.2f;
     private float shoot1Counter;
     public bool shoot1Launch;
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
 
     //shoot2
+    public float b_shoot2CD = 3f;
     public float shoot2CD = 3f;
     [HideInInspector] public float shoot2Counter;
     public bool shoot2Launch;
@@ -38,6 +40,7 @@ public class PlayerController : MonoBehaviour
     public float Shoot3Counter { get => shoot3Counter; }
 
     //shoot4
+    public float b_shoot4CD = 5f;
     public float shoot4CD = 5f;
     private float shoot4Counter;
     public bool shoot4Launch;
@@ -75,17 +78,34 @@ public class PlayerController : MonoBehaviour
         shoot4Counter = shoot4CD;
         shake = FindObjectOfType<CameraMovement>();
         item = FindObjectOfType<ItemManager>();
+        Debug.Log("Eshoot1: " + shoot1CD);
+        Debug.Log("Eshoot2: " + shoot2CD);
+        Debug.Log("Eshoot4: " + shoot4CD);
     }
 
     private void StatChecks()
     {
         critChance = ((Lens)ItemManager.FindInstance().GetItem("lens")).GetCritChance() + 0.01f;
+        if (ItemManager.FindInstance().HasItem("syringe"))
+        {
+            // Debug.Log("got syringe");
+            // Debug.Log("Sshoot1: " + shoot1CD);
+            // Debug.Log(b_shoot1CD + " / " + ((Syringe)ItemManager.FindInstance().GetItem("syringe")).GetAttackSpeedBonus());
+            float attackspeed = 1 + ((Syringe)ItemManager.FindInstance().GetItem("syringe")).GetAttackSpeedBonus();
+            shoot1CD = b_shoot1CD / attackspeed;
+            shoot2CD = b_shoot2CD / attackspeed;
+            shoot4CD = b_shoot4CD / attackspeed;
+            // Debug.Log("Ashoot1: " + shoot1CD);
+        }
+        // Debug.Log("shoot1: " + shoot1CD);
+        // Debug.Log("shoot2: " + shoot2CD);
+        // Debug.Log("shoot4: " + shoot4CD);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // StatChecks();
+        StatChecks();
 
 
         if (!die)
@@ -244,7 +264,7 @@ public class PlayerController : MonoBehaviour
             }
 
             //shoot1
-            if ((Input.GetKey(KeyCode.Z) && shoot1Counter == shoot1CD) && !(Input.GetKeyDown(KeyCode.E) && shoot3Counter == shoot3CD && !climb))
+            if ((Input.GetKey(KeyCode.Z) && shoot1Counter >= shoot1CD) && !(Input.GetKeyDown(KeyCode.E) && shoot3Counter == shoot3CD && !climb))
             {
                 shoot1Launch = true;
                 anim.SetTrigger("Shoot1");
@@ -253,7 +273,7 @@ public class PlayerController : MonoBehaviour
                 // Shoot1();
             }
             //shoot2
-            else if (Input.GetKeyDown(KeyCode.X) && shoot2Counter == shoot2CD && !climb)
+            else if (Input.GetKeyDown(KeyCode.X) && shoot2Counter >= shoot2CD && !climb)
             {
                 //shake.TriggerShake();
                 shoot2Launch = true;
@@ -262,7 +282,7 @@ public class PlayerController : MonoBehaviour
                 Shoot2();
             }
             //shoot4
-            else if (Input.GetKeyDown(KeyCode.V) && shoot4Counter == shoot4CD && !climb)
+            else if (Input.GetKeyDown(KeyCode.V) && shoot4Counter >= shoot4CD && !climb)
             {
                 shoot4Launch = true;
                 anim.SetTrigger("Shoot4");

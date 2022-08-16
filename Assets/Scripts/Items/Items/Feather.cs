@@ -7,6 +7,8 @@ public class Feather : Item
     private int totalJumps;
     private int jumpsLeft;
 
+    private int max = 7;
+
     public Feather()
     {
         _name = "feather";
@@ -15,7 +17,14 @@ public class Feather : Item
     public void ResetExtraJumps()
     {
         totalJumps = ItemManager.FindInstance().ItemCount(_name);
-        jumpsLeft = totalJumps;
+        if (totalJumps >= max)
+        {
+            jumpsLeft = max;
+        }
+        else
+        {
+            jumpsLeft = totalJumps;
+        }
     }
 
     public bool CanExtraJump()
