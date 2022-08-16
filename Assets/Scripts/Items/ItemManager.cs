@@ -34,7 +34,8 @@ public class ItemManager : MonoBehaviour
     {
         collectedItems = new Dictionary<string, int>();
         itemsData = new Dictionary<string, Item>();
-        itemsData.Add("feather", new Feather()); //TODO: problem with new keyword
+        itemsData.Add("feather", new Feather());
+        itemsData.Add("lens", new Lens());
 
         //TODO: add all created items to itemsData
     }
@@ -44,21 +45,21 @@ public class ItemManager : MonoBehaviour
         if (collectedItems.ContainsKey(item))
         {
             collectedItems[item]++;
-            Debug.Log("contains - " + item + ": " + collectedItems[item]);
+            // Debug.Log("contains - " + item + ": " + collectedItems[item]);
         }
         else
         {
             collectedItems.Add(item, 1);
-            Debug.Log("initial - " + item + ": " + collectedItems[item]);
+            // Debug.Log("initial - " + item + ": " + collectedItems[item]);
         }
-        Debug.Log("end - " + item + ": " + collectedItems[item]);
+        Debug.Log(item + ": " + collectedItems[item]);
     }
 
     //for chests
     public GameObject RandomItem()
     {
         int i = Random.Range(0, itemPrefabs.Length);
-        Debug.Log("item: " + i);
+        // Debug.Log("item: " + i);
         return itemPrefabs[i];
     }
 
