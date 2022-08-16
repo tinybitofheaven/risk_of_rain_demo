@@ -6792,6 +6792,8 @@ MonoBehaviour:
   itemTxt: {fileID: 4659670394318138407}
   goldTxt: {fileID: 2777387568257267252}
   purchaseTxt: {fileID: 7783151445492412559}
+  TitleTxt: {fileID: 2561933130453395406}
+  killCount: 0
 --- !u!1 &5691321294379914763
 GameObject:
   m_ObjectHideFlags: 0

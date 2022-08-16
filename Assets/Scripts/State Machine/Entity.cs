@@ -197,6 +197,7 @@ public class Entity : MonoBehaviour
 
     public virtual void Destroy()
     {
+        FindObjectOfType<ResultScreen>().killCount++;
         Destroy(gameObject.GetComponent<AnimationToStateMachine>());
         Destroy(gameObject.GetComponent<Animator>());
 
