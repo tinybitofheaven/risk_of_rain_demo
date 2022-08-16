@@ -7,19 +7,26 @@ using TMPro;
 public class HUDcontroller : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI cointxt, difftxt, missiontxt, lvltxt, hptxt, CDtxt2, CDtxt3, CDtxt4;
-    [SerializeField] private GameObject immunebar, abilityCD2, abilityCD3, abilityCD4;
+    [SerializeField] private GameObject immunebar, abilityCD2, abilityCD3, abilityCD4, resultScreen;
     [SerializeField] private RawImage damagebar, hpbar, expbar;
+    [SerializeField] private RectTransform diffMask;
 
+    private float[] diffThreshold = new float[] {13.82f, 27.57f, 41.42f, 55.36f, 69.49f, 83.43f, 97.56f, 111.69f};
+    private string[] diffTexts = new string[] {"Very Easy", "Esay", "Medium", "Hard", "Very Hard", "Insane", "Impossible", "I SEE YOU", "I'M COMING FOR YOU"};
     private PlayerController player;
     private void Start()
     {
         immunebar.SetActive(false);
         player = FindObjectOfType<PlayerController>();
+        diffMask.sizeDelta = new Vector2(diffMask.rect.width, 0);
     }
     private void Update()
     {
+        //Coin
         cointxt.text = GameManager.FindInstance().coins + "";
         // Debug.Log(GameManager.FindInstance().coins);
+
+        //health bar
         hptxt.text = Mathf.Max(0, (int)GameManager.FindInstance().health) + "/" + Mathf.Max((int)GameManager.FindInstance().maxhp);
         hpbar.transform.localScale = new Vector3(Mathf.Max(0, GameManager.FindInstance().health) / GameManager.FindInstance().maxhp, 1, 1);
         if (damagebar.transform.localScale.x - hpbar.transform.localScale.x <= 0.01)
@@ -39,6 +46,16 @@ public class HUDcontroller : MonoBehaviour
             immunebar.SetActive(false);
         }
 
+
+        //Ex bar
+        lvltxt.text = 1 + GameManager.FindInstance().exp / 100+"";
+        expbar.transform.localScale = new Vector3((Mathf.Max(0, GameManager.FindInstance().exp) % 100.0f) / 100.0f, 1, 1);
+
+        //diff bar
+        for (int i = 0; i < diffThreshold.Length; i++)
+            if (diffMask.rect.height >= diffThreshold[i])
+                difftxt.text = diffTexts[i+1];
+        diffMask.sizeDelta = new Vector2(diffMask.rect.width, FindObjectOfType<Timer>().timeRemaining / 5.5f);
 
         if (player.Shoot2Counter != 0 && player.Shoot2Counter < player.shoot2CD)
         {
@@ -66,6 +83,12 @@ public class HUDcontroller : MonoBehaviour
         else
         {
             abilityCD4.SetActive(false);
+        }
+
+        //end game screen
+        if (GameManager.FindInstance().health <= 0) {
+            FindObjectOfType<Timer>().timerIsRunning = false;
+            resultScreen.SetActive(true);
         }
     }
 }

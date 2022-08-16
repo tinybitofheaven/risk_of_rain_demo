@@ -198,7 +198,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <color=white>Press <color=#eecf7a>'A' <color=white> to open container <color=#eecf7a>  
+  m_text: <color=white>Press <color=#eecf7a>'E' <color=white> to open container <color=#eecf7a>  
     ($50)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e9866376f66b9e9499c12190b2c1d6e3, type: 2}
@@ -390,6 +390,9 @@ MonoBehaviour:
   cost: 0
   large: 1
   itemPrefab: {fileID: 0}
+  texts:
+  - {fileID: 2537008175240349066}
+  - {fileID: 2899620408791867935}
 --- !u!61 &1311186712560427573
 BoxCollider2D:
   m_ObjectHideFlags: 0
