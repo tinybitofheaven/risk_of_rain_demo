@@ -38,7 +38,6 @@ public class ItemManager : MonoBehaviour
         itemsData.Add("lens", new Lens());
         itemsData.Add("syringe", new Syringe());
 
-
         //TODO: add all created items to itemsData
     }
 
@@ -47,21 +46,17 @@ public class ItemManager : MonoBehaviour
         if (collectedItems.ContainsKey(item))
         {
             collectedItems[item]++;
-            // Debug.Log("contains - " + item + ": " + collectedItems[item]);
         }
         else
         {
             collectedItems.Add(item, 1);
-            // Debug.Log("initial - " + item + ": " + collectedItems[item]);
         }
-        Debug.Log(item + ": " + collectedItems[item]);
     }
 
     //for chests
     public GameObject RandomItem()
     {
         int i = Random.Range(0, itemPrefabs.Length);
-        // Debug.Log("item: " + i);
         return itemPrefabs[i];
     }
 

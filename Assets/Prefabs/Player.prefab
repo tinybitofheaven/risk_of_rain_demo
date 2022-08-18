@@ -294,11 +294,13 @@ MonoBehaviour:
   rb: {fileID: 7234378996979400385}
   _collider: {fileID: 7234378997391204283}
   moveSpeed: 2
-  jumpForce: 10
+  jumpForce: 13
   critChance: 0.01
   shoot1Damage: 8
+  b_shoot1CD: 0.2
   shoot1CD: 0.2
   shoot1Launch: 0
+  b_shoot2CD: 3
   shoot2CD: 3
   shoot2Counter: 0
   shoot2Launch: 0
@@ -308,6 +310,7 @@ MonoBehaviour:
   rolling: 0
   shoot3CD: 4
   shoot3Launch: 0
+  b_shoot4CD: 5
   shoot4CD: 5
   shoot4Launch: 0
   shoot4Damage: 6

@@ -21,7 +21,7 @@ public class MainMenuControl : MonoBehaviour
         AudioManager.instance.titleScreenMusic.Stop();
         Debug.Log("PRESSED");
     }
-    
+
     //title screen
     public void OpenOpt()
     {
@@ -79,5 +79,5 @@ public class MainMenuControl : MonoBehaviour
         sOptTxt.SetActive(true);
     }
 
-    
+
 }

@@ -197,7 +197,7 @@ public class Entity : MonoBehaviour
 
     public virtual void Destroy()
     {
-        FindObjectOfType<ResultScreen>().killCount++;
+        // FindObjectOfType<ResultScreen>().killCount++; //TODO: add back
         Destroy(gameObject.GetComponent<AnimationToStateMachine>());
         Destroy(gameObject.GetComponent<Animator>());
 
@@ -221,7 +221,6 @@ public class Entity : MonoBehaviour
     public void SpawnCoins()
     {
         int coins = entityData.coins / 5;
-        Debug.Log("coins: " + coins);
         //big coins
         for (int i = 0; i < coins; i++)
         {
@@ -229,7 +228,6 @@ public class Entity : MonoBehaviour
         }
 
         int sCoins = entityData.coins % 5;
-        Debug.Log("sCoins: " + sCoins);
         //small coins
         for (int i = 0; i < sCoins; i++)
         {

@@ -78,9 +78,6 @@ public class PlayerController : MonoBehaviour
         shoot4Counter = shoot4CD;
         shake = FindObjectOfType<CameraMovement>();
         item = FindObjectOfType<ItemManager>();
-        Debug.Log("Eshoot1: " + shoot1CD);
-        Debug.Log("Eshoot2: " + shoot2CD);
-        Debug.Log("Eshoot4: " + shoot4CD);
     }
 
     private void StatChecks()
@@ -88,18 +85,11 @@ public class PlayerController : MonoBehaviour
         critChance = ((Lens)ItemManager.FindInstance().GetItem("lens")).GetCritChance() + 0.01f;
         if (ItemManager.FindInstance().HasItem("syringe"))
         {
-            // Debug.Log("got syringe");
-            // Debug.Log("Sshoot1: " + shoot1CD);
-            // Debug.Log(b_shoot1CD + " / " + ((Syringe)ItemManager.FindInstance().GetItem("syringe")).GetAttackSpeedBonus());
             float attackspeed = 1 + ((Syringe)ItemManager.FindInstance().GetItem("syringe")).GetAttackSpeedBonus();
             shoot1CD = b_shoot1CD / attackspeed;
             shoot2CD = b_shoot2CD / attackspeed;
             shoot4CD = b_shoot4CD / attackspeed;
-            // Debug.Log("Ashoot1: " + shoot1CD);
         }
-        // Debug.Log("shoot1: " + shoot1CD);
-        // Debug.Log("shoot2: " + shoot2CD);
-        // Debug.Log("shoot4: " + shoot4CD);
     }
 
     // Update is called once per frame
@@ -254,7 +244,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-             if (!Grounded && ItemManager.FindInstance().HasItem("feather") && Input.GetButtonDown("Jump"))
+            if (!Grounded && ItemManager.FindInstance().HasItem("feather") && Input.GetButtonDown("Jump"))
             {
                 if (ItemManager.FindInstance().GetFeather().CanExtraJump())
                 {
@@ -399,7 +389,6 @@ public class PlayerController : MonoBehaviour
             {
                 if (Random.Range(0f, 1f) <= critChance)
                 {
-                    Debug.Log("crit");
                     hitInfo.transform.gameObject.GetComponent<Entity>().TakeDamage(shoot1Damage * 2);
                     GameManager.FindInstance().SpawnDamageNumber(shoot1Damage * 2, hitInfo, true);
                 }
@@ -418,7 +407,6 @@ public class PlayerController : MonoBehaviour
             {
                 if (Random.Range(0f, 1f) <= critChance)
                 {
-                    Debug.Log("crit");
                     hitInfo.transform.gameObject.GetComponent<Entity>().TakeDamage(shoot1Damage * 2);
                     GameManager.FindInstance().SpawnDamageNumber(shoot1Damage * 2, hitInfo, true);
                 }

@@ -11,8 +11,8 @@ public class HUDcontroller : MonoBehaviour
     [SerializeField] private RawImage damagebar, hpbar, expbar;
     [SerializeField] private RectTransform diffMask;
 
-    private float[] diffThreshold = new float[] {13.82f, 27.57f, 41.42f, 55.36f, 69.49f, 83.43f, 97.56f, 111.69f};
-    private string[] diffTexts = new string[] {"Very Easy", "Esay", "Medium", "Hard", "Very Hard", "Insane", "Impossible", "I SEE YOU", "I'M COMING FOR YOU"};
+    private float[] diffThreshold = new float[] { 13.82f, 27.57f, 41.42f, 55.36f, 69.49f, 83.43f, 97.56f, 111.69f };
+    private string[] diffTexts = new string[] { "Very Easy", "Esay", "Medium", "Hard", "Very Hard", "Insane", "Impossible", "I SEE YOU", "I'M COMING FOR YOU" };
     private PlayerController player;
     private void Start()
     {
@@ -24,7 +24,6 @@ public class HUDcontroller : MonoBehaviour
     {
         //Coin
         cointxt.text = GameManager.FindInstance().coins + "";
-        // Debug.Log(GameManager.FindInstance().coins);
 
         //health bar
         hptxt.text = Mathf.Max(0, (int)GameManager.FindInstance().health) + "/" + Mathf.Max((int)GameManager.FindInstance().maxhp);
@@ -48,13 +47,13 @@ public class HUDcontroller : MonoBehaviour
 
 
         //Ex bar
-        lvltxt.text = 1 + GameManager.FindInstance().exp / 100+"";
+        lvltxt.text = 1 + GameManager.FindInstance().exp / 100 + "";
         expbar.transform.localScale = new Vector3((Mathf.Max(0, GameManager.FindInstance().exp) % 100.0f) / 100.0f, 1, 1);
 
         //diff bar
         for (int i = 0; i < diffThreshold.Length; i++)
             if (diffMask.rect.height >= diffThreshold[i])
-                difftxt.text = diffTexts[i+1];
+                difftxt.text = diffTexts[i + 1];
         diffMask.sizeDelta = new Vector2(diffMask.rect.width, FindObjectOfType<Timer>().timeRemaining / 5.5f);
 
         if (player.Shoot2Counter != 0 && player.Shoot2Counter < player.shoot2CD)
@@ -86,7 +85,8 @@ public class HUDcontroller : MonoBehaviour
         }
 
         //end game screen
-        if (GameManager.FindInstance().health <= 0) {
+        if (GameManager.FindInstance().health <= 0)
+        {
             FindObjectOfType<Timer>().timerIsRunning = false;
             resultScreen.SetActive(true);
             resultScreen.GetComponent<ResultScreen>().showLossScreen();

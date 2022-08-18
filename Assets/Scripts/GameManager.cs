@@ -42,7 +42,6 @@ public class GameManager : MonoBehaviour
             GameObject[] deadEnemies = GameObject.FindGameObjectsWithTag("DeadEnemy");
             foreach (GameObject enemy in deadEnemies)
             {
-                // Debug.Log("dead: " + enemy.name);
                 Destroy(enemy);
             }
         }

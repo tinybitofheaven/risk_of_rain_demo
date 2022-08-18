@@ -28,12 +28,6 @@ public class DamageNumber : MonoBehaviour
         }
     }
 
-    // public void Crit()
-    // {
-    //     _renderer.sprite = nums_large[damage];
-    //     Debug.Log("img crit");
-    // }
-
     private IEnumerator Fade()
     {
         Color c = _renderer.material.color;

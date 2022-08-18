@@ -16,7 +16,7 @@ public class Imp_TeleportState : TeleportState
         base.Enter();
         entity.audioSource.clip = imp.snd_tele;
         entity.audioSource.Play();
-        
+
     }
 
     public override void LogicUpdate()
@@ -31,7 +31,7 @@ public class Imp_TeleportState : TeleportState
     public override void TriggerTeleport()
     {
         base.TriggerTeleport();
-        Vector2 playerPos = entity.playerGO.transform.Find("Ground Check Point").transform.position; //TODO: broken
+        Vector2 playerPos = entity.playerGO.transform.Find("Ground Check Point").transform.position;
         Vector2 newPosition = new Vector2(playerPos.x - (0.1f * entity.facingDirection), playerPos.y + entity.spriteHeight / 2);
         entity.SetPosition(newPosition);
     }

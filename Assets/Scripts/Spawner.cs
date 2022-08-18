@@ -12,8 +12,8 @@ public class Spawner : MonoBehaviour
     public float minSpawnFrequency;
     public float maxSpawnFrequency;
 
-    public int minChests = 4;
-    public int maxChests = 9;
+    public int largeChests = 4;
+    public int smallChests = 7;
 
     public int minSpawnAmount;
     public int maxSpawnAmount;
@@ -44,6 +44,7 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
+        playerGO = GameObject.FindGameObjectWithTag("Player");
         SpawnSmallChests();
         SpawnLargeChests();
         Invoke("Spawn", minSpawnFrequency);
@@ -128,8 +129,7 @@ public class Spawner : MonoBehaviour
 
     private void SpawnSmallChests()
     {
-        int chestNum = Random.Range(minChests, maxChests);
-        // Debug.Log(chestNum);
+        int chestNum = smallChests;
         Bounds bounds = gameObject.transform.Find("SpawnBound").GetComponent<BoxCollider2D>().bounds;
         for (int i = 0; i < chestNum; i++)
         {
@@ -154,8 +154,7 @@ public class Spawner : MonoBehaviour
 
     private void SpawnLargeChests()
     {
-        int chestNum = Random.Range(minChests, maxChests);
-        // Debug.Log(chestNum);
+        int chestNum = largeChests;
         Bounds bounds = gameObject.transform.Find("SpawnBound").GetComponent<BoxCollider2D>().bounds;
         for (int i = 0; i < chestNum; i++)
         {
