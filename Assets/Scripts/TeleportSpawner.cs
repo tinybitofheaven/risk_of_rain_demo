@@ -8,7 +8,7 @@ public class TeleportSpawner : MonoBehaviour
     public bool isCountingDown = false;
     [SerializeField] private TextMeshProUGUI instructionTxt, playerInstructionTxt, bossHealthTxt;
     [SerializeField] private GameObject boss, timeBar, stayAliveObject, resultScreen, bossToggle, bossHealthBar;
-    private int timer = 5;
+    private int timer = 90;
 
     void Update()
     {
@@ -43,9 +43,12 @@ public class TeleportSpawner : MonoBehaviour
                     FindObjectOfType<Timer>().timerIsRunning = false;
                 }
             }
-            bGolem bgolem = boss.GetComponent<bGolem>();
-            bossHealthBar.transform.localScale = new Vector3(Mathf.Max(0, bgolem.currHealth * 1.0f / bgolem.entityData.startingHealth), 1, 1);
-            bossHealthTxt.text = Mathf.Max(0, bgolem.currHealth) + "/" + bgolem.entityData.startingHealth;
+            if (boss != null)
+            {
+                bGolem bgolem = boss.GetComponent<bGolem>();
+                bossHealthBar.transform.localScale = new Vector3(Mathf.Max(0, bgolem.currHealth * 1.0f / bgolem.entityData.startingHealth), 1, 1);
+                bossHealthTxt.text = Mathf.Max(0, bgolem.currHealth) + "/" + bgolem.entityData.startingHealth;
+            }
         }
     }
 
