@@ -71,7 +71,7 @@ public class Spawner : MonoBehaviour
             {
                 _v = FindSpawn(1f, vector);
                 ground = Physics2D.Raycast(_v, Vector2.down, 5f, whatIsGround);
-                air = Physics2D.Raycast(new Vector2(ground.point.x, ground.point.y), Vector2.up, enemyPrefabs[enemyIndex].GetComponent<BoxCollider2D>().size.y, whatIsGround);
+                air = Physics2D.Raycast(new Vector2(ground.point.x, ground.point.y), Vector2.up, enemyPrefabs[enemyIndex].GetComponent<BoxCollider2D>().size.y + 1f, whatIsGround);
             }
 
             if (ground && !air)
