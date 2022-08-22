@@ -9,20 +9,20 @@ public class SPauseToggl : MonoBehaviour
     [SerializeField] private GameObject sOptTxt;
     [SerializeField] private GameObject sCtrl;
     [SerializeField] private GameObject sAV;
-    
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (sPause.activeSelf)
             {
-                if (sPause.activeSelf)
-                {
-                    Resume();
-                }
-                else
-                {
-                    Pause();
-                }
+                Resume();
             }
+            else
+            {
+                Pause();
+            }
+        }
     }
 
     public void Pause()
@@ -32,6 +32,7 @@ public class SPauseToggl : MonoBehaviour
     }
     public void Resume()
     {
+        Debug.Log("asdf");
         sPause.SetActive(false);
         Time.timeScale = 1f;
     }

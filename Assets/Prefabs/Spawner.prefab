@@ -108,7 +108,7 @@ MonoBehaviour:
   largeChests: 4
   smallChests: 7
   minSpawnAmount: 1
-  maxSpawnAmount: 1
+  maxSpawnAmount: 3
   enemyCount: 0
   maxEnemies: 25
   enemyPrefabs:

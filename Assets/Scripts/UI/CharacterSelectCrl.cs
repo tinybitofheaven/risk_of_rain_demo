@@ -9,8 +9,8 @@ public class CharacterSelectCrl : MonoBehaviour
 
     public void LaunchGame()
     {
-        SceneManager.LoadScene(maps[Random.Range(0, maps.Length)]);
-        // SceneManager.LoadScene("map_desolate+forest");
+        // SceneManager.LoadScene(maps[Random.Range(0, maps.Length)]);
+        SceneManager.LoadScene("map_desolate+forest");
         // SceneManager.LoadScene("map_dried+lake");
         Debug.Log(Random.Range(0, maps.Length));
     }

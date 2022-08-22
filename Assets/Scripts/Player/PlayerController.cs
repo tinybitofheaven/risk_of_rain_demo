@@ -15,8 +15,8 @@ public class PlayerController : MonoBehaviour
 
     //shoot1
     public int shoot1Damage;
-    public float b_shoot1CD = 0.2f;
-    public float shoot1CD = 0.2f;
+    public float b_shoot1CD = 0.8f;
+    public float shoot1CD = 0.8f;
     private float shoot1Counter;
     public bool shoot1Launch;
     public float Shoot1Counter { get => shoot1Counter; }
