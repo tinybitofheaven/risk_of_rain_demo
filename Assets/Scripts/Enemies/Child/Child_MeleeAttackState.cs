@@ -25,5 +25,9 @@ public class Child_MeleeAttackState : MeleeAttackState
         base.TriggerAttack();
         entity.audioSource.clip = child.snd_shoot;
         entity.audioSource.Play();
+        if (hit)
+        {
+            GameManager.FindInstance().killedBy = "Child";
+        }
     }
 }

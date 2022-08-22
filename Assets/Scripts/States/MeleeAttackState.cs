@@ -6,6 +6,7 @@ public class MeleeAttackState : AttackState
 {
     protected D_MeleeAttackState stateData;
     protected AttackDetails attackDetails;
+    protected bool hit = false;
 
     public MeleeAttackState(Entity entity, FSM stateMachine, string animBoolName, Transform attackPosition, D_MeleeAttackState stateData) : base(entity, stateMachine, animBoolName, attackPosition)
     {
@@ -49,6 +50,7 @@ public class MeleeAttackState : AttackState
         {
             GameManager.FindInstance().SpawnDamageNumber(stateData.attackDamage, collider);
             collider.transform.parent.gameObject.GetComponent<PlayerController>().TakeDamage(stateData.attackDamage);
+            hit = true;
         }
     }
 

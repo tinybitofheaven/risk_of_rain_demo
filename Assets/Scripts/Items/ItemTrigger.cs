@@ -39,6 +39,7 @@ public class ItemTrigger : MonoBehaviour
 
     private void DeleteItem()
     {
+        GameManager.FindInstance().items++;
         Destroy(gameObject);
     }
 }

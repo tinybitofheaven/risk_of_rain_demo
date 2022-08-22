@@ -19,4 +19,13 @@ public class bGolem_MeleeAttackState : MeleeAttackState
             stateMachine.ChangeState(golem.aggroState);
         }
     }
+
+    public override void TriggerAttack()
+    {
+        base.TriggerAttack();
+        if (hit)
+        {
+            GameManager.FindInstance().killedBy = "Colossus";
+        }
+    }
 }

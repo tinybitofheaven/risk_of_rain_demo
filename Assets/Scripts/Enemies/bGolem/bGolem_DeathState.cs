@@ -10,4 +10,10 @@ public class bGolem_DeathState : DeathState
     {
         this.golem = golem;
     }
+
+    public override void Enter()
+    {
+        base.Enter();
+        GameManager.FindInstance().bossKill++;
+    }
 }

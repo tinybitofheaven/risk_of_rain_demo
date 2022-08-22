@@ -21,7 +21,7 @@ public class TeleportSpawner : MonoBehaviour
                 Spawner spawner = FindObjectOfType<Spawner>();
                 spawner.minSpawnFrequency = 5;
                 spawner.maxSpawnFrequency = 7;
-                spawner.maxEnemies = 80;
+                // spawner.maxEnemies = 80;
                 spawner.maxSpawnAmount = 5;
             }
             if (!isCountingDown)

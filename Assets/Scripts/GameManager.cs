@@ -5,11 +5,21 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
-    public int coins = 0;
     public float health = 100;
     public float maxhp = 100;
     public int exp = 0;
     public GameObject damageNumberPrefab;
+
+    // private Queue deadEnemies;
+
+    //for DeathUI stats
+    public int coins = 0; //gold
+    public int kills = 0;
+    public int bossKill = 0;
+    public int items = 0;
+    public int purchases = 0;
+    public string killedBy = "The Planet";
+    // get time and level from hud or something
 
     public static GameManager FindInstance()
     {
@@ -29,23 +39,30 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        StartCoroutine(RemoveBodies());
-    }
+    // private void Start()
+    // {
+    // deadEnemies = new Queue();
+    // StartCoroutine(RemoveBodies());
+    // }
 
-    private IEnumerator RemoveBodies()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(10f);
-            GameObject[] deadEnemies = GameObject.FindGameObjectsWithTag("DeadEnemy");
-            foreach (GameObject enemy in deadEnemies)
-            {
-                Destroy(enemy);
-            }
-        }
-    }
+    // public void AddDeadEnemy(GameObject enemy)
+    // {
+    //     deadEnemies.Enqueue(enemy);
+    // }
+
+    // private IEnumerator RemoveBodies()
+    // {
+    //     while (deadEnemies.Count > 0)
+    //     {
+    //         yield return new WaitForSeconds(10f);
+    //         Destroy((GameObject)deadEnemies.Dequeue());
+    //         // GameObject[] deadEnemies = GameObject.FindGameObjectsWithTag("DeadEnemy");
+    //         // foreach (GameObject enemy in deadEnemies)
+    //         // {
+    //         //     Destroy(enemy);
+    //         // }
+    //     }
+    // }
 
     public void SpawnDamageNumber(int damage, RaycastHit2D hitInfo, bool crit)
     {

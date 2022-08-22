@@ -193,6 +193,8 @@ public class Entity : MonoBehaviour
     {
         gameObject.layer = LayerMask.NameToLayer("DeadEnemy");
         gameObject.tag = "DeadEnemy";
+        GameManager.FindInstance().kills++;
+        // GameManager.FindInstance().AddDeadEnemy(gameObject);
     }
 
     public virtual void Destroy()
@@ -203,6 +205,7 @@ public class Entity : MonoBehaviour
 
         SpawnExp();
         SpawnCoins();
+        gameObject.GetComponent<DestroyScript>().destroy = true;
         Destroy(this);
     }
 
