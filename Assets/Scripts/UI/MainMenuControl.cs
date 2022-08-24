@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+
 public class MainMenuControl : MonoBehaviour
 {
     [SerializeField] private GameObject sOpt;
@@ -11,9 +13,15 @@ public class MainMenuControl : MonoBehaviour
     [SerializeField] private GameObject sAV;
     [SerializeField] private GameObject sQuit;
 
+    private AudioSource[] VolumeCtrl;
+    [SerializeField] private TextMeshProUGUI VolumePrcnt;
+    private int Volume = 100;
+    
+
     private void Start()
     {
         AudioManager.instance.PlayTitleScreenMusic();
+        VolumeCtrl = FindObjectsOfType<AudioSource>();
     }
     public void StartGame()
     {
@@ -79,5 +87,21 @@ public class MainMenuControl : MonoBehaviour
         sOptTxt.SetActive(true);
     }
 
+    public void ToggleVolume()
+    {
+        if (Volume < 100)
+        {
+            Volume += 10;
+        }
+        else
+        {
+            Volume = 0;
+        }
+        VolumePrcnt.text = Volume + "%";
 
+        foreach(AudioSource source in VolumeCtrl)
+        {
+            source.volume = (Volume * 1.0f)/100.0f;
+        }
+    }
 }
