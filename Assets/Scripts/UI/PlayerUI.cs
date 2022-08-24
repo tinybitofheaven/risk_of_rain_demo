@@ -6,13 +6,13 @@ using TMPro;
 public class PlayerUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI aboveHeadTxt;
-    void Start()
-    {
-        
-    }
+    // void Start()
+    // {
 
-    void Update()
-    {
-        
-    }
+    // }
+
+    // void Update()
+    // {
+
+    // }
 }

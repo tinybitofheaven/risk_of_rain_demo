@@ -5,8 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
-    public float health = 100;
-    public float maxhp = 100;
+    public float health = 150;
+    public float maxhp = 150;
     public int exp = 0;
     public GameObject damageNumberPrefab;
 
@@ -39,30 +39,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // private void Start()
-    // {
-    // deadEnemies = new Queue();
-    // StartCoroutine(RemoveBodies());
-    // }
+    private void Start()
+    {
+        InvokeRepeating("RegenHealth", 2f, 2f);
+    }
 
-    // public void AddDeadEnemy(GameObject enemy)
-    // {
-    //     deadEnemies.Enqueue(enemy);
-    // }
-
-    // private IEnumerator RemoveBodies()
-    // {
-    //     while (deadEnemies.Count > 0)
-    //     {
-    //         yield return new WaitForSeconds(10f);
-    //         Destroy((GameObject)deadEnemies.Dequeue());
-    //         // GameObject[] deadEnemies = GameObject.FindGameObjectsWithTag("DeadEnemy");
-    //         // foreach (GameObject enemy in deadEnemies)
-    //         // {
-    //         //     Destroy(enemy);
-    //         // }
-    //     }
-    // }
+    private void RegenHealth()
+    {
+        int regen = 1;
+        if (health < maxhp)
+        {
+            if (health + regen > maxhp)
+            {
+                health = maxhp;
+            }
+            else
+            {
+                health += regen;
+            }
+        }
+    }
 
     public void SpawnDamageNumber(int damage, RaycastHit2D hitInfo, bool crit)
     {
