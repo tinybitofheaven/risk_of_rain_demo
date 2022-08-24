@@ -23,8 +23,9 @@ public class Child_MeleeAttackState : MeleeAttackState
     public override void TriggerAttack()
     {
         base.TriggerAttack();
-        entity.audioSource.clip = child.snd_shoot;
-        entity.audioSource.Play();
+        //entity.audioSource.clip = child.snd_shoot;
+        //entity.audioSource.Play();
+        AudioManager.instance.PlaySFX(10);
         if (hit)
         {
             GameManager.FindInstance().killedBy = "Child";

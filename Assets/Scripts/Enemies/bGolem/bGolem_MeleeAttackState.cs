@@ -23,6 +23,7 @@ public class bGolem_MeleeAttackState : MeleeAttackState
     public override void TriggerAttack()
     {
         base.TriggerAttack();
+        AudioManager.instance.PlaySFX(16);
         if (hit)
         {
             GameManager.FindInstance().killedBy = "Colossus";

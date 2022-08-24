@@ -18,7 +18,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public AudioSource titleScreenMusic, levelMusic;
+    public AudioSource titleScreenMusic, levelMusic, bossMusic;
     public AudioSource[] sfx;
 
     public void PlayTitleScreenMusic()
@@ -33,10 +33,23 @@ public class AudioManager : MonoBehaviour
     {
         if (!levelMusic.isPlaying)
         {
+            
             titleScreenMusic.Stop();
             levelMusic.Play();
+
         }
-    }    
+    }
+
+    public void PlayBossMusic()
+    {
+        if(!bossMusic.isPlaying)
+        {
+            levelMusic.Stop();
+            bossMusic.Play();
+        }
+       
+
+    }
 
     public void PlaySFX(int sfxToPlay)
     {

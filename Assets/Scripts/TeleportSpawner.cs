@@ -12,6 +12,11 @@ public class TeleportSpawner : MonoBehaviour
 
     void Update()
     {
+        if(isBossSpawned)
+        {
+            AudioManager.instance.PlayBossMusic();
+        }
+       
         if (isEnding)
         {
             if (!isBossSpawned)
