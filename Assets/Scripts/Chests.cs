@@ -37,6 +37,8 @@ public class Chests : MonoBehaviour
     {
         if (!opened && canOpen && Input.GetKeyDown(KeyCode.E) && GameManager.FindInstance().coins >= cost)
         {
+            //audio
+            AudioManager.instance.PlaySFX(11);
             opened = true;
             GameManager.FindInstance().coins -= cost;
             anim.SetBool("open", true);

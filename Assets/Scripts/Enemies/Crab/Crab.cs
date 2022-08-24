@@ -44,6 +44,7 @@ public class Crab : Entity
     public override void Die()
     {
         base.Die();
+        AudioManager.instance.PlaySFX(12);
         stateMachine.ChangeState(deathState);
     }
 

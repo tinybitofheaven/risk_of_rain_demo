@@ -382,6 +382,7 @@ public class PlayerController : MonoBehaviour
 
     public void Shoot1()
     {
+        AudioManager.instance.PlaySFX(0);
         if (transform.localScale.x > 0)
         {
             RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right, Mathf.Infinity, whatIsEnemy);
