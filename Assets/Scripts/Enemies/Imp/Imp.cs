@@ -55,6 +55,7 @@ public class Imp : Entity
     public override void Die()
     {
         base.Die();
+        AudioManager.instance.PlaySFX(4);
         stateMachine.ChangeState(deathState);
     }
 

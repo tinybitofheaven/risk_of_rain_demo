@@ -49,6 +49,7 @@ public class Child : Entity
     public override void Die()
     {
         base.Die();
+        AudioManager.instance.PlaySFX(8);
         stateMachine.ChangeState(deathState);
     }
 

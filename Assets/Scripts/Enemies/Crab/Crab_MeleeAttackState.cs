@@ -23,6 +23,7 @@ public class Crab_MeleeAttackState : MeleeAttackState
     public override void TriggerAttack()
     {
         base.TriggerAttack();
+        AudioManager.instance.PlaySFX(14);
         if (hit)
         {
             GameManager.FindInstance().killedBy = "Sand Crab";
