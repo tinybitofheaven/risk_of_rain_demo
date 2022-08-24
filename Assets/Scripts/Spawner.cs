@@ -12,13 +12,13 @@ public class Spawner : MonoBehaviour
     public float minSpawnFrequency;
     public float maxSpawnFrequency;
 
-    public int minChests = 4;
-    public int maxChests = 9;
+    public int largeChests = 4;
+    public int smallChests = 7;
 
     public int minSpawnAmount;
     public int maxSpawnAmount;
-    public int enemyCount = 0;
-    public int maxEnemies = 50;
+    // public int enemyCount = 0;
+    // public int maxEnemies = 50;
 
     public GameObject[] enemyPrefabs;
     public GameObject sChestPrefab;
@@ -44,6 +44,7 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
+        playerGO = GameObject.FindGameObjectWithTag("Player");
         SpawnSmallChests();
         SpawnLargeChests();
         Invoke("Spawn", minSpawnFrequency);
@@ -70,7 +71,7 @@ public class Spawner : MonoBehaviour
             {
                 _v = FindSpawn(1f, vector);
                 ground = Physics2D.Raycast(_v, Vector2.down, 5f, whatIsGround);
-                air = Physics2D.Raycast(new Vector2(ground.point.x, ground.point.y), Vector2.up, enemyPrefabs[enemyIndex].GetComponent<BoxCollider2D>().size.y, whatIsGround);
+                air = Physics2D.Raycast(new Vector2(ground.point.x, ground.point.y), Vector2.up, enemyPrefabs[enemyIndex].GetComponent<BoxCollider2D>().size.y + 1f, whatIsGround);
             }
 
             if (ground && !air)
@@ -83,7 +84,7 @@ public class Spawner : MonoBehaviour
         else
         {
             Instantiate(enemyPrefabs[index], vector, Quaternion.identity);
-            enemyCount++;
+            // enemyCount++;
         }
     }
 
@@ -92,33 +93,33 @@ public class Spawner : MonoBehaviour
         float randomTime = Random.Range(minSpawnFrequency, maxSpawnFrequency);
         bool functionCall = false;
 
-        if (enemyCount < maxEnemies)
+        // if (enemyCount < maxEnemies)
+        // {
+        //spawn enemy
+        int enemyIndex = Random.Range(0, enemyPrefabs.Length);
+        Vector2 _v = FindSpawn(spawnRange, playerGO.transform.position);
+        RaycastHit2D ground = Physics2D.Raycast(_v, Vector2.down, 5f, whatIsGround);
+        RaycastHit2D air = Physics2D.Raycast(new Vector2(ground.point.x, ground.point.y), Vector2.up, enemyPrefabs[enemyIndex].GetComponent<BoxCollider2D>().size.y, whatIsGround);
+
+        if (ground && !air)
         {
-            //spawn enemy
-            int enemyIndex = Random.Range(0, enemyPrefabs.Length);
-            Vector2 _v = FindSpawn(spawnRange, playerGO.transform.position);
-            RaycastHit2D ground = Physics2D.Raycast(_v, Vector2.down, 5f, whatIsGround);
-            RaycastHit2D air = Physics2D.Raycast(new Vector2(ground.point.x, ground.point.y), Vector2.up, enemyPrefabs[enemyIndex].GetComponent<BoxCollider2D>().size.y, whatIsGround);
+            //make enemy
+            Vector2 spawnLocation = new Vector2(ground.point.x, ground.point.y + enemyPrefabs[enemyIndex].GetComponent<BoxCollider2D>().size.y / 2);
+            SpawnEnemy(false, enemyIndex, spawnLocation);
 
-            if (ground && !air)
+            //create horde
+            int amount = Random.Range(minSpawnAmount, maxSpawnAmount);
+            for (int i = 0; i < amount; i++)
             {
-                //make enemy
-                Vector2 spawnLocation = new Vector2(ground.point.x, ground.point.y + enemyPrefabs[enemyIndex].GetComponent<BoxCollider2D>().size.y / 2);
-                SpawnEnemy(false, enemyIndex, spawnLocation);
-
-                //create horde
-                int amount = Random.Range(minSpawnAmount, maxSpawnAmount);
-                for (int i = 0; i < amount; i++)
-                {
-                    SpawnEnemy(true, enemyIndex, spawnLocation);
-                }
-            }
-            else
-            {
-                functionCall = true;
-                Invoke("Spawn", 0.5f);
+                SpawnEnemy(true, enemyIndex, spawnLocation);
             }
         }
+        else
+        {
+            functionCall = true;
+            Invoke("Spawn", 0.5f);
+        }
+        // }
 
         if (functionCall == false)
         {
@@ -128,8 +129,7 @@ public class Spawner : MonoBehaviour
 
     private void SpawnSmallChests()
     {
-        int chestNum = Random.Range(minChests, maxChests);
-        // Debug.Log(chestNum);
+        int chestNum = smallChests;
         Bounds bounds = gameObject.transform.Find("SpawnBound").GetComponent<BoxCollider2D>().bounds;
         for (int i = 0; i < chestNum; i++)
         {
@@ -154,8 +154,7 @@ public class Spawner : MonoBehaviour
 
     private void SpawnLargeChests()
     {
-        int chestNum = Random.Range(minChests, maxChests);
-        // Debug.Log(chestNum);
+        int chestNum = largeChests;
         Bounds bounds = gameObject.transform.Find("SpawnBound").GetComponent<BoxCollider2D>().bounds;
         for (int i = 0; i < chestNum; i++)
         {

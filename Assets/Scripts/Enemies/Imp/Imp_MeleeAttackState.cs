@@ -26,5 +26,9 @@ public class Imp_MeleeAttackState : MeleeAttackState
         //entity.audioSource.clip = imp.snd_shoot;
         //entity.audioSource.Play();
         AudioManager.instance.PlaySFX(6);
+        if (hit)
+        {
+            GameManager.FindInstance().killedBy = "Imp";
+        }
     }
 }

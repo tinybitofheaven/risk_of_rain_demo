@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 900
   m_Sprite: {fileID: 21300000, guid: 1bf8506494a215a4bb61229d452698b1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -118,9 +118,13 @@ MonoBehaviour:
   isCountingDown: 0
   instructionTxt: {fileID: 0}
   playerInstructionTxt: {fileID: 0}
+  bossHealthTxt: {fileID: 0}
   boss: {fileID: 0}
   timeBar: {fileID: 0}
   stayAliveObject: {fileID: 0}
+  resultScreen: {fileID: 0}
+  bossToggle: {fileID: 0}
+  bossHealthBar: {fileID: 0}
 --- !u!61 &895116105755933195
 BoxCollider2D:
   m_ObjectHideFlags: 0

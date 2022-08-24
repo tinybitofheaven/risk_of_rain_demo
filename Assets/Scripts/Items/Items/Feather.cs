@@ -12,6 +12,8 @@ public class Feather : Item
     public Feather()
     {
         _name = "feather";
+        fullName = "Hopoo Feather";
+        description = "Gain another jump.";
     }
 
     public void ResetExtraJumps()

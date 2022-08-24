@@ -17,7 +17,7 @@ MonoBehaviour:
   minAggroRange: 3
   maxAggroRange: 8
   attackRange: 0.2
-  startingHealth: 89
+  startingHealth: 103
   coins: 18
   exp: 42
   whatIsGround:

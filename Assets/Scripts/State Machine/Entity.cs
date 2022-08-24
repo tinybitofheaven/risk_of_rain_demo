@@ -193,15 +193,19 @@ public class Entity : MonoBehaviour
     {
         gameObject.layer = LayerMask.NameToLayer("DeadEnemy");
         gameObject.tag = "DeadEnemy";
+        GameManager.FindInstance().kills++;
+        // GameManager.FindInstance().AddDeadEnemy(gameObject);
     }
 
     public virtual void Destroy()
     {
+        // FindObjectOfType<ResultScreen>().killCount++; //TODO: add back
         Destroy(gameObject.GetComponent<AnimationToStateMachine>());
         Destroy(gameObject.GetComponent<Animator>());
 
         SpawnExp();
         SpawnCoins();
+        gameObject.GetComponent<DestroyScript>().destroy = true;
         Destroy(this);
     }
 
@@ -220,7 +224,6 @@ public class Entity : MonoBehaviour
     public void SpawnCoins()
     {
         int coins = entityData.coins / 5;
-        Debug.Log("coins: " + coins);
         //big coins
         for (int i = 0; i < coins; i++)
         {
@@ -228,7 +231,6 @@ public class Entity : MonoBehaviour
         }
 
         int sCoins = entityData.coins % 5;
-        Debug.Log("sCoins: " + sCoins);
         //small coins
         for (int i = 0; i < sCoins; i++)
         {

@@ -9,6 +9,8 @@ public class Lens : Item
     public Lens()
     {
         _name = "lens";
+        fullName = "Lens-Maker's Glasses";
+        description = "Chance to do double damage.";
     }
 
     private void GetNum()

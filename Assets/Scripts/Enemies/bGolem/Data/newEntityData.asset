@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallCheckDistance: 0.45
   ledgeCheckDistance: 0.5
-  minAggroRange: 1
-  maxAggroRange: 4
+  minAggroRange: 5
+  maxAggroRange: 6
   attackRange: 0.1
-  startingHealth: 300
-  coins: 4
-  exp: 40
+  startingHealth: 2216
+  coins: 120
+  exp: 92
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256

@@ -5,11 +5,21 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
-    public int coins = 0;
-    public float health = 100;
-    public float maxhp = 100;
+    public float health = 150;
+    public float maxhp = 150;
     public int exp = 0;
     public GameObject damageNumberPrefab;
+
+    // private Queue deadEnemies;
+
+    //for DeathUI stats
+    public int coins = 0; //gold
+    public int kills = 0;
+    public int bossKill = 0;
+    public int items = 0;
+    public int purchases = 0;
+    public string killedBy = "The Planet";
+    // get time and level from hud or something
 
     public static GameManager FindInstance()
     {
@@ -31,19 +41,21 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(RemoveBodies());
+        InvokeRepeating("RegenHealth", 2f, 2f);
     }
 
-    private IEnumerator RemoveBodies()
+    private void RegenHealth()
     {
-        while (true)
+        int regen = 1;
+        if (health < maxhp)
         {
-            yield return new WaitForSeconds(10f);
-            GameObject[] deadEnemies = GameObject.FindGameObjectsWithTag("DeadEnemy");
-            foreach (GameObject enemy in deadEnemies)
+            if (health + regen > maxhp)
             {
-                // Debug.Log("dead: " + enemy.name);
-                Destroy(enemy);
+                health = maxhp;
+            }
+            else
+            {
+                health += regen;
             }
         }
     }

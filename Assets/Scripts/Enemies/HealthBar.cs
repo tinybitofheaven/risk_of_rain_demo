@@ -12,7 +12,6 @@ public class HealthBar : MonoBehaviour
     {
         // healthBar = transform.Find("Health").gameObject;
         localScale = healthBar.transform.localScale;
-        // Debug.Log("local:" + localScale);
     }
 
     public void LowerHealth(int currHealth, int totalHealth)

@@ -9,6 +9,8 @@ public class Syringe : Item
     public Syringe()
     {
         _name = "syringe";
+        fullName = "Soldier's Syringe";
+        description = "Increased attack speed.";
     }
 
     private void GetNum()

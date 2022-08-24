@@ -6788,10 +6788,12 @@ MonoBehaviour:
   levelTxt: {fileID: 7454683470406056496}
   timeTxt: {fileID: 2656037501322403947}
   killTxt: {fileID: 690734654842566108}
+  killedbyTxt: {fileID: 0}
   BossTxt: {fileID: 8480383572434843567}
   itemTxt: {fileID: 4659670394318138407}
   goldTxt: {fileID: 2777387568257267252}
   purchaseTxt: {fileID: 7783151445492412559}
+  TitleTxt: {fileID: 2561933130453395406}
 --- !u!1 &5691321294379914763
 GameObject:
   m_ObjectHideFlags: 0

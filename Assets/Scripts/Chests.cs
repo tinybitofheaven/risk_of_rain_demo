@@ -40,6 +40,7 @@ public class Chests : MonoBehaviour
             opened = true;
             GameManager.FindInstance().coins -= cost;
             anim.SetBool("open", true);
+            GameManager.FindInstance().purchases++;
             foreach (GameObject text in texts)
                 text.SetActive(false);
         }

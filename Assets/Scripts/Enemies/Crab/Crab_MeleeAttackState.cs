@@ -19,4 +19,13 @@ public class Crab_MeleeAttackState : MeleeAttackState
             stateMachine.ChangeState(crab.aggroState);
         }
     }
+
+    public override void TriggerAttack()
+    {
+        base.TriggerAttack();
+        if (hit)
+        {
+            GameManager.FindInstance().killedBy = "Sand Crab";
+        }
+    }
 }

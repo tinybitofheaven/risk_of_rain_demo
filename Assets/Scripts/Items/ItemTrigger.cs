@@ -30,17 +30,16 @@ public class ItemTrigger : MonoBehaviour
         {
             if (!collected)
             {
-                Debug.Log("asdf " + _name);
                 ItemManager.FindInstance().AddItem(_name);
                 collected = true;
             }
             Invoke("DeleteItem", 0.25f);
-            // Destroy(this);
         }
     }
 
     private void DeleteItem()
     {
+        GameManager.FindInstance().items++;
         Destroy(gameObject);
     }
 }

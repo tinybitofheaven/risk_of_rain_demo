@@ -10,6 +10,7 @@ TagManager:
   - Rope
   - Wall
   - Item
+  - ItemUI
   layers:
   - Default
   - TransparentFX
