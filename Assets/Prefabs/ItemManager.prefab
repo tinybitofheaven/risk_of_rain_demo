@@ -49,3 +49,4 @@ MonoBehaviour:
   - {fileID: 3327893519815501627, guid: 704201249f3d3ca408afe00f5ebcd09f, type: 3}
   efx_feather: {fileID: 6205596130229724923, guid: e533ee2f85d0ef148b61119aa0457011,
     type: 3}
+  itemUI: {fileID: 6051685231753276798, guid: f32b0797705ea2f4eb0164dbf4ad5485, type: 3}
