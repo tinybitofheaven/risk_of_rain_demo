@@ -30,6 +30,7 @@ public class ItemTrigger : MonoBehaviour
         {
             if (!collected)
             {
+                AudioManager.instance.PlaySFX(20);
                 ItemManager.FindInstance().AddItem(_name);
                 collected = true;
             }

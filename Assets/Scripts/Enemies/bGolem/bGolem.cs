@@ -46,6 +46,7 @@ public class bGolem : Entity
     public override void Die()
     {
         base.Die();
+        AudioManager.instance.PlaySFX(19);
         stateMachine.ChangeState(deathState);
     }
 

@@ -12,11 +12,11 @@ public class TeleportSpawner : MonoBehaviour
 
     void Update()
     {
-        if(isBossSpawned)
+        if (isBossSpawned)
         {
             AudioManager.instance.PlayBossMusic();
         }
-       
+
         if (isEnding)
         {
             if (!isBossSpawned)
@@ -72,6 +72,7 @@ public class TeleportSpawner : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    AudioManager.instance.PlaySFX(17);
                     resultScreen.SetActive(true);
                     resultScreen.GetComponent<ResultScreen>().showWinScreen();
                 }

@@ -23,6 +23,7 @@ public class Coin : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            AudioManager.instance.PlaySFX(18);
             GameManager.FindInstance().coins += value;
             Destroy(gameObject);
         }

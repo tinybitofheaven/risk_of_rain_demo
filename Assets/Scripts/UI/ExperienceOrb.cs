@@ -22,6 +22,7 @@ public class ExperienceOrb : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            AudioManager.instance.PlaySFX(18);
             GameManager.FindInstance().exp += 10;
             Destroy(gameObject);
         }

@@ -11,4 +11,10 @@ public class Parent_DeathState : DeathState
     {
         this.parent = parent;
     }
+
+    public override void Enter()
+    {
+        base.Enter();
+        AudioManager.instance.PlaySFX(4); //TODO
+    }
 }

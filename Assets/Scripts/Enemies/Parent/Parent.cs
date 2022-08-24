@@ -46,11 +46,18 @@ public class Parent : Entity
     {
         base.Die();
         stateMachine.ChangeState(deathState);
+        AudioManager.instance.PlaySFX(8); //TODO
     }
 
     public override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
         Gizmos.DrawWireSphere(meleeAttackPosition.position, meleeAttackStateData.attackRadius);
+    }
+
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        AudioManager.instance.PlaySFX(9);
     }
 }

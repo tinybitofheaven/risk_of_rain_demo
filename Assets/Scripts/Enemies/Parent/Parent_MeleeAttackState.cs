@@ -19,4 +19,14 @@ public class Parent_MeleeAttackState : MeleeAttackState
             stateMachine.ChangeState(parent.aggroState);
         }
     }
+
+    public override void TriggerAttack()
+    {
+        base.TriggerAttack();
+        AudioManager.instance.PlaySFX(16);
+        if (hit)
+        {
+            GameManager.FindInstance().killedBy = "Parent";
+        }
+    }
 }
