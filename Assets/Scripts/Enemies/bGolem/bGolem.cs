@@ -55,4 +55,14 @@ public class bGolem : Entity
         base.OnDrawGizmos();
         Gizmos.DrawWireSphere(meleeAttackPosition.position, meleeAttackStateData.attackRadius);
     }
+
+    // public override void ResetVelocity()
+    // {
+    //     base.ResetVelocity();
+    //     if (previousVelocity == 0f)
+    //     {
+    //         stateMachine.ChangeState(idleState);
+    //     }
+    // }
+
 }

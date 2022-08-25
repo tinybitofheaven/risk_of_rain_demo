@@ -60,4 +60,13 @@ public class Parent : Entity
         base.TakeDamage(damage);
         AudioManager.instance.PlaySFX(9);
     }
+
+    // public override void ResetVelocity()
+    // {
+    //     base.ResetVelocity();
+    //     if (previousVelocity == 0f)
+    //     {
+    //         stateMachine.ChangeState(idleState);
+    //     }
+    // }
 }

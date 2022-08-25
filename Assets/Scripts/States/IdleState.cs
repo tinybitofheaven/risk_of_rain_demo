@@ -25,7 +25,8 @@ public class IdleState : State
     {
         base.Enter();
         entity.SetVelocity(0f);
-        entity.previousVelocity = entity.rb.velocity.x;
+        entity.previousStunVelocity = entity.rb.velocity.x;
+        entity.previousKnockbackVelocity = entity.rb.velocity.x;
         isIdleTimeOver = false;
         SetRandomIdleTime();
         Checks();

@@ -66,4 +66,13 @@ public class Child : Entity
         //audioSource.Play();
         AudioManager.instance.PlaySFX(9);
     }
+
+    // public override void ResetVelocity()
+    // {
+    //     base.ResetVelocity();
+    //     if (previousVelocity == 0f)
+    //     {
+    //         stateMachine.ChangeState(idleState);
+    //     }
+    // }
 }

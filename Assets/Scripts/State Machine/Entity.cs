@@ -35,6 +35,7 @@ public class Entity : MonoBehaviour
     public AudioSource audioSource;
 
     public bool stunned = false;
+    public bool knockback = false;
 
     private float flipCooldown = 0.2f;
     private float lastFlipTime = -0.2f;
@@ -44,7 +45,8 @@ public class Entity : MonoBehaviour
 
     public int currHealth;
 
-    public float previousVelocity;
+    public float previousKnockbackVelocity;
+    public float previousStunVelocity;
 
     public virtual void Start()
     {
@@ -149,40 +151,64 @@ public class Entity : MonoBehaviour
 
     public virtual void Knockback(Vector2 direction)
     {
-        if (!stunned)
-        {
-            previousVelocity = rb.velocity.x;
-            rb.AddForce(direction * 2, ForceMode2D.Impulse);
+        // if (!stunned || !knockback)
+        // {
+        previousKnockbackVelocity = rb.velocity.x;
+        rb.AddForce(direction * 2, ForceMode2D.Impulse);
+        knockback = true;
 
-            Invoke("ResetVelocity", 0.25f);
-        }
+        // if (!stunned)
+        // {
+        Invoke("ResetKnockback", 0.25f);
+        // }
+        // }
     }
 
     public virtual void Stun()
     {
-        if (!stunned)
-        {
-            previousVelocity = rb.velocity.x;
-            SetVelocity(0f);
-            gameObject.transform.Find("Stun").gameObject.SetActive(true);
-            stunned = true;
+        previousStunVelocity = rb.velocity.x;
+        SetVelocity(0f);
+        gameObject.transform.Find("Stun").gameObject.SetActive(true);
+        stunned = true;
 
-            Invoke("ResetVelocity", 0.5f);
-        }
+        // if (!knockback)
+        // {
+        Invoke("ResetStun", 0.5f);
+        // }
     }
 
-    private void ResetVelocity()
+    public virtual void ResetStun()
     {
         stunned = false;
         gameObject.transform.Find("Stun").gameObject.SetActive(false);
 
-        if (facingDirection == 1)
+        if (!knockback)
         {
-            SetVelocity(previousVelocity);
+            if (facingDirection == 1)
+            {
+                SetVelocity(previousStunVelocity);
+            }
+            else
+            {
+                SetVelocity(-previousStunVelocity);
+            }
         }
-        else
+    }
+
+    public virtual void ResetKnockback()
+    {
+        knockback = false;
+
+        if (!stunned || previousKnockbackVelocity == 0f)
         {
-            SetVelocity(-previousVelocity);
+            if (facingDirection == 1)
+            {
+                SetVelocity(previousKnockbackVelocity);
+            }
+            else
+            {
+                SetVelocity(-previousKnockbackVelocity);
+            }
         }
     }
 

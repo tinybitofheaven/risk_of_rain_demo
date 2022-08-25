@@ -66,4 +66,13 @@ public class Imp : Entity
         //audioSource.Play();
         AudioManager.instance.PlaySFX(5);
     }
+
+    // public override void ResetVelocity()
+    // {
+    //     base.ResetVelocity();
+    //     if (previousVelocity == 0f)
+    //     {
+    //         stateMachine.ChangeState(idleState);
+    //     }
+    // }
 }

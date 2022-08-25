@@ -17,6 +17,7 @@ MonoBehaviour:
   minAggroRange: 3
   maxAggroRange: 8
   attackRange: 0.2
+  movementSpeed: 0.8
   startingHealth: 103
   coins: 18
   exp: 42
