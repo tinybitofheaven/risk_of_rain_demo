@@ -32,7 +32,7 @@ public class SPauseToggl : MonoBehaviour
     }
     public void Resume()
     {
-        Debug.Log("asdf");
+        // Debug.Log("asdf");
         sPause.SetActive(false);
         Time.timeScale = 1f;
     }

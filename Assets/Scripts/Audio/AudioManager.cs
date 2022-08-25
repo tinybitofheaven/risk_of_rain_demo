@@ -5,16 +5,16 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
-    private void Awake()
+    private void Awake() //this happens before the game even starts and it's a part of the singletone
     {
-        if(instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
+        if (instance != null && instance != this)
         {
             Destroy(gameObject);
+        }
+        else if (instance == null)
+        {
+            DontDestroyOnLoad(this);
+            instance = this;
         }
     }
 
@@ -23,18 +23,20 @@ public class AudioManager : MonoBehaviour
 
     public void PlayTitleScreenMusic()
     {
-        
-          levelMusic.Stop();
-          titleScreenMusic.Play();
-        
+
+        levelMusic.Stop();
+        bossMusic.Stop();
+        titleScreenMusic.Play();
+
     }
 
     public void PlayLevelMusic()
     {
         if (!levelMusic.isPlaying)
         {
-            
+
             titleScreenMusic.Stop();
+            bossMusic.Stop();
             levelMusic.Play();
 
         }
@@ -42,18 +44,18 @@ public class AudioManager : MonoBehaviour
 
     public void PlayBossMusic()
     {
-        if(!bossMusic.isPlaying)
+        if (!bossMusic.isPlaying)
         {
             levelMusic.Stop();
             bossMusic.Play();
         }
-       
+
 
     }
 
     public void PlaySFX(int sfxToPlay)
     {
         sfx[sfxToPlay].Stop();
-        sfx[sfxToPlay].Play();  
+        sfx[sfxToPlay].Play();
     }
 }
