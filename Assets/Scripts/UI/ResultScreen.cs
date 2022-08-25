@@ -29,13 +29,15 @@ public class ResultScreen : MonoBehaviour
     public void showLossScreen() {
     }
 
-    public void goback()
+    public void goback() //menu
     {
+        //put the reset gamemanager function here
         SceneManager.LoadScene(0);
     }
 
     public void tryagain()
     {
+        //put the reset gamemanager function here
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
