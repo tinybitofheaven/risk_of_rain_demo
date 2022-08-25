@@ -33,7 +33,7 @@ RectTransform:
   - {fileID: 6605395026311793519}
   - {fileID: 4315660477862396410}
   m_Father: {fileID: 6051685231753276794}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -582,7 +582,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3341677723060524858}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9063144543616892644}
+        m_MethodName: goback
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!95 &2806946326467399525
 Animator:
   serializedVersion: 3
@@ -2992,7 +3003,7 @@ RectTransform:
   - {fileID: 5151816315570026421}
   - {fileID: 7657573608352796374}
   m_Father: {fileID: 6051685231753276794}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5422,9 +5433,9 @@ RectTransform:
   - {fileID: 6051685232826564265}
   - {fileID: 6051685231766670866}
   - {fileID: 3461881014981312391}
-  - {fileID: 4112753675767139361}
   - {fileID: 2296011205813514882}
   - {fileID: 6489138975549933315}
+  - {fileID: 4112753675767139361}
   - {fileID: 8588780178474963880}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -7458,7 +7469,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1240155110708478110}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9063144543616892644}
+        m_MethodName: tryagain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!95 &989551704568250264
 Animator:
   serializedVersion: 3
@@ -9304,7 +9326,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6051685231753276794}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
